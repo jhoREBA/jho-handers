@@ -3,57 +3,334 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jhoreba Market</title>
+  <title>jhoREBA MARKET</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f5f5f5;
-      margin: 0;
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+    
+    body { 
+      background: #1a1a2e; 
+      color: white; 
+      padding-bottom: 70px;
     }
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    
+    header {
+      background: linear-gradient(90deg, #ff6b00, #ff9500);
+      padding: 15px;
       text-align: center;
-    }
-    h1 {
-      color: #333;
-    }
-    #status {
-      margin-top: 15px;
+      font-size: 20px;
       font-weight: bold;
-      color: green;
+    }
+    
+    .tabs {
+      display: flex;
+      gap: 10px;
+      padding: 15px;
+      overflow-x: auto;
+    }
+    
+    .tab {
+      padding: 8px 20px;
+      background: #2e2e42;
+      border-radius: 20px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    
+    .tab.active {
+      background: #ff6b00;
+    }
+    
+    .card {
+      background: #2e2e42;
+      margin: 10px 15px;
+      padding: 15px;
+      border-radius: 12px;
+      display: flex;
+      gap: 15px;
+    }
+    
+    .card-img {
+      width: 70px;
+      height: 70px;
+      background: #444;
+      border-radius: 8px;
+    }
+    
+    .card-info {
+      flex: 1;
+    }
+    
+    .card-info h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    
+    .game {
+      color: #ff9500;
+      font-size: 14px;
+    }
+    
+    .price {
+      color: #00ff88;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+    
+    .desc {
+      font-size: 13px;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+    
+    .btn-wa {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      border-top: 1px solid #333;
+    }
+    
+    .nav-item {
+      color: #888;
+      text-align: center;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    
+    .nav-item.active {
+      color: #ff6b00;
+    }
+    
+    /* Chat Widget */
+    .chat-widget {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background: #2e2e42;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    
+    .chat-widget.active {
+      display: flex;
+    }
+    
+    .chat-header {
+      background: #ff6b00;
+      padding: 12px;
+      border-radius: 12px 12px 0 0;
+      font-weight: bold;
+    }
+    
+    .chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      max-height: 280px;
+    }
+    
+    .msg {
+      padding: 8px 12px;
+      border-radius: 15px;
+      margin: 5px 0;
+      max-width: 80%;
+      font-size: 14px;
+    }
+    
+    .msg.you {
+      background: #ff6b00;
+      margin-left: auto;
+    }
+    
+    .msg.other {
+      background: #444;
+    }
+    
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #444;
+    }
+    
+    .chat-input input {
+      flex: 1;
+      padding: 8px;
+      background: #1a1a2e;
+      border: 1px solid #444;
+      border-radius: 20px;
+      color: white;
+    }
+    
+    .chat-input button {
+      margin-left: 8px;
+      padding: 8px 15px;
+      background: #ff6b00;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+    }
+    
+    .chat-toggle {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      background: #ff6b00;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255,107,0,0.4);
+      z-index: 999;
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Jhoreba Market</h1>
-    <p>Status koneksi Firebase:</p>
-    <p id="status">Connecting...</p>
+
+<header>
+  🎮 jhoREBA MARKET
+</header>
+
+<div class="tabs">
+  <div class="tab active">All</div>
+  <div class="tab">ML</div>
+  <div class="tab">PUBG</div>
+  <div class="tab">FF</div>
+  <div class="tab">Genshin</div>
+</div>
+
+<div class="card">
+  <div class="card-img"></div>
+  <div class="card-info">
+    <h3>Akun MMR 3500 Skin Legend</h3>
+    <div class="game">Mobile Legend • Raka</div>
+    <div class="price">Rp 250.000</div>
+    <div class="desc">Wanwan, Fanny, Gusion lengkap. Winrate 62%</div>
+    <button class="btn-wa">Chat WA</button>
   </div>
+</div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    
-    const firebaseConfig = {
-      apiKey: "AIzaSyBEryRDPA0ePlc9XWPDDSFUDBJD1HFyEaU",
-      authDomain: "jhorebamarket.firebaseapp.com",
-      projectId: "jhorebamarket",
-      storageBucket: "jhorebamarket.firebasestorage.app",
-      messagingSenderId: "835799277509",
-      appId: "1:835799277509:web:ae0d45242aa34c8cec75ac"
-    };
+<div class="card">
+  <div class="card-img"></div>
+  <div class="card-info">
+    <h3>Akun SG 2 Emote Lengkap</h3>
+    <div class="game">Free Fire • Dimas</div>
+    <div class="price">Rp 120.000</div>
+    <div class="desc">Heroic 2x, Bundle lama banyak</div>
+    <button class="btn-wa">Chat WA</button>
+  </div>
+</div>
 
-    const app = initializeApp(firebaseConfig);
-    
-    document.getElementById("status").innerText = "✅ Firebase Connected!";
-    console.log("Firebase connected!", app);
-  </script>
+<div class="card">
+  <div class="card-img"></div>
+  <div class="card-info">
+    <h3>Akun Glacier Mummy Set</h3>
+    <div class="game">PUBG Mobile • Budi</div>
+    <div class="price">Rp 400.000</div>
+    <div class="desc">RP max, Conqueror 3x. Login FB</div>
+    <button class="btn-wa">Chat WA</button>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <div class="nav-item active">Beli</div>
+  <div class="nav-item">Jual</div>
+  <div class="nav-item">Keranjang</div>
+  <div class="nav-item">Info</div>
+</div>
+
+<!-- Chat Widget -->
+<div class="chat-toggle" onclick="toggleChat()">💬</div>
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-header">🔥 Live Chat</div>
+  <div class="chat-messages" id="messages"></div>
+  <div class="chat-input">
+    <input type="text" id="msgInput" placeholder="Ketik pesan..." />
+    <button onclick="sendMsg()">Kirim</button>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } 
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBEryRDPA0ePlc9XWPDDSFUDBJD1HFyEaU",
+    authDomain: "jhorebamarket.firebaseapp.com",
+    projectId: "jhorebamarket",
+    storageBucket: "jhorebamarket.firebasestorage.app",
+    messagingSenderId: "835799277509",
+    appId: "1:835799277509:web:ae0d45242aa34c8cec75ac"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const username = "User_" + Math.floor(Math.random() * 1000);
+  const messagesDiv = document.getElementById("messages");
+  const msgInput = document.getElementById("msgInput");
+
+  // Toggle chat
+  window.toggleChat = () => {
+    document.getElementById("chatWidget").classList.toggle("active");
+  }
+
+  // Load chat real-time
+  const q = query(collection(db, "chats"), orderBy("timestamp"));
+  onSnapshot(q, (snapshot) => {
+    messagesDiv.innerHTML = "";
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const div = document.createElement("div");
+      div.classList.add("msg");
+      div.classList.add(data.user === username ? "you" : "other");
+      div.innerText = data.text;
+      messagesDiv.appendChild(div);
+    });
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  });
+
+  // Send message
+  window.sendMsg = async () => {
+    const text = msgInput.value.trim();
+    if (text === "") return;
+    await addDoc(collection(db, "chats"), {
+      user: username,
+      text: text,
+      timestamp: serverTimestamp()
+    });
+    msgInput.value = "";
+  };
+
+  msgInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMsg();
+  });
+</script>
+
 </body>
 </html>
