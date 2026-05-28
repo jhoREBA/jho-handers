@@ -12,6 +12,7 @@
       align-items: center;
       height: 100vh;
       background: #f5f5f5;
+      margin: 0;
     }
     .box {
       background: white;
@@ -38,10 +39,8 @@
   </div>
 
   <script type="module">
-    // Import Firebase SDK
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     
-    // Config lo dari Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyBEryRDPA0ePlc9XWPDDSFUDBJD1HFyEaU",
       authDomain: "jhorebamarket.firebaseapp.com",
@@ -51,10 +50,8 @@
       appId: "1:835799277509:web:ae0d45242aa34c8cec75ac"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     
-    // Cek koneksi
     document.getElementById("status").innerText = "✅ Firebase Connected!";
     console.log("Firebase connected!", app);
   </script>
