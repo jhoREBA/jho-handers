@@ -92,8 +92,7 @@
       margin-bottom: 10px;
     }
     
-    .btn-wa, .btn-submit {
-      background: #25D366;
+    .btn-wa, .btn-submit, .btn-role {
       color: white;
       border: none;
       padding: 8px 20px;
@@ -104,10 +103,25 @@
       display: inline-block;
     }
     
+    .btn-wa {
+      background: #25D366;
+    }
+    
     .btn-submit {
       background: #ff6b00;
       width: 100%;
       margin-top: 10px;
+    }
+    
+    .btn-role {
+      flex:1;
+      padding:10px;
+      background:#444;
+      border-radius:8px;
+    }
+    
+    .btn-role.active {
+      background:#ff6b00;
     }
     
     .form-group {
@@ -161,301 +175,4 @@
       background: #ff6b00;
       border-radius: 50%;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255,107,0,0.4);
-      z-index: 999;
-    }
-    
-    .chat-widget {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 300px;
-      max-height: 400px;
-      background: #2e2e42;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      display: none;
-      flex-direction: column;
-      z-index: 1000;
-    }
-    
-    .chat-widget.active {
-      display: flex;
-    }
-    
-    .chat-header {
-      background: #ff6b00;
-      padding: 12px;
-      border-radius: 12px 12px 0 0;
-      font-weight: bold;
-    }
-    
-    .chat-messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      max-height: 280px;
-    }
-    
-    .msg {
-      padding: 8px 12px;
-      border-radius: 15px;
-      margin: 5px 0;
-      max-width: 80%;
-      font-size: 14px;
-    }
-    
-    .msg.you {
-      background: #ff6b00;
-      margin-left: auto;
-    }
-    
-    .msg.other {
-      background: #444;
-    }
-    
-    .chat-input {
-      display: flex;
-      padding: 10px;
-      border-top: 1px solid #444;
-    }
-    
-    .chat-input input {
-      flex: 1;
-      padding: 8px;
-      background: #1a1a2e;
-      border: 1px solid #444;
-      border-radius: 20px;
-      color: white;
-    }
-    
-    .chat-input button {
-      margin-left: 8px;
-      padding: 8px 15px;
-      background: #ff6b00;
-      border: none;
-      border-radius: 20px;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-
-<header>🎮 jhoREBA MARKET</header>
-
-<div class="tabs" id="tabs">
-  <div class="tab active" data-game="all">All</div>
-  <div class="tab" data-game="ml">ML</div>
-  <div class="tab" data-game="pubg">PUBG</div>
-  <div class="tab" data-game="ff">FF</div>
-  <div class="tab" data-game="genshin">Genshin</div>
-</div>
-
-<div id="beli" class="content active">
-  <div class="card" data-game="ml">
-    <div class="card-img"></div>
-    <div class="card-info">
-      <h3>Akun MMR 3500 Skin Legend</h3>
-      <div class="game">Mobile Legend • Raka</div>
-      <div class="price">Rp 250.000</div>
-      <div class="desc">Wanwan, Fanny, Gusion lengkap. Winrate 62%</div>
-      <a href="https://wa.me/6281234567890?text=Halo, saya mau beli Akun MMR 3500" class="btn-wa">Chat WA</a>
-    </div>
-  </div>
-
-  <div class="card" data-game="ff">
-    <div class="card-img"></div>
-    <div class="card-info">
-      <h3>Akun SG 2 Emote Lengkap</h3>
-      <div class="game">Free Fire • Dimas</div>
-      <div class="price">Rp 120.000</div>
-      <div class="desc">Heroic 2x, Bundle lama banyak</div>
-      <a href="https://wa.me/6281234567890?text=Halo, saya mau beli Akun SG 2" class="btn-wa">Chat WA</a>
-    </div>
-  </div>
-
-  <div class="card" data-game="pubg">
-    <div class="card-img"></div>
-    <div class="card-info">
-      <h3>Akun Glacier Mummy Set</h3>
-      <div class="game">PUBG Mobile • Budi</div>
-      <div class="price">Rp 400.000</div>
-      <div class="desc">RP max, Conqueror 3x. Login FB</div>
-      <a href="https://wa.me/6281234567890?text=Halo, saya mau beli Akun Glacier" class="btn-wa">Chat WA</a>
-    </div>
-  </div>
-</div>
-
-<div id="jual" class="content">
-  <div style="text-align:center; padding:50px 20px;">
-    <h3>Halaman Jual</h3>
-    <p style="color:#888; margin-top:10px;">Fitur jual akun coming soon 🔥</p>
-  </div>
-</div>
-
-<div id="daftar" class="content">
-  <div style="background:#2e2e42; padding:20px; border-radius:12px; margin-top:15px;">
-    <h3 style="margin-bottom:15px;">Daftar Akun Baru</h3>
-    <form id="registerForm">
-      <div class="form-group">
-        <input type="text" id="regName" placeholder="Nama Lengkap" required>
-      </div>
-      <div class="form-group">
-        <input type="text" id="regWA" placeholder="Nomor WhatsApp" required>
-      </div>
-      <div class="form-group">
-        <input type="email" id="regEmail" placeholder="Email" required>
-      </div>
-      <button type="submit" class="btn-submit">Daftar Sekarang</button>
-    </form>
-    <p id="regStatus" style="text-align:center; margin-top:10px; color:#00ff88;"></p>
-  </div>
-</div>
-
-<div id="keranjang" class="content">
-  <div style="text-align:center; padding:50px 20px;">
-    <h3>Keranjang Kosong</h3>
-    <p style="color:#888; margin-top:10px;">Belum ada item di keranjang</p>
-  </div>
-</div>
-
-<div id="info" class="content">
-  <div style="text-align:center; padding:50px 20px;">
-    <h3>Tentang Jhoreba Market</h3>
-    <p style="color:#888; margin-top:10px;">Marketplace akun game terpercaya</p>
-  </div>
-</div>
-
-<div class="bottom-nav">
-  <div class="nav-item active" data-page="beli">Beli</div>
-  <div class="nav-item" data-page="jual">Jual</div>
-  <div class="nav-item" data-page="daftar">Daftar</div>
-  <div class="nav-item" data-page="keranjang">Keranjang</div>
-  <div class="nav-item" data-page="info">Info</div>
-</div>
-
-<div class="chat-toggle" onclick="toggleChat()">💬</div>
-<div class="chat-widget" id="chatWidget">
-  <div class="chat-header">🔥 Live Chat</div>
-  <div class="chat-messages" id="messages"></div>
-  <div class="chat-input">
-    <input type="text" id="msgInput" placeholder="Ketik pesan..." />
-    <button onclick="sendMsg()">Kirim</button>
-  </div>
-</div>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } 
-    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBEryRDPA0ePlc9XWPDDSFUDBJD1HFyEaU",
-    authDomain: "jhorebamarket.firebaseapp.com",
-    projectId: "jhorebamarket",
-    storageBucket: "jhorebamarket.firebasestorage.app",
-    messagingSenderId: "835799277509",
-    appId: "1:835799277509:web:ae0d45242aa34c8cec75ac"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const username = "User_" + Math.floor(Math.random() * 1000);
-
-  // Tab filter game
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      
-      const game = tab.dataset.game;
-      document.querySelectorAll('.card').forEach(card => {
-        if(game === 'all' || card.dataset.game === game) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Bottom nav switch page
-  document.querySelectorAll('.nav-item').forEach(nav => {
-    nav.addEventListener('click', () => {
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      nav.classList.add('active');
-      
-      const page = nav.dataset.page;
-      document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-      document.getElementById(page).classList.add('active');
-    });
-  });
-
-  // Chat toggle
-  window.toggleChat = () => {
-    document.getElementById("chatWidget").classList.toggle("active");
-  }
-
-  // Chat real-time
-  const messagesDiv = document.getElementById("messages");
-  const msgInput = document.getElementById("msgInput");
-  
-  const q = query(collection(db, "chats"), orderBy("timestamp"));
-  onSnapshot(q, (snapshot) => {
-    messagesDiv.innerHTML = "";
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      const div = document.createElement("div");
-      div.classList.add("msg");
-      div.classList.add(data.user === username ? "you" : "other");
-      div.innerText = data.text;
-      messagesDiv.appendChild(div);
-    });
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  });
-
-  window.sendMsg = async () => {
-    const text = msgInput.value.trim();
-    if (text === "") return;
-    await addDoc(collection(db, "chats"), {
-      user: username,
-      text: text,
-      timestamp: serverTimestamp()
-    });
-    msgInput.value = "";
-  };
-
-  msgInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendMsg();
-  });
-
-  // Register form
-  document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = document.getElementById('regName').value;
-    const wa = document.getElementById('regWA').value;
-    const email = document.getElementById('regEmail').value;
-    
-    try {
-      await addDoc(collection(db, "users"), {
-        name: name,
-        whatsapp: wa,
-        email: email,
-        timestamp: serverTimestamp()
-      });
-      document.getElementById('regStatus').innerText = "✅ Pendaftaran berhasil!";
-      document.getElementById('registerForm').reset();
-    } catch (err) {
-      document.getElementById('regStatus').innerText = "❌ Gagal daftar, coba lagi";
-      console.error(err);
-    }
-  });
-</script>
-
-</body>
-</html>
+      align-items: center
