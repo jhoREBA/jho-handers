@@ -3,99 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jhoREBA MARKET</title>
+<title>Jual Beli Akun Game</title>
 <style>
-  body { margin:0; font-family:Arial,sans-serif; background:#0f172a; color:#fff; padding-bottom:70px; }
-  header { background:#f97316; padding:14px; text-align:center; font-size:20px; font-weight:bold; }
-  .filter { display:flex; gap:8px; padding:12px; overflow-x:auto; }
-  .filter button { padding:8px 18px; border:none; border-radius:20px; background:#334155; color:#fff; font-size:14px; cursor:pointer; }
-  .filter button.active { background:#f97316; }
-  .list { padding:0 12px 20px; }
-  .card { background:#1e293b; border-radius:12px; padding:12px; margin-bottom:12px; display:none; }
-  .card.show { display:block; }
-  .card h3 { font-size:16px; margin:0 0 4px 0; }
-  .card .sub { font-size:13px; color:#fb923c; margin-bottom:6px; }
-  .card .price { font-size:18px; color:#22c55e; font-weight:bold; margin-bottom:8px; }
-  .card .desc { font-size:13px; color:#cbd5e1; margin-bottom:10px; }
-  .btn-wa { display:inline-block; padding:8px 20px; background:#22c55e; color:#fff; border-radius:20px; text-decoration:none; font-size:14px; font-weight:bold; }
-  .bottom-nav { position:fixed; bottom:0; left:0; right:0; background:#fff; display:flex; justify-content:space-around; padding:10px 0; border-top:1px solid #e2e8f0; }
-  .bottom-nav button { background:none; border:none; font-size:13px; color:#64748b; cursor:pointer; }
-  .bottom-nav button.active { color:#f97316; font-weight:bold; }
-  .page { display:none; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+  body { background:#0f172a; color:#e2e8f0; padding-bottom:80px; }
+  
+  header { background:#1e293b; padding:16px; text-align:center; font-size:20px; font-weight:700; color:#38bdf8; position:sticky; top:0; z-index:10; }
+  
+  .page { display:none; padding:16px; }
   .page.active { display:block; }
-  input, select, textarea { width:100%; padding:10px; margin:8px 0; border-radius:8px; border:none; background:#334155; color:#fff; }
-  label { font-size:14px; color:#cbd5e1; }
-  .btn-submit { width:100%; padding:12px; background:#f97316; border:none; border-radius:8px; color:#fff; font-weight:bold; font-size:16px; cursor:pointer; }
+  
+  .card { background:#1e293b; border-radius:12px; padding:16px; margin-bottom:12px; display:none; }
+  .card.show { display:block; animation:fadeIn 0.3s; }
+  @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+  
+  .card h3 { color:#38bdf8; margin-bottom:6px; }
+  .card p.sub { color:#94a3b8; font-size:14px; margin-bottom:8px; }
+  .card p.price { color:#22d3ee; font-weight:700; font-size:18px; margin-bottom:8px; }
+  .card p.desc { color:#cbd5e1; font-size:14px; margin-bottom:12px; }
+  
+  .btn-wa { display:inline-block; background:#25D366; color:#fff; padding:8px 16px; border-radius:20px; text-decoration:none; font-size:14px; font-weight:600; }
+  
+  .filter { display:flex; gap:8px; margin-bottom:16px; overflow-x:auto; padding-bottom:4px; }
+  .filter button { background:#334155; border:none; padding:8px 16px; border-radius:20px; color:#e2e8f0; white-space:nowrap; cursor:pointer; }
+  .filter button.active { background:#38bdf8; color:#0f172a; }
+  
+  form { background:#1e293b; padding:16px; border-radius:12px; }
+  form label { display:block; margin:12px 0 6px; font-size:14px; color:#94a3b8; }
+  form input, form select, form textarea { width:100%; padding:10px; border-radius:8px; border:none; background:#334155; color:#e2e8f0; font-size:15px; }
+  form button { width:100%; margin-top:16px; padding:12px; background:#38bdf8; border:none; border-radius:8px; color:#0f172a; font-weight:700; font-size:16px; cursor:pointer; }
+  
+  .bottom-nav { position:fixed; bottom:0; left:0; right:0; background:#1e293b; display:flex; justify-content:space-around; padding:10px 0; border-top:1px solid #334155; }
+  .bottom-nav button { background:none; border:none; color:#94a3b8; font-size:12px; cursor:pointer; }
+  .bottom-nav button.active { color:#38bdf8; }
+  .bottom-nav button svg { width:24px; height:24px; display:block; margin:0 auto 4px; }
 </style>
 </head>
 <body>
 
-<header>🎮 jhoREBA MARKET</header>
+<header>Jual Beli Akun Game</header>
 
 <div id="beliPage" class="page active">
   <div class="filter">
-    <button class="active" onclick="filterGame('all')">All</button>
-    <button onclick="filterGame('ml')">ML</button>
+    <button class="active" onclick="filterGame('all')">Semua</button>
+    <button onclick="filterGame('ml')">Mobile Legends</button>
+    <button onclick="filterGame('ff')">Free Fire</button>
     <button onclick="filterGame('pubg')">PUBG</button>
-    <button onclick="filterGame('ff')">FF</button>
   </div>
-  <div class="list" id="listingContainer"></div>
+  <div id="listingContainer"></div>
 </div>
 
 <div id="jualPage" class="page">
-  <div style="padding:20px;">
-    <h2>Jual Akun Game</h2>
-    <form onsubmit="daftarSeller(event)">
-      <label>Nama Penjual</label>
-      <input type="text" id="nama" required>
-      
-      <label>No WhatsApp</label>
-      <input type="tel" id="wa" placeholder="6281234567890" required>
-      
-      <label>Email</label>
-      <input type="email" id="email" required>
-      
-      <label>Game</label>
-      <select id="game" required>
-        <option value="ml">Mobile Legend</option>
-        <option value="pubg">PUBG Mobile</option>
-        <option value="ff">Free Fire</option>
-      </select>
-      
-      <label>Judul Akun</label>
-      <input type="text" id="judul" required>
-      
-      <label>Harga</label>
-      <input type="text" id="harga" placeholder="Rp 250.000" required>
-      
-      <label>Deskripsi</label>
-      <textarea id="desc" rows="3" required></textarea>
-      
-      <button type="submit" class="btn-submit">Daftar & Posting Akun</button>
-    </form>
-  </div>
+  <form onsubmit="daftarSeller(event)">
+    <label>Nama Kamu</label>
+    <input type="text" id="nama" required>
+    
+    <label>Nomor WA</label>
+    <input type="tel" id="wa" placeholder="08123456789" required>
+    
+    <label>Email</label>
+    <input type="email" id="email" required>
+    
+    <label>Game</label>
+    <select id="game" required>
+      <option value="ml">Mobile Legends</option>
+      <option value="ff">Free Fire</option>
+      <option value="pubg">PUBG Mobile</option>
+    </select>
+    
+    <label>Judul Akun</label>
+    <input type="text" id="judul" placeholder="Ex: Akun ML Skin Legend" required>
+    
+    <label>Harga</label>
+    <input type="text" id="harga" placeholder="Ex: Rp 500.000" required>
+    
+    <label>Deskripsi</label>
+    <textarea id="desc" rows="3" placeholder="Tulis detail akunnya..." required></textarea>
+    
+    <button type="submit">Daftar & Posting Akun</button>
+  </form>
 </div>
 
 <div id="daftarPage" class="page">
-  <div style="padding:20px; text-align:center;">
-    <h2>Daftar Seller</h2>
-    <p>Silakan buka menu "Jual" untuk mendaftarkan akun game lo</p>
-  </div>
+  <h2 style="margin-bottom:12px;">Cara Daftar</h2>
+  <p style="color:#94a3b8; line-height:1.6;">1. Buka menu Jual di bawah<br>2. Isi form lengkap<br>3. Pencet Posting<br>4. Akun lo langsung muncul di halaman Beli</p>
 </div>
 
 <div id="infoPage" class="page">
-  <div style="padding:20px; text-align:center;">
-    <h2>Info</h2>
-    <p>jhoREBA MARKET - Platform jual beli akun game antar user</p>
-    <p>Tiap seller punya WA sendiri, pembeli langsung chat ke penjual</p>
-  </div>
+  <h2 style="margin-bottom:12px;">Info</h2>
+  <p style="color:#94a3b8; line-height:1.6;">Web ini buat jual beli akun game antar player. Transaksi langsung lewat WA, admin gak pegang uang. Hati-hati penipuan!</p>
 </div>
 
 <div class="bottom-nav">
-  <button class="active" onclick="switchPage('beli')">Beli</button>
-  <button onclick="switchPage('jual')">Jual</button>
-  <button onclick="switchPage('daftar')">Daftar</button>
-  <button onclick="switchPage('info')">Info</button>
+  <button class="active" onclick="switchPage('beli')">
+    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    Beli
+  </button>
+  <button onclick="switchPage('jual')">
+    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+    Jual
+  </button>
+  <button onclick="switchPage('daftar')">
+    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+    Daftar
+  </button>
+  <button onclick="switchPage('info')">
+    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 10s4.477 10 10 10zM12 16v-4M12 8h.01"/></svg>
+    Info
+  </button>
 </div>
 
 <script>
@@ -104,24 +119,41 @@ let listings = JSON.parse(localStorage.getItem('listings')) || [];
 function renderListings() {
   const container = document.getElementById('listingContainer');
   container.innerHTML = '';
-  listings.forEach(item => {
+  
+  if(listings.length === 0) {
+    container.innerHTML = '<p style="text-align:center; color:#94a3b8; padding:40px 0;">Belum ada penjual. Jadilah yang pertama!</p>';
+    return;
+  }
+
+  listings.forEach((item, index) => {
     container.innerHTML += `
       <div class="card show" data-game="${item.game}">
         <h3>${item.judul}</h3>
         <p class="sub">${item.game.toUpperCase()} • ${item.nama}</p>
         <p class="price">${item.harga}</p>
         <p class="desc">${item.desc}</p>
-        <a class="btn-wa" href="https://wa.me/${item.wa}?text=Halo%20${item.nama},%20mau%20tanya%20akun%20${item.judul}">Chat WA</a>
+        <div style="display:flex; gap:8px;">
+          <a class="btn-wa" href="https://wa.me/${item.wa}?text=Halo%20${item.nama},%20mau%20tanya%20akun%20${item.judul}">Chat WA</a>
+          <button onclick="hapusListing(${index})" style="padding:8px 16px; background:#ef4444; border:none; border-radius:20px; color:#fff; font-size:14px; cursor:pointer;">Hapus</button>
+        </div>
       </div>
     `;
   });
+}
+
+function hapusListing(index) {
+  if(confirm('Yakin mau hapus listing ini?')) {
+    listings.splice(index, 1);
+    localStorage.setItem('listings', JSON.stringify(listings));
+    renderListings();
+  }
 }
 
 function daftarSeller(e) {
   e.preventDefault();
   const data = {
     nama: document.getElementById('nama').value,
-    wa: document.getElementById('wa').value.replace('+','').replace('0','62'),
+    wa: document.getElementById('wa').value.replace('+','').replace(/^0/,'62'),
     email: document.getElementById('email').value,
     game: document.getElementById('game').value,
     judul: document.getElementById('judul').value,
