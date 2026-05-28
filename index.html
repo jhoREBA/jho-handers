@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -23,7 +23,6 @@
     gap: 8px;
     padding: 12px;
     overflow-x: auto;
-    background: #0f172a;
   }
   .filter button {
     padding: 8px 18px;
@@ -62,6 +61,7 @@
   .card h3 {
     font-size: 16px;
     margin-bottom: 4px;
+    color: #fff;
   }
   .card .sub {
     font-size: 13px;
@@ -88,6 +88,8 @@
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
+    border: none;
+    cursor: pointer;
   }
 </style>
 </head>
@@ -103,10 +105,46 @@
   <button onclick="filterAkun('genshin')">Genshin</button>
 </div>
 
-<div class="list" id="list-akun">
+<div class="list">
   
   <div class="card" data-kategori="ml">
     <img src="https://via.placeholder.com/140x140.png?text=ML" alt="">
     <div class="card-content">
       <h3>Akun MMR 3500 Skin Legend</h3>
-      <p class="sub">Mobile Legend •
+      <p class="sub">Mobile Legend • Raka</p>
+      <p class="price">Rp 250.000</p>
+      <p class="desc">Wanwan, Fanny, Gusion lengkap. Winrate 62%</p>
+      <a class="btn-wa" href="https://wa.me/6281234567890?text=Halo mau beli Akun MMR 3500 Skin Legend">Chat WA</a>
+    </div>
+  </div>
+
+  <div class="card" data-kategori="ff">
+    <img src="https://via.placeholder.com/140x140.png?text=FF" alt="">
+    <div class="card-content">
+      <h3>Akun SG 2 Emote Lengkap</h3>
+      <p class="sub">Free Fire • Dimas</p>
+      <p class="price">Rp 120.000</p>
+      <p class="desc">Heroic 2x, Bundle lama banyak</p>
+      <a class="btn-wa" href="https://wa.me/6281234567890?text=Halo mau beli Akun SG 2 Emote Lengkap">Chat WA</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function filterAkun(kategori) {
+  document.querySelectorAll('.filter button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  document.querySelectorAll('.card').forEach(card => {
+    if (kategori === 'all' || card.getAttribute('data-kategori') === kategori) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</body>
+</html>
