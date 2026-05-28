@@ -1,277 +1,188 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jhoREBA Analisa Saham</title>
+<title>jhoREBA MARKET - Jual Beli Akun Game</title>
 <style>
-    * {
-    box-sizing: border-box;
-  }
-  body {
-    margin:0;
-    font-family: 'Segoe UI', sans-serif;
-    background:#0a0f1a;
-    color:#fff;
-  }
-  header {
-    background:#111827;
-    padding:15px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    position:sticky;
-    top:0;
-    z-index:100;
-    border-bottom:1px solid #1e293b;
-  }
-  header h2 {
-    margin:0;
-    font-size:18px;
-    color:#3b82f6;
-  }
- .promo-banner {
-    background:linear-gradient(90deg, #1e40af, #3b82f6);
-    padding:12px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:14px;
-  }
- .promo-banner button {
-    background:#fff;
-    border:none;
-    padding:6px 14px;
-    border-radius:20px;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:13px;
-  }
- .hero {
-    padding:25px 20px;
-    background:linear-gradient(180deg, #1e293b, #0a0f1a);
-  }
- .hero h1 {
-    margin:0;
-    font-size:24px;
-  }
- .hero p {
-    color:#94a3b8;
-    margin-top:8px;
-    font-size:14px;
-  }
- .tab-content {
-    display:none;
-    padding:20px;
-    min-height:70vh;
-  }
- .tab-content.active {
-    display:block;
-  }
- .card {
-    background:#1e293b;
-    padding:16px;
-    border-radius:12px;
-    margin-bottom:15px;
-    border-left:4px solid #3b82f6;
-  }
- .card h3 {
-    margin:0 0 10px;
-    color:#3b82f6;
-    font-size:16px;
-  }
- .card p,.card li {
-    margin:8px 0;
-    color:#d1d5db;
-    line-height:1.5;
-    font-size:14px;
-  }
- .card ul {
-    padding-left:20px;
-  }
- .card strong {
-    color:#fff;
-  }
- .up { color:#22c55e; }
- .down { color:#ef4444; }
- .warning {
-    background:#451a03;
-    border-left:4px solid #f59e0b;
-    padding:12px;
-    border-radius:8px;
-    margin-top:12px;
-    font-size:13px;
-    color:#fcd34d;
-  }
- .bottom-nav {
-    position:fixed;
-    bottom:0;
-    width:100%;
-    background:#111827;
-    display:flex;
-    justify-content:space-around;
-    padding:10px 0;
-    border-top:1px solid #1e293b;
-    z-index:100;
-  }
- .bottom-nav div {
-    text-align:center;
-    font-size:11px;
-    color:#94a3b8;
-    cursor:pointer;
-    flex:1;
-  }
- .bottom-nav div.active {
-    color:#3b82f6;
-  }
- .bottom-nav div span {
-    font-size:22px;
-    display:block;
-    margin-bottom:2px;
-  }
-  body {
-    padding-bottom:75px;
-  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+  body{background:#0a0f1a;color:#e8e8e8;padding-bottom:80px}
+
+  header{background:linear-gradient(135deg,#ff4d00,#ff8c00);padding:16px;text-align:center;position:sticky;top:0;z-index:100}
+  header h1{font-size:18px;font-weight:700}
+
+ .container{padding:16px}
+
+ .tab-btns{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto}
+ .tab-btns button{flex-shrink:0;padding:10px 16px;background:#1a2332;border:1px solid #2d3748;border-radius:8px;color:#9ca3af;border:none;cursor:pointer}
+ .tab-btns button.active{background:#ff4d00;color:white}
+
+ .section{display:none}
+ .section.active{display:block}
+
+ .form-card,.item-card{background:#1a2332;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #2d3748}
+
+  input,select,textarea{width:100%;padding:10px;background:#0f172a;border:1px solid #2d3748;border-radius:8px;color:white;margin-top:6px;margin-bottom:12px;font-size:14px}
+  textarea{resize:vertical;min-height:60px}
+
+  button.btn{background:#ff4d00;border:none;padding:12px;border-radius:8px;color:white;font-weight:700;width:100%;cursor:pointer}
+  button.btn:hover{background:#ff6b00}
+
+ .item-card{display:flex;gap:12px}
+ .item-img{width:80px;height:80px;border-radius:8px;object-fit:cover;background:#0f172a}
+ .item-info{flex:1}
+ .item-title{font-weight:700;font-size:15px}
+ .item-game{font-size:12px;color:#ff8c00;margin:4px 0}
+ .item-price{font-size:18px;font-weight:700;color:#00d26a;margin:4px 0}
+ .item-desc{font-size:13px;color:#9ca3af}
+ .wa-btn{display:inline-block;margin-top:8px;padding:8px 16px;background:#25d366;color:white;text-decoration:none;border-radius:8px;font-size:13px;font-weight:700}
+
+ .nav{position:fixed;bottom:0;left:0;right:0;background:#1a2332;display:flex;border-top:1px solid #2d3748}
+ .nav button{flex:1;padding:12px;background:none;border:none;color:#9ca3af;font-size:12px}
+ .nav button.active{color:#ff4d00}
+
+ .empty{text-align:center;color:#9ca3af;padding:40px 0}
 </style>
 </head>
 <body>
 
-<header>
-  <h2>📈 jhoREBA ANALISA</h2>
-  <div>👤</div>
-</header>
+<header><h1>🎮 jhoREBA MARKET</h1></header>
 
-<div class="promo-banner">
-  <span>Update analisa krisis & saham harian!</span>
-  <button>Join</button>
-</div>
-
-<!-- TAB 1: ANALISA UTAMA -->
-<div id="analisa" class="tab-content active">
-  <div class="hero">
-    <h1>ANALISA SAHAM KILAT ⚡</h1>
-    <p>Update saham IHSG hari ini</p>
+<div class="container">
+  <!-- Tab Jual -->
+  <div id="jual" class="section active">
+    <div class="form-card">
+      <h3>Pasang Iklan Jual Akun</h3>
+      <input type="text" id="sellerName" placeholder="Nama kamu">
+      <select id="gameType">
+        <option value="Mobile Legend">Mobile Legend</option>
+        <option value="PUBG Mobile">PUBG Mobile</option>
+        <option value="Free Fire">Free Fire</option>
+        <option value="Genshin Impact">Genshin Impact</option>
+        <option value="Lainnya">Lainnya</option>
+      </select>
+      <input type="text" id="itemTitle" placeholder="Judul iklan, contoh: Akun ML Mythic 100 Skin">
+      <input type="number" id="itemPrice" placeholder="Harga Rp, contoh: 500000">
+      <textarea id="itemDesc" placeholder="Deskripsi akun: rank, skin, login, dll"></textarea>
+      <input type="text" id="itemWA" placeholder="No WA 62xxx, contoh: 628123456789">
+      <input type="file" id="itemImg" accept="image/*">
+      <button class="btn" onclick="addItem()">Pasang Iklan</button>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>BBCA - Bank Central Asia</h3>
-    <p>Harga: Rp 9,500 <span class="up">+1.2%</span></p>
-    <p><strong>Analisa:</strong> Breakout resistance Rp 9,400. Target selanjutnya Rp 9,700. Support kuat di Rp 9,300.</p>
+  <!-- Tab Beli -->
+  <div id="beli" class="section">
+    <div class="tab-btns">
+      <button class="active" onclick="filterGame('All',this)">Semua</button>
+      <button onclick="filterGame('Mobile Legend',this)">ML</button>
+      <button onclick="filterGame('PUBG Mobile',this)">PUBG</button>
+      <button onclick="filterGame('Free Fire',this)">FF</button>
+    </div>
+    <div id="itemList"></div>
   </div>
 
-  <div class="card">
-    <h3>TLKM - Telkom Indonesia</h3>
-    <p>Harga: Rp 3,100 <span class="down">-0.8%</span></p>
-    <p><strong>Analisa:</strong> Masih konsolidasi area Rp 3,050-3,150. Tunggu konfirmasi breakout volume besar.</p>
-  </div>
-
-  <div class="card">
-    <h3>IHSG Hari Ini</h3>
-    <p>Indeks: 7,250 <span class="up">+0.5%</span></p>
-    <p><strong>Kondisi:</strong> Sektor banking memimpin penguatan. Market cenderung sideways.</p>
-  </div>
-</div>
-
-<!-- TAB 2: PREDIKSI KRISIS -->
-<div id="prediksi" class="tab-content">
-  <h2>⚠️ Prediksi Saham Turun Saat Krisis</h2>
-
-  <div class="card">
-    <h3>Sektor Yang Biasanya Turun Dalam</h3>
-    <ul>
-      <li><strong>Consumer Cyclical:</strong> MALL, RIMO, MAPA - orang stop belanja barang non-pokok</li>
-      <li><strong>Property:</strong> BSDE, CTRA, SMRA - kredit macet naik, penjualan rumah anjlok</li>
-      <li><strong>Automotive:</strong> ASII, AUTO - penjualan mobil turun drastis</li>
-      <li><strong>Tourism & Airlines:</strong> PANR, CMPP, GIAA - penerbangan & hotel sepi</li>
-      <li><strong>Media & Advertising:</strong> MNCN, SCMA - iklan dipotong perusahaan</li>
-    </ul>
-    <div class="warning">
-      <strong>Disclaimer:</strong> Ini pola historis dari krisis 2008 & 2020. Bukan jaminan 100% bakal kejadian lagi. Selalu cek fundamental & teknikal.
+  <!-- Tab Info -->
+  <div id="info" class="section">
+    <div class="form-card">
+      <h3>Peraturan</h3>
+      <p>1. Transaksi diluar tanggung jawab admin. Gunakan MM kalau perlu.<br>
+      2. Dilarang scam. Laporkan jika ada penipuan.<br>
+      3. No WA yang dicantumkan harus aktif.</p>
+      <p style="margin-top:12px;color:#9ca3af">Hubungi admin: 628xxxxx</p>
     </div>
   </div>
 </div>
 
-<!-- TAB 3: SAHAM PAS KRISIS -->
-<div id="pas-krisis" class="tab-content">
-  <h2>📉 Strategi Saat Krisis Terjadi</h2>
-
-  <div class="card">
-    <h3>Yang Harus Dilakukan</h3>
-    <ul>
-      <li><strong>Jangan Panik Jual:</strong> Krisis biasanya cuma 6-18 bulan. Kalau jual rugi, gak bisa ikut rebound.</li>
-      <li><strong>Cek Cash Flow:</strong> Pastikan lo masih punya dana darurat 6 bulan.</li>
-      <li><strong>Stop Loss Disiplin:</strong> Kalau udah nyentuh -10%, potong dulu. Lindungi modal.</li>
-      <li><strong>DCA Makin Gencar:</strong> Kalau masih ada duit dingin, ini waktu terbaik beli murah.</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Yang Harus Dihindari</h3>
-    <ul>
-      <li>Margin trading / beli pake utang</li>
-      <li>Averaging down tanpa batas di saham gorengan</li>
-      <li>Ikut FOMO saham yang udah naik 100% dalam seminggu</li>
-    </ul>
-  </div>
-</div>
-
-<!-- TAB 4: SAHAM TAHAN KRISIS -->
-<div id="tahan-krisis" class="tab-content">
-  <h2>🛡️ Saham Yang Cenderung Bertahan Saat Krisis</h2>
-
-  <div class="card">
-    <h3>Sektor Defensive</h3>
-    <ul>
-      <li><strong>Consumer Staple:</strong> UNVR, INDF, ICBP - orang tetap butuh makanan, sabun, mie</li>
-      <li><strong>Telecom:</strong> TLKM, ISAT, EXCL - internet & telepon tetap dipake walau krisis</li>
-      <li><strong>Healthcare:</strong> KLBF, HEAL, MIKA - kesehatan tetap prioritas nomor 1</li>
-      <li><strong>Utility:</strong> PGAS, JSMR, TOWR - listrik, gas, tower butuh semua orang</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Ciri Saham Tahan Krisis</h3>
-    <ul>
-      <li>Utang kecil, cash banyak</li>
-      <li>Produknya kebutuhan pokok</li>
-      <li>Dividen konsisten 3-5% per tahun</li>
-      <li>ROE di atas 15%</li>
-    </ul>
-    <div class="warning">
-      <strong>Catatan:</strong> "Bertahan" bukan berarti gak turun sama sekali. Tapi biasanya turunnya 10-20%, bukan 50-70%. Dan rebound nya lebih cepat.
-    </div>
-  </div>
-</div>
-
-<!-- BOTTOM NAVIGATION -->
-<div class="bottom-nav">
-  <div class="active" onclick="openTab('analisa')">
-    <span>📈</span>Analisa
-  </div>
-  <div onclick="openTab('prediksi')">
-    <span>⚠️</span>Prediksi
-  </div>
-  <div onclick="openTab('pas-krisis')">
-    <span>📉</span>Pas Krisis
-  </div>
-  <div onclick="openTab('tahan-krisis')">
-    <span>🛡️</span>Tahan Krisis
-  </div>
+<div class="nav">
+  <button class="active" onclick="showTab('jual',this)">Jual</button>
+  <button onclick="showTab('beli',this)">Beli</button>
+  <button onclick="showTab('info',this)">Info</button>
 </div>
 
 <script>
-function openTab(tabName) {
-  let tabs = document.getElementsByClassName("tab-content");
-  for(let i=0; i<tabs.length; i++) {
-    tabs[i].classList.remove("active");
+let items = JSON.parse(localStorage.getItem('gameMarket') || '[]');
+let currentFilter = 'All';
+
+function showTab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='beli') renderItems();
+}
+
+function filterGame(game,btn){
+  currentFilter = game;
+  document.querySelectorAll('.tab-btns button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderItems();
+}
+
+function addItem(){
+  const name = document.getElementById('sellerName').value;
+  const game = document.getElementById('gameType').value;
+  const title = document.getElementById('itemTitle').value;
+  const price = document.getElementById('itemPrice').value;
+  const desc = document.getElementById('itemDesc').value;
+  const wa = document.getElementById('itemWA').value;
+  const file = document.getElementById('itemImg').files[0];
+
+  if(!title ||!price ||!wa){
+    alert('Isi judul, harga, dan no WA dulu bro!');
+    return;
   }
 
-  let navs = document.querySelectorAll(".bottom-nav div");
-  navs.forEach(nav => nav.classList.remove("active"));
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const item = {
+      id: Date.now(),
+      name, game, title, price, desc, wa,
+      img: e.target.result,
+      date: new Date().toLocaleDateString('id-ID')
+    };
+    items.unshift(item);
+    localStorage.setItem('gameMarket', JSON.stringify(items));
+    alert('Iklan berhasil dipasang!');
+    document.querySelectorAll('input,textarea').forEach(i=>i.value='');
+    showTab('beli',document.querySelectorAll('.nav button')[1]);
+  }
 
-  document.getElementById(tabName).classList.add("active");
-  event.currentTarget.classList.add("active");
+  if(file) reader.readAsDataURL(file);
+  else {
+    const item = {id: Date.now(), name, game, title, price, desc, wa, img:'', date:new Date().toLocaleDateString('id-ID')};
+    items.unshift(item);
+    localStorage.setItem('gameMarket', JSON.stringify(items));
+    alert('Iklan berhasil dipasang!');
+    document.querySelectorAll('input,textarea').forEach(i=>i.value='');
+    showTab('beli',document.querySelectorAll('.nav button')[1]);
+  }
 }
+
+function renderItems(){
+  const list = document.getElementById('itemList');
+  let filtered = currentFilter==='All'? items : items.filter(i=>i.game===currentFilter);
+
+  if(filtered.length===0){
+    list.innerHTML = '<div class="empty">Belum ada iklan untuk game ini</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(i=>`
+    <div class="item-card">
+      ${i.img? `<img src="${i.img}" class="item-img">` : '<div class="item-img"></div>'}
+      <div class="item-info">
+        <div class="item-title">${i.title}</div>
+        <div class="item-game">${i.game} • ${i.name || 'Anon'}</div>
+        <div class="item-price">Rp ${Number(i.price).toLocaleString('id-ID')}</div>
+        <div class="item-desc">${i.desc}</div>
+        <a href="https://wa.me/${i.wa}" target="_blank" class="wa-btn">💬 Chat WA</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+renderItems();
 </script>
 
 </body>
