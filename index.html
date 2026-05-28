@@ -23,6 +23,7 @@
     gap: 8px;
     padding: 12px;
     overflow-x: auto;
+    background: #0f172a;
   }
   .filter button {
     padding: 8px 18px;
@@ -32,6 +33,7 @@
     color: #fff;
     font-size: 14px;
     cursor: pointer;
+    flex-shrink: 0;
   }
   .filter button.active {
     background: #f97316;
@@ -70,4 +72,41 @@
     font-size: 18px;
     color: #22c55e;
     font-weight: bold;
-    margin-bottom:
+    margin-bottom: 8px;
+  }
+  .card .desc {
+    font-size: 13px;
+    color: #cbd5e1;
+    margin-bottom: 10px;
+  }
+  .btn-wa {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #22c55e;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<header>🎮 jhoREBA MARKET</header>
+
+<div class="filter">
+  <button class="active" onclick="filterAkun('all')">All</button>
+  <button onclick="filterAkun('ml')">ML</button>
+  <button onclick="filterAkun('pubg')">PUBG</button>
+  <button onclick="filterAkun('ff')">FF</button>
+  <button onclick="filterAkun('genshin')">Genshin</button>
+</div>
+
+<div class="list" id="list-akun">
+  
+  <div class="card" data-kategori="ml">
+    <img src="https://via.placeholder.com/140x140.png?text=ML" alt="">
+    <div class="card-content">
+      <h3>Akun MMR 3500 Skin Legend</h3>
+      <p class="sub">Mobile Legend •
