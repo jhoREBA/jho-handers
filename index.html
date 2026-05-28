@@ -40,9 +40,18 @@
       background: #ff6b00;
     }
     
+    .content {
+      display: none;
+      padding: 0 15px;
+    }
+    
+    .content.active {
+      display: block;
+    }
+    
     .card {
       background: #2e2e42;
-      margin: 10px 15px;
+      margin: 10px 0;
       padding: 15px;
       border-radius: 12px;
       display: flex;
@@ -91,6 +100,8 @@
       border-radius: 20px;
       cursor: pointer;
       font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
     }
     
     .bottom-nav {
@@ -116,7 +127,23 @@
       color: #ff6b00;
     }
     
-    /* Chat Widget */
+    .chat-toggle {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      background: #ff6b00;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255,107,0,0.4);
+      z-index: 999;
+    }
+    
     .chat-widget {
       position: fixed;
       bottom: 80px;
@@ -190,80 +217,83 @@
       color: white;
       cursor: pointer;
     }
-    
-    .chat-toggle {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 55px;
-      height: 55px;
-      background: #ff6b00;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255,107,0,0.4);
-      z-index: 999;
-    }
   </style>
 </head>
 <body>
 
-<header>
-  🎮 jhoREBA MARKET
-</header>
+<header>🎮 jhoREBA MARKET</header>
 
-<div class="tabs">
-  <div class="tab active">All</div>
-  <div class="tab">ML</div>
-  <div class="tab">PUBG</div>
-  <div class="tab">FF</div>
-  <div class="tab">Genshin</div>
+<div class="tabs" id="tabs">
+  <div class="tab active" data-game="all">All</div>
+  <div class="tab" data-game="ml">ML</div>
+  <div class="tab" data-game="pubg">PUBG</div>
+  <div class="tab" data-game="ff">FF</div>
+  <div class="tab" data-game="genshin">Genshin</div>
 </div>
 
-<div class="card">
-  <div class="card-img"></div>
-  <div class="card-info">
-    <h3>Akun MMR 3500 Skin Legend</h3>
-    <div class="game">Mobile Legend • Raka</div>
-    <div class="price">Rp 250.000</div>
-    <div class="desc">Wanwan, Fanny, Gusion lengkap. Winrate 62%</div>
-    <button class="btn-wa">Chat WA</button>
+<div id="beli" class="content active">
+  <div class="card" data-game="ml">
+    <div class="card-img"></div>
+    <div class="card-info">
+      <h3>Akun MMR 3500 Skin Legend</h3>
+      <div class="game">Mobile Legend • Raka</div>
+      <div class="price">Rp 250.000</div>
+      <div class="desc">Wanwan, Fanny, Gusion lengkap. Winrate 62%</div>
+      <a href="https://wa.me/6281234567890?text=Halo, saya mau beli Akun MMR 3500" class="btn-wa">Chat WA</a>
+    </div>
+  </div>
+
+  <div class="card" data-game="ff">
+    <div class="card-img"></div>
+    <div class="card-info">
+      <h3>Akun SG 2 Emote Lengkap</h3>
+      <div class="game">Free Fire • Dimas</div>
+      <div class="price">Rp 120.000</div>
+      <div class="desc">Heroic 2x, Bundle lama banyak</div>
+      <a href="https://wa.me/6281234567890?text=Halo, saya mau beli Akun SG 2" class="btn-wa">Chat WA</a>
+    </div>
+  </div>
+
+  <div class="card" data-game="pubg">
+    <div class="card-img"></div>
+    <div class="card-info">
+      <h3>Akun Glacier Mummy Set</h3>
+      <div class="game">PUBG Mobile • Budi</div>
+      <div class="price">Rp 400.000</div>
+      <div class="desc">RP max, Conqueror 3x. Login FB</div>
+      <a href="https://wa.me/6281234567890?text=Halo, saya mau beli Akun Glacier" class="btn-wa">Chat WA</a>
+    </div>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-img"></div>
-  <div class="card-info">
-    <h3>Akun SG 2 Emote Lengkap</h3>
-    <div class="game">Free Fire • Dimas</div>
-    <div class="price">Rp 120.000</div>
-    <div class="desc">Heroic 2x, Bundle lama banyak</div>
-    <button class="btn-wa">Chat WA</button>
+<div id="jual" class="content">
+  <div style="text-align:center; padding:50px 20px;">
+    <h3>Halaman Jual</h3>
+    <p style="color:#888; margin-top:10px;">Fitur jual akun coming soon 🔥</p>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-img"></div>
-  <div class="card-info">
-    <h3>Akun Glacier Mummy Set</h3>
-    <div class="game">PUBG Mobile • Budi</div>
-    <div class="price">Rp 400.000</div>
-    <div class="desc">RP max, Conqueror 3x. Login FB</div>
-    <button class="btn-wa">Chat WA</button>
+<div id="keranjang" class="content">
+  <div style="text-align:center; padding:50px 20px;">
+    <h3>Keranjang Kosong</h3>
+    <p style="color:#888; margin-top:10px;">Belum ada item di keranjang</p>
+  </div>
+</div>
+
+<div id="info" class="content">
+  <div style="text-align:center; padding:50px 20px;">
+    <h3>Tentang Jhoreba Market</h3>
+    <p style="color:#888; margin-top:10px;">Marketplace akun game terpercaya</p>
   </div>
 </div>
 
 <div class="bottom-nav">
-  <div class="nav-item active">Beli</div>
-  <div class="nav-item">Jual</div>
-  <div class="nav-item">Keranjang</div>
-  <div class="nav-item">Info</div>
+  <div class="nav-item active" data-page="beli">Beli</div>
+  <div class="nav-item" data-page="jual">Jual</div>
+  <div class="nav-item" data-page="keranjang">Keranjang</div>
+  <div class="nav-item" data-page="info">Info</div>
 </div>
 
-<!-- Chat Widget -->
 <div class="chat-toggle" onclick="toggleChat()">💬</div>
 <div class="chat-widget" id="chatWidget">
   <div class="chat-header">🔥 Live Chat</div>
@@ -292,15 +322,45 @@
   const db = getFirestore(app);
 
   const username = "User_" + Math.floor(Math.random() * 1000);
-  const messagesDiv = document.getElementById("messages");
-  const msgInput = document.getElementById("msgInput");
 
-  // Toggle chat
+  // Tab filter game
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      const game = tab.dataset.game;
+      document.querySelectorAll('.card').forEach(card => {
+        if(game === 'all' || card.dataset.game === game) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Bottom nav switch page
+  document.querySelectorAll('.nav-item').forEach(nav => {
+    nav.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      nav.classList.add('active');
+      
+      const page = nav.dataset.page;
+      document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+      document.getElementById(page).classList.add('active');
+    });
+  });
+
+  // Chat toggle
   window.toggleChat = () => {
     document.getElementById("chatWidget").classList.toggle("active");
   }
 
-  // Load chat real-time
+  // Chat real-time
+  const messagesDiv = document.getElementById("messages");
+  const msgInput = document.getElementById("msgInput");
+  
   const q = query(collection(db, "chats"), orderBy("timestamp"));
   onSnapshot(q, (snapshot) => {
     messagesDiv.innerHTML = "";
@@ -315,7 +375,6 @@
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   });
 
-  // Send message
   window.sendMsg = async () => {
     const text = msgInput.value.trim();
     if (text === "") return;
