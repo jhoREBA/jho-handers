@@ -3,189 +3,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jual Beli Akun Game</title>
+<title>JhoReba - Jual Beli Akun Game</title>
 <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
-  body { background:#0f172a; color:#e2e8f0; padding-bottom:80px; }
-  
-  header { background:#1e293b; padding:16px; text-align:center; font-size:20px; font-weight:700; color:#38bdf8; position:sticky; top:0; z-index:10; }
-  
-  .page { display:none; padding:16px; }
-  .page.active { display:block; }
-  
-  .card { background:#1e293b; border-radius:12px; padding:16px; margin-bottom:12px; display:none; }
-  .card.show { display:block; animation:fadeIn 0.3s; }
-  @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
-  
-  .card h3 { color:#38bdf8; margin-bottom:6px; }
-  .card p.sub { color:#94a3b8; font-size:14px; margin-bottom:8px; }
-  .card p.price { color:#22d3ee; font-weight:700; font-size:18px; margin-bottom:8px; }
-  .card p.desc { color:#cbd5e1; font-size:14px; margin-bottom:12px; }
-  
-  .btn-wa { display:inline-block; background:#25D366; color:#fff; padding:8px 16px; border-radius:20px; text-decoration:none; font-size:14px; font-weight:600; }
-  
-  .filter { display:flex; gap:8px; margin-bottom:16px; overflow-x:auto; padding-bottom:4px; }
-  .filter button { background:#334155; border:none; padding:8px 16px; border-radius:20px; color:#e2e8f0; white-space:nowrap; cursor:pointer; }
-  .filter button.active { background:#38bdf8; color:#0f172a; }
-  
-  form { background:#1e293b; padding:16px; border-radius:12px; }
-  form label { display:block; margin:12px 0 6px; font-size:14px; color:#94a3b8; }
-  form input, form select, form textarea { width:100%; padding:10px; border-radius:8px; border:none; background:#334155; color:#e2e8f0; font-size:15px; }
-  form button { width:100%; margin-top:16px; padding:12px; background:#38bdf8; border:none; border-radius:8px; color:#0f172a; font-weight:700; font-size:16px; cursor:pointer; }
-  
-  .bottom-nav { position:fixed; bottom:0; left:0; right:0; background:#1e293b; display:flex; justify-content:space-around; padding:10px 0; border-top:1px solid #334155; }
-  .bottom-nav button { background:none; border:none; color:#94a3b8; font-size:12px; cursor:pointer; }
-  .bottom-nav button.active { color:#38bdf8; }
-  .bottom-nav button svg { width:24px; height:24px; display:block; margin:0 auto 4px; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f5f5f5;color:#1a1a1a}
+  header{background:#3b82f6;color:#fff;padding:16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+  header h1{font-size:20px;font-weight:700}
+  nav{display:flex;gap:8px;margin-top:12px;overflow-x:auto}
+  nav button{padding:8px 16px;border:none;border-radius:20px;background:rgba(255,255,255,0.2);color:#fff;font-size:14px;cursor:pointer;white-space:nowrap}
+  nav button.active{background:#fff;color:#3b82f6}
+  .container{max-width:800px;margin:0 auto;padding:16px}
+  .page{display:none}
+  .page.active{display:block}
+  .card{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+  .card h3{font-size:16px;margin-bottom:8px}
+  .card p{font-size:14px;color:#666;margin-bottom:4px}
+  .btn-wa{display:inline-block;padding:10px 20px;background:#25D366;color:#fff;text-decoration:none;border-radius:20px;font-weight:600;font-size:14px}
+  .btn-del{padding:8px 16px;background:#ef4444;border:none;border-radius:20px;color:#fff;font-size:14px;cursor:pointer}
+  input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;font-size:16px;margin-bottom:12px}
+  label{font-size:14px;font-weight:600;margin-bottom:6px;display:block}
+  .btn-submit{width:100%;padding:14px;background:#3b82f6;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer}
+  .empty{ text-align:center;padding:40px;color:#999}
 </style>
 </head>
 <body>
 
-<header>Jual Beli Akun Game</header>
+<header>
+  <h1>JhoReba</h1>
+  <nav>
+    <button class="active" onclick="showPage('beranda')">Beranda</button>
+    <button onclick="showPage('jual')">Jual Akun</button>
+    <button onclick="showPage('info')">Info</button>
+  </nav>
+</header>
 
-<div id="beliPage" class="page active">
-  <div class="filter">
-    <button class="active" onclick="filterGame('all')">Semua</button>
-    <button onclick="filterGame('ml')">Mobile Legends</button>
-    <button onclick="filterGame('ff')">Free Fire</button>
-    <button onclick="filterGame('pubg')">PUBG</button>
-  </div>
-  <div id="listingContainer"></div>
-</div>
+<div class="container">
+  <!-- Beranda -->
+  <section id="beranda" class="page active">
+    <div id="list-akun"></div>
+  </section>
 
-<div id="jualPage" class="page">
-  <form onsubmit="daftarSeller(event)">
-    <label>Nama Kamu</label>
-    <input type="text" id="nama" required>
-    
-    <label>Nomor WA</label>
-    <input type="tel" id="wa" placeholder="08123456789" required>
-    
-    <label>Email</label>
-    <input type="email" id="email" required>
-    
-    <label>Game</label>
-    <select id="game" required>
-      <option value="ml">Mobile Legends</option>
-      <option value="ff">Free Fire</option>
-      <option value="pubg">PUBG Mobile</option>
-    </select>
-    
-    <label>Judul Akun</label>
-    <input type="text" id="judul" placeholder="Ex: Akun ML Skin Legend" required>
-    
-    <label>Harga</label>
-    <input type="text" id="harga" placeholder="Ex: Rp 500.000" required>
-    
-    <label>Deskripsi</label>
-    <textarea id="desc" rows="3" placeholder="Tulis detail akunnya..." required></textarea>
-    
-    <button type="submit">Daftar & Posting Akun</button>
-  </form>
-</div>
+  <!-- Jual Akun -->
+  <section id="jual" class="page">
+    <div class="card">
+      <h3>Post Akun Dijual</h3>
+      <form id="form-jual">
+        <label>Judul Akun</label>
+        <input type="text" id="judul" placeholder="Contoh: Akun ML Legend" required>
+        
+        <label>Harga</label>
+        <input type="text" id="harga" placeholder="Contoh: 500.000" required>
+        
+        <label>Game</label>
+        <select id="game" required>
+          <option value="">Pilih Game</option>
+          <option>Mobile Legends</option>
+          <option>Free Fire</option>
+          <option>Genshin Impact</option>
+          <option>Valorant</option>
+          <option>COC</option>
+          <option>Lainnya</option>
+        </select>
+        
+        <label>Deskripsi</label>
+        <textarea id="desc" rows="3" placeholder="Rank, skin, hero, dll"></textarea>
+        
+        <label>Nomor WA</label>
+        <input type="tel" id="wa" placeholder="6281234567890" required>
+        
+        <button type="submit" class="btn-submit">Posting Sekarang</button>
+      </form>
+    </div>
+  </section>
 
-<div id="daftarPage" class="page">
-  <h2 style="margin-bottom:12px;">Cara Daftar</h2>
-  <p style="color:#94a3b8; line-height:1.6;">1. Buka menu Jual di bawah<br>2. Isi form lengkap<br>3. Pencet Posting<br>4. Akun lo langsung muncul di halaman Beli</p>
-</div>
+  <!-- Info -->
+  <section id="info" class="page">
+    <div class="card">
+      <h2 style="margin:0 0 12px;">Tentang JhoReba</h2>
+      <p>Selamat datang di JhoReba! Tempat jual beli akun game aman, cepat, dan terpercaya. 
+      Semua listing langsung terhubung ke WhatsApp penjual.</p>
+      
+      <h3 style="margin:24px 0 12px;">⚠️ Tips Aman Bertransaksi</h3>
+      
+      <div style="background:#f8fafc; padding:16px; border-radius:12px; border-left:4px solid #3b82f6;">
+        <p style="margin:0 0 12px;"><strong>1. Gunakan Rekening Bersama (Rekber)</strong><br>
+        Selalu gunakan sistem Escrow atau fitur brankas yang disediakan platform resmi agar dana tertahan sampai akun berhasil dipindahtangankan.</p>
+        
+        <p style="margin:0 0 12px;"><strong>2. Ubah Data Akun</strong><br>
+        Setelah membeli, segera ganti alamat email pemulihan, nomor telepon, dan password. Pastikan akun game telah unbind sepenuhnya dari akun media sosial atau email penjual.</p>
+        
+        <p style="margin:0;"><strong>3. Cek Reputasi Penjual</strong><br>
+        Selalu perhatikan ulasan dan riwayat transaksi penjual sebelum memutuskan untuk mentransfer uang.</p>
+      </div>
 
-<div id="infoPage" class="page">
-  <h2 style="margin-bottom:12px;">Info</h2>
-  <p style="color:#94a3b8; line-height:1.6;">Web ini buat jual beli akun game antar player. Transaksi langsung lewat WA, admin gak pegang uang. Hati-hati penipuan!</p>
-</div>
-
-<div class="bottom-nav">
-  <button class="active" onclick="switchPage('beli')">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-    Beli
-  </button>
-  <button onclick="switchPage('jual')">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-    Jual
-  </button>
-  <button onclick="switchPage('daftar')">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
-    Daftar
-  </button>
-  <button onclick="switchPage('info')">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 10s4.477 10 10 10zM12 16v-4M12 8h.01"/></svg>
-    Info
-  </button>
+      <p style="margin-top:16px; font-size:14px; color:#64748b;">
+        Ikuti tips ini biar transaksi lo aman dan gak ketipu 👌
+      </p>
+    </div>
+  </section>
 </div>
 
 <script>
-let listings = JSON.parse(localStorage.getItem('listings')) || [];
+let listings = JSON.parse(localStorage.getItem('listings') || '[]');
 
-function renderListings() {
-  const container = document.getElementById('listingContainer');
-  container.innerHTML = '';
-  
-  if(listings.length === 0) {
-    container.innerHTML = '<p style="text-align:center; color:#94a3b8; padding:40px 0;">Belum ada penjual. Jadilah yang pertama!</p>';
-    return;
-  }
-
-  listings.forEach((item, index) => {
-    container.innerHTML += `
-      <div class="card show" data-game="${item.game}">
-        <h3>${item.judul}</h3>
-        <p class="sub">${item.game.toUpperCase()} • ${item.nama}</p>
-        <p class="price">${item.harga}</p>
-        <p class="desc">${item.desc}</p>
-        <div style="display:flex; gap:8px;">
-          <a class="btn-wa" href="https://wa.me/${item.wa}?text=Halo%20${item.nama},%20mau%20tanya%20akun%20${item.judul}">Chat WA</a>
-          <button onclick="hapusListing(${index})" style="padding:8px 16px; background:#ef4444; border:none; border-radius:20px; color:#fff; font-size:14px; cursor:pointer;">Hapus</button>
-        </div>
-      </div>
-    `;
-  });
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  if(id==='beranda') renderListings();
 }
 
-function hapusListing(index) {
-  if(confirm('Yakin mau hapus listing ini?')) {
-    listings.splice(index, 1);
-    localStorage.setItem('listings', JSON.stringify(listings));
+function renderListings(){
+  const wrap = document.getElementById('list-akun');
+  if(listings.length===0){
+    wrap.innerHTML = '<div class="empty">Belum ada akun dijual.<br>Yuk posting sekarang!</div>';
+    return;
+  }
+  wrap.innerHTML = listings.map((item,i)=>`
+    <div class="card">
+      <h3>${item.judul}</h3>
+      <p><strong>${item.game}</strong> - Rp ${item.harga}</p>
+      <p>${item.desc}</p>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <a class="btn-wa" href="https://wa.me/${item.wa}?text=Halo%20mau%20tanya%20akun%20${encodeURIComponent(item.judul)}">Chat WA</a>
+        <button class="btn-del" onclick="hapusListing(${i})">Hapus</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function hapusListing(index){
+  if(confirm('Yakin mau hapus listing ini?')){
+    listings.splice(index,1);
+    localStorage.setItem('listings',JSON.stringify(listings));
     renderListings();
   }
 }
 
-function daftarSeller(e) {
+document.getElementById('form-jual').addEventListener('submit',e=>{
   e.preventDefault();
-  const data = {
-    nama: document.getElementById('nama').value,
-    wa: document.getElementById('wa').value.replace('+','').replace(/^0/,'62'),
-    email: document.getElementById('email').value,
-    game: document.getElementById('game').value,
-    judul: document.getElementById('judul').value,
-    harga: document.getElementById('harga').value,
-    desc: document.getElementById('desc').value
+  const data={
+    judul:document.getElementById('judul').value,
+    harga:document.getElementById('harga').value,
+    game:document.getElementById('game').value,
+    desc:document.getElementById('desc').value,
+    wa:document.getElementById('wa').value
   };
-  listings.push(data);
-  localStorage.setItem('listings', JSON.stringify(listings));
+  listings.unshift(data);
+  localStorage.setItem('listings',JSON.stringify(listings));
   alert('Akun berhasil diposting!');
   e.target.reset();
-  switchPage('beli');
-  renderListings();
-}
-
-function filterGame(game) {
-  document.querySelectorAll('.filter button').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  document.querySelectorAll('.card').forEach(card => {
-    if(game === 'all' || card.dataset.game === game) {
-      card.classList.add('show');
-    } else {
-      card.classList.remove('show');
-    }
-  });
-}
-
-function switchPage(page) {
-  document.querySelectorAll('.bottom-nav button').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(page + 'Page').classList.add('active');
-}
+  showPage('beranda');
+});
 
 renderListings();
 </script>
