@@ -1,123 +1,278 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisa Saham jhoREBA</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #1a73e8;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        h2 {
-            color: #333;
-            border-bottom: 2px solid #1a73e8;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-        .stock-card {
-            background: #f9f9f9;
-            padding: 15px;
-            margin: 15px 0;
-            border-left: 4px solid #1a73e8;
-            border-radius: 5px;
-        }
-        .stock-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #1a73e8;
-        }
-        .price {
-            font-size: 18px;
-            margin: 5px 0;
-        }
-        .up { color: #0f9d58; }
-        .down { color: #db4437; }
-        .analysis {
-            margin-top: 10px;
-            line-height: 1.6;
-        }
-        .support {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-        }
-        .support a {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .support a:hover {
-            background: #ff5252;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 14px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jhoREBA Analisa Saham</title>
+<style>
+    * {
+    box-sizing: border-box;
+  }
+  body {
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background:#0a0f1a;
+    color:#fff;
+  }
+  header {
+    background:#111827;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+    border-bottom:1px solid #1e293b;
+  }
+  header h2 {
+    margin:0;
+    font-size:18px;
+    color:#3b82f6;
+  }
+ .promo-banner {
+    background:linear-gradient(90deg, #1e40af, #3b82f6);
+    padding:12px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:14px;
+  }
+ .promo-banner button {
+    background:#fff;
+    border:none;
+    padding:6px 14px;
+    border-radius:20px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:13px;
+  }
+ .hero {
+    padding:25px 20px;
+    background:linear-gradient(180deg, #1e293b, #0a0f1a);
+  }
+ .hero h1 {
+    margin:0;
+    font-size:24px;
+  }
+ .hero p {
+    color:#94a3b8;
+    margin-top:8px;
+    font-size:14px;
+  }
+ .tab-content {
+    display:none;
+    padding:20px;
+    min-height:70vh;
+  }
+ .tab-content.active {
+    display:block;
+  }
+ .card {
+    background:#1e293b;
+    padding:16px;
+    border-radius:12px;
+    margin-bottom:15px;
+    border-left:4px solid #3b82f6;
+  }
+ .card h3 {
+    margin:0 0 10px;
+    color:#3b82f6;
+    font-size:16px;
+  }
+ .card p,.card li {
+    margin:8px 0;
+    color:#d1d5db;
+    line-height:1.5;
+    font-size:14px;
+  }
+ .card ul {
+    padding-left:20px;
+  }
+ .card strong {
+    color:#fff;
+  }
+ .up { color:#22c55e; }
+ .down { color:#ef4444; }
+ .warning {
+    background:#451a03;
+    border-left:4px solid #f59e0b;
+    padding:12px;
+    border-radius:8px;
+    margin-top:12px;
+    font-size:13px;
+    color:#fcd34d;
+  }
+ .bottom-nav {
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#111827;
+    display:flex;
+    justify-content:space-around;
+    padding:10px 0;
+    border-top:1px solid #1e293b;
+    z-index:100;
+  }
+ .bottom-nav div {
+    text-align:center;
+    font-size:11px;
+    color:#94a3b8;
+    cursor:pointer;
+    flex:1;
+  }
+ .bottom-nav div.active {
+    color:#3b82f6;
+  }
+ .bottom-nav div span {
+    font-size:22px;
+    display:block;
+    margin-bottom:2px;
+  }
+  body {
+    padding-bottom:75px;
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>📈 Analisa Saham jhoREBA</h1>
-        <p style="text-align: center; color: #666;">Update analisa saham terbaru untuk bantu keputusan investasi lo</p>
 
-        <div class="stock-card">
-            <div class="stock-name">BBCA - Bank Central Asia</div>
-            <div class="price">Harga: Rp 9,500 <span class="up">+1.2%</span></div>
-            <div class="analysis">
-                <strong>Analisa:</strong> BBCA menunjukkan tren bullish setelah breakout resistance Rp 9,400. Volume meningkat, indikasi akumulasi. Support di Rp 9,300, resistance selanjutnya Rp 9,700.
-            </div>
-        </div>
+<header>
+  <h2>📈 jhoREBA ANALISA</h2>
+  <div>👤</div>
+</header>
 
-        <div class="stock-card">
-            <div class="stock-name">TLKM - Telkom Indonesia</div>
-            <div class="price">Harga: Rp 3,100 <span class="down">-0.8%</span></div>
-            <div class="analysis">
-                <strong>Analisa:</strong> TLKM masih konsolidasi di area Rp 3,050-3,150. Tunggu konfirmasi breakout untuk entry. Fundamental kuat, cocok untuk long term.
-            </div>
-        </div>
+<div class="promo-banner">
+  <span>Update analisa krisis & saham harian!</span>
+  <button>Join</button>
+</div>
 
-        <div class="stock-card">
-            <div class="stock-name">IHSG - Indeks Harga Saham Gabungan</div>
-            <div class="price">Level: 7,150 <span class="up">+0.5%</span></div>
-            <div class="analysis">
-                <strong>Analisa:</strong> IHSG rebound dari support 7,100. Sentimen pasar membaik. Pantau level 7,200 sebagai resistance terdekat.
-            </div>
-        </div>
+<!-- TAB 1: ANALISA UTAMA -->
+<div id="analisa" class="tab-content active">
+  <div class="hero">
+    <h1>ANALISA SAHAM KILAT ⚡</h1>
+    <p>Update saham IHSG hari ini</p>
+  </div>
 
-        <div class="support">
-            <h3>Dukung Konten Ini</h3>
-            <p>Kalau analisa ini bermanfaat, lo bisa dukung gue lewat Trakteer ya 🙏</p>
-            <a href="https://trakteer.id/link-trakteer-lo" target="_blank">Dukung di Trakteer</a>
-        </div>
+  <div class="card">
+    <h3>BBCA - Bank Central Asia</h3>
+    <p>Harga: Rp 9,500 <span class="up">+1.2%</span></p>
+    <p><strong>Analisa:</strong> Breakout resistance Rp 9,400. Target selanjutnya Rp 9,700. Support kuat di Rp 9,300.</p>
+  </div>
 
-        <div class="footer">
-            <p>Disclaimer: Ini bukan financial advice. DYOR - Do Your Own Research.</p>
-            <p>© 2026 jhoREBA</p>
-        </div>
+  <div class="card">
+    <h3>TLKM - Telkom Indonesia</h3>
+    <p>Harga: Rp 3,100 <span class="down">-0.8%</span></p>
+    <p><strong>Analisa:</strong> Masih konsolidasi area Rp 3,050-3,150. Tunggu konfirmasi breakout volume besar.</p>
+  </div>
+
+  <div class="card">
+    <h3>IHSG Hari Ini</h3>
+    <p>Indeks: 7,250 <span class="up">+0.5%</span></p>
+    <p><strong>Kondisi:</strong> Sektor banking memimpin penguatan. Market cenderung sideways.</p>
+  </div>
+</div>
+
+<!-- TAB 2: PREDIKSI KRISIS -->
+<div id="prediksi" class="tab-content">
+  <h2>⚠️ Prediksi Saham Turun Saat Krisis</h2>
+
+  <div class="card">
+    <h3>Sektor Yang Biasanya Turun Dalam</h3>
+    <ul>
+      <li><strong>Consumer Cyclical:</strong> MALL, RIMO, MAPA - orang stop belanja barang non-pokok</li>
+      <li><strong>Property:</strong> BSDE, CTRA, SMRA - kredit macet naik, penjualan rumah anjlok</li>
+      <li><strong>Automotive:</strong> ASII, AUTO - penjualan mobil turun drastis</li>
+      <li><strong>Tourism & Airlines:</strong> PANR, CMPP, GIAA - penerbangan & hotel sepi</li>
+      <li><strong>Media & Advertising:</strong> MNCN, SCMA - iklan dipotong perusahaan</li>
+    </ul>
+    <div class="warning">
+      <strong>Disclaimer:</strong> Ini pola historis dari krisis 2008 & 2020. Bukan jaminan 100% bakal kejadian lagi. Selalu cek fundamental & teknikal.
     </div>
+  </div>
+</div>
+
+<!-- TAB 3: SAHAM PAS KRISIS -->
+<div id="pas-krisis" class="tab-content">
+  <h2>📉 Strategi Saat Krisis Terjadi</h2>
+
+  <div class="card">
+    <h3>Yang Harus Dilakukan</h3>
+    <ul>
+      <li><strong>Jangan Panik Jual:</strong> Krisis biasanya cuma 6-18 bulan. Kalau jual rugi, gak bisa ikut rebound.</li>
+      <li><strong>Cek Cash Flow:</strong> Pastikan lo masih punya dana darurat 6 bulan.</li>
+      <li><strong>Stop Loss Disiplin:</strong> Kalau udah nyentuh -10%, potong dulu. Lindungi modal.</li>
+      <li><strong>DCA Makin Gencar:</strong> Kalau masih ada duit dingin, ini waktu terbaik beli murah.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Yang Harus Dihindari</h3>
+    <ul>
+      <li>Margin trading / beli pake utang</li>
+      <li>Averaging down tanpa batas di saham gorengan</li>
+      <li>Ikut FOMO saham yang udah naik 100% dalam seminggu</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TAB 4: SAHAM TAHAN KRISIS -->
+<div id="tahan-krisis" class="tab-content">
+  <h2>🛡️ Saham Yang Cenderung Bertahan Saat Krisis</h2>
+
+  <div class="card">
+    <h3>Sektor Defensive</h3>
+    <ul>
+      <li><strong>Consumer Staple:</strong> UNVR, INDF, ICBP - orang tetap butuh makanan, sabun, mie</li>
+      <li><strong>Telecom:</strong> TLKM, ISAT, EXCL - internet & telepon tetap dipake walau krisis</li>
+      <li><strong>Healthcare:</strong> KLBF, HEAL, MIKA - kesehatan tetap prioritas nomor 1</li>
+      <li><strong>Utility:</strong> PGAS, JSMR, TOWR - listrik, gas, tower butuh semua orang</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Ciri Saham Tahan Krisis</h3>
+    <ul>
+      <li>Utang kecil, cash banyak</li>
+      <li>Produknya kebutuhan pokok</li>
+      <li>Dividen konsisten 3-5% per tahun</li>
+      <li>ROE di atas 15%</li>
+    </ul>
+    <div class="warning">
+      <strong>Catatan:</strong> "Bertahan" bukan berarti gak turun sama sekali. Tapi biasanya turunnya 10-20%, bukan 50-70%. Dan rebound nya lebih cepat.
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAVIGATION -->
+<div class="bottom-nav">
+  <div class="active" onclick="openTab('analisa')">
+    <span>📈</span>Analisa
+  </div>
+  <div onclick="openTab('prediksi')">
+    <span>⚠️</span>Prediksi
+  </div>
+  <div onclick="openTab('pas-krisis')">
+    <span>📉</span>Pas Krisis
+  </div>
+  <div onclick="openTab('tahan-krisis')">
+    <span>🛡️</span>Tahan Krisis
+  </div>
+</div>
+
+<script>
+function openTab(tabName) {
+  let tabs = document.getElementsByClassName("tab-content");
+  for(let i=0; i<tabs.length; i++) {
+    tabs[i].classList.remove("active");
+  }
+
+  let navs = document.querySelectorAll(".bottom-nav div");
+  navs.forEach(nav => nav.classList.remove("active"));
+
+  document.getElementById(tabName).classList.add("active");
+  event.currentTarget.classList.add("active");
+}
+</script>
+
 </body>
 </html>
