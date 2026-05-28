@@ -31,4 +31,77 @@
     .tab {
       padding: 8px 20px;
       background: #2e2e42;
-     
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    
+    .tab.active {
+      background: #ff6b00;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      padding: 15px;
+    }
+
+    .product {
+      background: #2e2e42;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+      font-size: 16px;
+    }
+
+    .product p {
+      color: #ff9500;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>jhoREBA MARKET</header>
+  
+  <div class="tabs">
+    <div class="tab active">Semua</div>
+    <div class="tab">Kaos</div>
+    <div class="tab">Hoodie</div>
+  </div>
+
+  <div class="products" id="product-list">
+    <!-- Data bakal muncul di sini -->
+  </div>
+
+  <script>
+    // Data statis, nggak perlu Firebase lagi
+    const products = [
+      {nama: "Kaos Hitam Polos", harga: "Rp 50.000", img: "https://via.placeholder.com/200"},
+      {nama: "Kaos Putih Logo", harga: "Rp 55.000", img: "https://via.placeholder.com/200"},
+      {nama: "Hoodie Abu-abu", harga: "Rp 120.000", img: "https://via.placeholder.com/200"}
+    ];
+
+    const productList = document.getElementById('product-list');
+    
+    products.forEach(p => {
+      productList.innerHTML += `
+        <div class="product">
+          <img src="${p.img}" alt="${p.nama}">
+          <h3>${p.nama}</h3>
+          <p>${p.harga}</p>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
