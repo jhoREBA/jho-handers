@@ -4,54 +4,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jhoREBA MARKET - Jual Beli Akun Game</title>
+<title>jhoREBA MARKET</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
   body{background:#0a0f1a;color:#e8e8e8;padding-bottom:80px}
-
   header{background:linear-gradient(135deg,#ff4d00,#ff8c00);padding:16px;text-align:center;position:sticky;top:0;z-index:100}
   header h1{font-size:18px;font-weight:700}
-
- .container{padding:16px}
-
- .tab-btns{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto}
- .tab-btns button{flex-shrink:0;padding:10px 16px;background:#1a2332;border:1px solid #2d3748;border-radius:8px;color:#9ca3af;border:none;cursor:pointer}
- .tab-btns button.active{background:#ff4d00;color:white}
-
- .section{display:none}
- .section.active{display:block}
-
- .form-card,.item-card{background:#1a2332;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #2d3748}
-
+.container{padding:16px}
+.tab-btns{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto}
+.tab-btns button{flex-shrink:0;padding:10px 16px;background:#1a2332;border:1px solid #2d3748;border-radius:8px;color:#9ca3af;border:none;cursor:pointer}
+.tab-btns button.active{background:#ff4d00;color:white}
+.section{display:none}
+.section.active{display:block}
+.form-card,.item-card,.cart-card,.wallet-card{background:#1a2332;border-radius:12px;padding:16px;margin-bottom:12px;border:1px solid #2d3748}
   input,select,textarea{width:100%;padding:10px;background:#0f172a;border:1px solid #2d3748;border-radius:8px;color:white;margin-top:6px;margin-bottom:12px;font-size:14px}
   textarea{resize:vertical;min-height:60px}
-
   button.btn{background:#ff4d00;border:none;padding:12px;border-radius:8px;color:white;font-weight:700;width:100%;cursor:pointer}
-  button.btn:hover{background:#ff6b00}
-
- .item-card{display:flex;gap:12px}
- .item-img{width:80px;height:80px;border-radius:8px;object-fit:cover;background:#0f172a}
- .item-info{flex:1}
- .item-title{font-weight:700;font-size:15px}
- .item-game{font-size:12px;color:#ff8c00;margin:4px 0}
- .item-price{font-size:18px;font-weight:700;color:#00d26a;margin:4px 0}
- .item-desc{font-size:13px;color:#9ca3af}
- .wa-btn{display:inline-block;margin-top:8px;padding:8px 16px;background:#25d366;color:white;text-decoration:none;border-radius:8px;font-size:13px;font-weight:700}
-
- .nav{position:fixed;bottom:0;left:0;right:0;background:#1a2332;display:flex;border-top:1px solid #2d3748}
- .nav button{flex:1;padding:12px;background:none;border:none;color:#9ca3af;font-size:12px}
- .nav button.active{color:#ff4d00}
-
- .empty{text-align:center;color:#9ca3af;padding:40px 0}
+.item-card{display:flex;gap:12px;position:relative}
+.item-img,.item-video{width:80px;height:80px;border-radius:8px;object-fit:cover;background:#0f172a}
+.item-info{flex:1}
+.item-title{font-weight:700;font-size:15px}
+.item-game{font-size:12px;color:#ff8c00;margin:4px 0}
+.item-price{font-size:18px;font-weight:700;color:#00d26a;margin:4px 0}
+.item-desc{font-size:13px;color:#9ca3af}
+.wa-btn{display:inline-block;margin-top:8px;padding:8px 16px;background:#25d366;color:white;text-decoration:none;border-radius:8px;font-size:13px;font-weight:700}
+.del-btn{display:inline-block;margin-top:8px;margin-left:8px;padding:8px 16px;background:#ff3b3b;color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+.checkbox{position:absolute;top:12px;right:12px;width:22px;height:22px;cursor:pointer}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#1a2332;display:flex;border-top:1px solid #2d3748}
+.nav button{flex:1;padding:12px;background:none;border:none;color:#9ca3af;font-size:12px}
+.nav button.active{color:#ff4d00}
+.empty{text-align:center;color:#9ca3af;padding:40px 0}
+.cart-total{font-size:16px;font-weight:700;margin-top:12px}
+.cart-total span{color:#00d26a}
+.badge{position:fixed;top:8px;right:8px;background:#ff3b3b;color:white;font-size:11px;padding:2px 6px;border-radius:10px}
+.wallet-balance{font-size:28px;font-weight:700;color:#00d26a;margin:12px 0}
 </style>
 </head>
 <body>
 
-<header><h1>🎮 jhoREBA MARKET</h1></header>
+<header>
+  <h1>🎮 jhoREBA MARKET</h1>
+  <div id="cartBadge" class="badge" style="display:none">0</div>
+</header>
 
 <div class="container">
-  <!-- Tab Jual -->
-  <div id="jual" class="section active">
+  <div id="beli" class="section active">
+    <div class="tab-btns">
+      <button class="active" onclick="filterGame('All',this)">All</button>
+      <button onclick="filterGame('Mobile Legend',this)">ML</button>
+      <button onclick="filterGame('PUBG Mobile',this)">PUBG</button>
+      <button onclick="filterGame('Free Fire',this)">FF</button>
+      <button onclick="filterGame('Genshin Impact',this)">Genshin</button>
+    </div>
+    <div id="itemList"></div>
+  </div>
+
+  <div id="jual" class="section">
     <div class="form-card">
       <h3>Pasang Iklan Jual Akun</h3>
       <input type="text" id="sellerName" placeholder="Nama kamu">
@@ -62,54 +70,89 @@
         <option value="Genshin Impact">Genshin Impact</option>
         <option value="Lainnya">Lainnya</option>
       </select>
-      <input type="text" id="itemTitle" placeholder="Judul iklan, contoh: Akun ML Mythic 100 Skin">
-      <input type="number" id="itemPrice" placeholder="Harga Rp, contoh: 500000">
-      <textarea id="itemDesc" placeholder="Deskripsi akun: rank, skin, login, dll"></textarea>
-      <input type="text" id="itemWA" placeholder="No WA 62xxx, contoh: 628123456789">
+      <input type="text" id="itemTitle" placeholder="Judul iklan">
+      <input type="number" id="itemPrice" placeholder="Harga Rp">
+      <textarea id="itemDesc" placeholder="Deskripsi akun"></textarea>
+      <input type="text" id="itemWA" placeholder="No WA 62xxx">
       <input type="file" id="itemImg" accept="image/*">
+      <input type="text" id="itemVideo" placeholder="Link video YouTube opsional">
       <button class="btn" onclick="addItem()">Pasang Iklan</button>
     </div>
   </div>
 
-  <!-- Tab Beli -->
-  <div id="beli" class="section">
-    <div class="tab-btns">
-      <button class="active" onclick="filterGame('All',this)">Semua</button>
-      <button onclick="filterGame('Mobile Legend',this)">ML</button>
-      <button onclick="filterGame('PUBG Mobile',this)">PUBG</button>
-      <button onclick="filterGame('Free Fire',this)">FF</button>
+  <div id="cart" class="section">
+    <div id="cartList"></div>
+    <div class="cart-card" id="cartSummary" style="display:none">
+      <div class="cart-total">Total Akun: <span id="totalItems">0</span></div>
+      <div class="cart-total">Harga Akun: <span id="totalPrice">Rp 0</span></div>
+      <div class="cart-total">Komisi Admin: <span>Rp 500</span></div>
+      <div class="cart-total">Total Bayar: <span id="grandTotal">Rp 0</span></div>
+      <button class="btn" onclick="checkout()" style="margin-top:12px">Checkout via WA</button>
     </div>
-    <div id="itemList"></div>
   </div>
 
-  <!-- Tab Info -->
+  <div id="admin" class="section">
+    <div class="wallet-card">
+      <h3>Dompet Admin</h3>
+      <div>Saldo Komisi</div>
+      <div class="wallet-balance" id="walletBalance">Rp 0</div>
+      <input type="text" id="withdrawAccount" placeholder="No Dana/OVO/Gopay">
+      <input type="number" id="withdrawAmount" placeholder="Jumlah tarik">
+      <button class="btn" onclick="withdraw()">Tarik Dana</button>
+      <div style="margin-top:12px;font-size:13px;color:#9ca3af">*Saldo cuma keliatan kalau login mode admin</div>
+    </div>
+  </div>
+
   <div id="info" class="section">
     <div class="form-card">
       <h3>Peraturan</h3>
-      <p>1. Transaksi diluar tanggung jawab admin. Gunakan MM kalau perlu.<br>
-      2. Dilarang scam. Laporkan jika ada penipuan.<br>
-      3. No WA yang dicantumkan harus aktif.</p>
-      <p style="margin-top:12px;color:#9ca3af">Hubungi admin: 628xxxxx</p>
+      <p>1. Transaksi diluar tanggung jawab admin.<br>
+      2. Komisi admin Rp 500 per akun.<br>
+      3. Gunakan MM kalau perlu.<br>
+      4. Dilarang scam.</p>
     </div>
   </div>
 </div>
 
 <div class="nav">
-  <button class="active" onclick="showTab('jual',this)">Jual</button>
-  <button onclick="showTab('beli',this)">Beli</button>
+  <button class="active" onclick="showTab('beli',this)">Beli</button>
+  <button onclick="showTab('jual',this)">Jual</button>
+  <button onclick="showTab('cart',this)">Keranjang</button>
+  <button id="adminTab" onclick="showTab('admin',this)" style="display:none">Admin</button>
   <button onclick="showTab('info',this)">Info</button>
 </div>
 
 <script>
-let items = JSON.parse(localStorage.getItem('gameMarket') || '[]');
+let items = JSON.parse(localStorage.getItem('items') || '[]');
+let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+let wallet = Number(localStorage.getItem('wallet') || 0);
 let currentFilter = 'All';
+const COMMISSION = 500;
+const ADMIN_PASS = "1234";
+
+// Cek mode admin
+const isAdmin = new URLSearchParams(window.location.search).get('admin') === ADMIN_PASS && currentFilter === 'All';
+if(isAdmin){
+  document.getElementById('adminTab').style.display='block';
+}
+
+// Iklan contoh
+if(items.length === 0){
+  items = [
+    {id:1,name:"Raka", game:"Mobile Legend", title:"Akun MMR 3500 Skin Legend", price:"250000", desc:"Wanwan, Fanny, Gusion lengkap. Winrate 62%", wa:"628123456789", img:"", video:"", date:"28/09/2026"},
+    {id:2,name:"Dimas", game:"Free Fire", title:"Akun SG 2 Emote Lengkap", price:"120000", desc:"Heroic 2x, Bundle lama banyak", wa:"628777888999", img:"", video:"", date:"26/09/2026"},
+    {id:3,name:"Budi", game:"PUBG Mobile", title:"Akun Glacier Mummy Set", price:"400000", desc:"RP max, Conqueror 3x. Login FB", wa:"628111222333", img:"", video:"", date:"27/09/2026"}
+  ];
+  localStorage.setItem('items', JSON.stringify(items));
+}
 
 function showTab(id,btn){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
-  if(id==='beli') renderItems();
+  if(id==='cart') renderCart();
+  if(id==='admin' && isAdmin) renderWallet();
 }
 
 function filterGame(game,btn){
@@ -127,62 +170,178 @@ function addItem(){
   const desc = document.getElementById('itemDesc').value;
   const wa = document.getElementById('itemWA').value;
   const file = document.getElementById('itemImg').files[0];
+  let video = document.getElementById('itemVideo').value;
 
   if(!title ||!price ||!wa){
     alert('Isi judul, harga, dan no WA dulu bro!');
     return;
   }
 
-  const reader = new FileReader();
-  reader.onload = function(e){
-    const item = {
-      id: Date.now(),
-      name, game, title, price, desc, wa,
-      img: e.target.result,
-      date: new Date().toLocaleDateString('id-ID')
-    };
-    items.unshift(item);
-    localStorage.setItem('gameMarket', JSON.stringify(items));
-    alert('Iklan berhasil dipasang!');
-    document.querySelectorAll('input,textarea').forEach(i=>i.value='');
-    showTab('beli',document.querySelectorAll('.nav button')[1]);
+  if(video.includes("youtube.com/watch?v=")){
+    video = video.replace("watch?v=", "embed/");
   }
 
-  if(file) reader.readAsDataURL(file);
-  else {
-    const item = {id: Date.now(), name, game, title, price, desc, wa, img:'', date:new Date().toLocaleDateString('id-ID')};
-    items.unshift(item);
-    localStorage.setItem('gameMarket', JSON.stringify(items));
+  const reader = new FileReader();
+  reader.onload = function(e){
+    items.unshift({
+      id: Date.now(),
+      name,game,title,price,desc,wa,
+      img: file? e.target.result : '',
+      video: video,
+      date: new Date().toLocaleDateString('id-ID')
+    });
+    localStorage.setItem('items', JSON.stringify(items));
     alert('Iklan berhasil dipasang!');
     document.querySelectorAll('input,textarea').forEach(i=>i.value='');
-    showTab('beli',document.querySelectorAll('.nav button')[1]);
+    showTab('beli',document.querySelector('.nav button'));
+    renderItems();
+  }
+
+  if(file){reader.readAsDataURL(file);} else {reader.onload();}
+}
+
+function deleteItem(index){
+  if(confirm('Yakin mau hapus iklan ini bro?')){
+    items.splice(index, 1);
+    localStorage.setItem('items', JSON.stringify(items));
+    renderItems();
+  }
+}
+
+function toggleCart(id){
+  const idx = cart.indexOf(id);
+  if(idx>-1){
+    cart.splice(idx,1);
+  } else {
+    cart.push(id);
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateBadge();
+}
+
+function updateBadge(){
+  const badge = document.getElementById('cartBadge');
+  if(cart.length>0){
+    badge.style.display='block';
+    badge.innerText=cart.length;
+  } else {
+    badge.style.display='none';
   }
 }
 
 function renderItems(){
-  const list = document.getElementById('itemList');
   let filtered = currentFilter==='All'? items : items.filter(i=>i.game===currentFilter);
+  const list = document.getElementById('itemList');
 
   if(filtered.length===0){
     list.innerHTML = '<div class="empty">Belum ada iklan untuk game ini</div>';
     return;
   }
 
-  list.innerHTML = filtered.map(i=>`
+  list.innerHTML = filtered.map((i,index)=>`
     <div class="item-card">
-      ${i.img? `<img src="${i.img}" class="item-img">` : '<div class="item-img"></div>'}
+      <input type="checkbox" class="checkbox" ${cart.includes(i.id)?'checked':''} onclick="toggleCart(${i.id})">
+      ${i.video? `<iframe src="${i.video}" class="item-video" frameborder="0" allowfullscreen></iframe>` :
+         i.img? `<img src="${i.img}" class="item-img">` :
+         '<div class="item-img"></div>'}
       <div class="item-info">
         <div class="item-title">${i.title}</div>
         <div class="item-game">${i.game} • ${i.name || 'Anon'}</div>
         <div class="item-price">Rp ${Number(i.price).toLocaleString('id-ID')}</div>
         <div class="item-desc">${i.desc}</div>
-        <a href="https://wa.me/${i.wa}" target="_blank" class="wa-btn">💬 Chat WA</a>
+        <a href="https://wa.me/${i.wa}" target="_blank" class="wa-btn">Chat WA</a>
+        ${isAdmin? `<button onclick="deleteItem(${index})" class="del-btn">Hapus</button>` : ''}
       </div>
     </div>
   `).join('');
 }
 
+function renderCart(){
+  const cartItems = items.filter(i=>cart.includes(i.id));
+  const list = document.getElementById('cartList');
+  const summary = document.getElementById('cartSummary');
+
+  if(cartItems.length===0){
+    list.innerHTML = '<div class="empty">Keranjang masih kosong bro</div>';
+    summary.style.display='none';
+    return;
+  }
+
+  summary.style.display='block';
+  let totalPrice = cartItems.reduce((sum,i)=>sum+Number(i.price),0);
+  let totalCommission = cartItems.length * COMMISSION;
+  let grandTotal = totalPrice + totalCommission;
+
+  list.innerHTML = cartItems.map(i=>`
+    <div class="cart-card">
+      <div class="item-title">${i.title}</div>
+      <div class="item-game">${i.game}</div>
+      <div class="item-price">Rp ${Number(i.price).toLocaleString('id-ID')}</div>
+      <button onclick="toggleCart(${i.id});renderCart()" style="background:#ff3b3b;border:none;padding:6px 12px;border-radius:6px;color:white;margin-top:8px">Hapus</button>
+    </div>
+  `).join('');
+
+  document.getElementById('totalItems').innerText=cartItems.length;
+  document.getElementById('totalPrice').innerText='Rp '+totalPrice.toLocaleString('id-ID');
+  document.getElementById('grandTotal').innerText='Rp '+grandTotal.toLocaleString('id-ID');
+}
+
+function checkout(){
+  const cartItems = items.filter(i=>cart.includes(i.id));
+  if(cartItems.length===0) return;
+
+  let totalCommission = cartItems.length * COMMISSION;
+
+  // Tambah komisi ke dompet admin
+  wallet += totalCommission;
+  localStorage.setItem('wallet', wallet);
+
+  // Kirim pesan WA
+  let msg = 'Halo admin, saya mau beli akun ini:%0A%0A';
+  cartItems.forEach(i=>{
+    msg+=`- ${i.title} - Rp ${Number(i.price).toLocaleString('id-ID')}%0A`;
+  });
+  msg+=`%0AJumlah akun: ${cartItems.length}%0A`;
+  msg+=`Komisi admin: Rp ${totalCommission}%0A`;
+  msg+=`Total bayar: Rp ${(cartItems.reduce((s,i)=>s+Number(i.price),0)+totalCommission).toLocaleString('id-ID')}`;
+
+  window.open('https://wa.me/628123456789?text='+msg,'_blank');
+
+  // Kosongin keranjang setelah checkout
+  cart = [];
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateBadge();
+  renderCart();
+}
+
+function renderWallet(){
+  document.getElementById('walletBalance').innerText='Rp '+wallet.toLocaleString('id-ID');
+}
+
+function withdraw(){
+  const acc = document.getElementById('withdrawAccount').value;
+  const amt = Number(document.getElementById('withdrawAmount').value);
+
+  if(!acc ||!amt){
+    alert('Isi nomor dan jumlah dulu bro!');
+    return;
+  }
+  if(amt>wallet){
+    alert('Saldo gak cukup!');
+    return;
+  }
+
+  wallet -= amt;
+  localStorage.setItem('wallet', wallet);
+  renderWallet();
+  alert('Permintaan tarik dana terkirim! Cek WA admin.');
+
+  // Kirim notif ke WA admin
+  window.open(`https://wa.me/628123456789?text=Permintaan tarik dana Rp ${amt.toLocaleString('id-ID')} ke ${acc}`,'_blank');
+}
+
 renderItems();
+updateBadge();
 </script>
 
 </body>
