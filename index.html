@@ -1,164 +1,28 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JhoReba - Jual Beli Akun Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>JhoReba</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f5f5f5;color:#1a1a1a}
-  header{background:#3b82f6;color:#fff;padding:16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-  header h1{font-size:20px;font-weight:700}
-  nav{display:flex;gap:8px;margin-top:12px;overflow-x:auto}
-  nav button{padding:8px 16px;border:none;border-radius:20px;background:rgba(255,255,255,0.2);color:#fff;font-size:14px;cursor:pointer;white-space:nowrap}
-  nav button.active{background:#fff;color:#3b82f6}
-  .container{max-width:800px;margin:0 auto;padding:16px}
-  .page{display:none}
-  .page.active{display:block}
-  .card{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-  .card h3{font-size:16px;margin-bottom:8px}
-  .card p{font-size:14px;color:#666;margin-bottom:4px}
-  .btn-wa{display:inline-block;padding:10px 20px;background:#25D366;color:#fff;text-decoration:none;border-radius:20px;font-weight:600;font-size:14px}
-  .btn-del{padding:8px 16px;background:#ef4444;border:none;border-radius:20px;color:#fff;font-size:14px;cursor:pointer}
-  input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;font-size:16px;margin-bottom:12px}
-  label{font-size:14px;font-weight:600;margin-bottom:6px;display:block}
-  .btn-submit{width:100%;padding:14px;background:#3b82f6;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer}
-  .empty{ text-align:center;padding:40px;color:#999}
-</style>
-</head>
-<body>
+* {margin:0; padding:0; box-sizing:border-box; font-family:-apple-system, sans-serif}
+body {background:#f5f7fa; padding-bottom:100px}
 
-<header>
-  <h1>JhoReba</h1>
-  <nav>
-    <button class="active" onclick="showPage('beranda')">Beranda</button>
-    <button onclick="showPage('jual')">Jual Akun</button>
-    <button onclick="showPage('info')">Info</button>
-  </nav>
-</header>
-
-<div class="container">
-  <!-- Beranda -->
-  <section id="beranda" class="page active">
-    <div id="list-akun"></div>
-  </section>
-
-  <!-- Jual Akun -->
-  <section id="jual" class="page">
-    <div class="card">
-      <h3>Post Akun Dijual</h3>
-      <form id="form-jual">
-        <label>Judul Akun</label>
-        <input type="text" id="judul" placeholder="Contoh: Akun ML Legend" required>
-        
-        <label>Harga</label>
-        <input type="text" id="harga" placeholder="Contoh: 500.000" required>
-        
-        <label>Game</label>
-        <select id="game" required>
-          <option value="">Pilih Game</option>
-          <option>Mobile Legends</option>
-          <option>Free Fire</option>
-          <option>Genshin Impact</option>
-          <option>Valorant</option>
-          <option>COC</option>
-          <option>Lainnya</option>
-        </select>
-        
-        <label>Deskripsi</label>
-        <textarea id="desc" rows="3" placeholder="Rank, skin, hero, dll"></textarea>
-        
-        <label>Nomor WA</label>
-        <input type="tel" id="wa" placeholder="6281234567890" required>
-        
-        <button type="submit" class="btn-submit">Posting Sekarang</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Info -->
-  <section id="info" class="page">
-    <div class="card">
-      <h2 style="margin:0 0 12px;">Tentang JhoReba</h2>
-      <p>Selamat datang di JhoReba! Tempat jual beli akun game aman, cepat, dan terpercaya. 
-      Semua listing langsung terhubung ke WhatsApp penjual.</p>
-      
-      <h3 style="margin:24px 0 12px;">⚠️ Tips Aman Bertransaksi</h3>
-      
-      <div style="background:#f8fafc; padding:16px; border-radius:12px; border-left:4px solid #3b82f6;">
-        <p style="margin:0 0 12px;"><strong>1. Gunakan Rekening Bersama (Rekber)</strong><br>
-        Selalu gunakan sistem Escrow atau fitur brankas yang disediakan platform resmi agar dana tertahan sampai akun berhasil dipindahtangankan.</p>
-        
-        <p style="margin:0 0 12px;"><strong>2. Ubah Data Akun</strong><br>
-        Setelah membeli, segera ganti alamat email pemulihan, nomor telepon, dan password. Pastikan akun game telah unbind sepenuhnya dari akun media sosial atau email penjual.</p>
-        
-        <p style="margin:0;"><strong>3. Cek Reputasi Penjual</strong><br>
-        Selalu perhatikan ulasan dan riwayat transaksi penjual sebelum memutuskan untuk mentransfer uang.</p>
-      </div>
-
-      <p style="margin-top:16px; font-size:14px; color:#64748b;">
-        Ikuti tips ini biar transaksi lo aman dan gak ketipu 👌
-      </p>
-    </div>
-  </section>
-</div>
-
-<script>
-let listings = JSON.parse(localStorage.getItem('listings') || '[]');
-
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
-  if(id==='beranda') renderListings();
+.header {
+  background:linear-gradient(135deg, #3b82f6, #2563eb);
+  padding:15px 20px 25px;
+  color:white;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  position:sticky; top:0; z-index:10;
 }
-
-function renderListings(){
-  const wrap = document.getElementById('list-akun');
-  if(listings.length===0){
-    wrap.innerHTML = '<div class="empty">Belum ada akun dijual.<br>Yuk posting sekarang!</div>';
-    return;
-  }
-  wrap.innerHTML = listings.map((item,i)=>`
-    <div class="card">
-      <h3>${item.judul}</h3>
-      <p><strong>${item.game}</strong> - Rp ${item.harga}</p>
-      <p>${item.desc}</p>
-      <div style="display:flex;gap:8px;margin-top:12px">
-        <a class="btn-wa" href="https://wa.me/${item.wa}?text=Halo%20mau%20tanya%20akun%20${encodeURIComponent(item.judul)}">Chat WA</a>
-        <button class="btn-del" onclick="hapusListing(${i})">Hapus</button>
-      </div>
-    </div>
-  `).join('');
+.header h1 {font-size:24px; font-weight:700; margin-bottom:15px}
+.tabs {display:flex; gap:10px}
+.tab {
+  padding:8px 18px; border-radius:20px; border:none; font-size:15px; font-weight:500;
+  background:rgba(255,255,255,0.2); color:white; transition:all 0.2s;
 }
+.tab.active {background:white; color:#2563eb; box-shadow:0 2px 8px rgba(0,0,0,0.15)}
 
-function hapusListing(index){
-  if(confirm('Yakin mau hapus listing ini?')){
-    listings.splice(index,1);
-    localStorage.setItem('listings',JSON.stringify(listings));
-    renderListings();
-  }
-}
-
-document.getElementById('form-jual').addEventListener('submit',e=>{
-  e.preventDefault();
-  const data={
-    judul:document.getElementById('judul').value,
-    harga:document.getElementById('harga').value,
-    game:document.getElementById('game').value,
-    desc:document.getElementById('desc').value,
-    wa:document.getElementById('wa').value
-  };
-  listings.unshift(data);
-  localStorage.setItem('listings',JSON.stringify(listings));
-  alert('Akun berhasil diposting!');
-  e.target.reset();
-  showPage('beranda');
-});
-
-renderListings();
-</script>
-
-</body>
-</html>
+.content {padding:20px}
+.empty {text-align:center; color:#94a3b8; padding:50px 20px}
+.empty-icon {font-size:60px; margin-bottom:15px; opacity:0.5}
+.empty h2 {font-size:18px; color:#64748b; margin-bottom:
