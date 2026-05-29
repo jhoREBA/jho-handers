@@ -6,24 +6,28 @@
 <title>Jho Passion</title>
 <style>
 body{margin:0;background:#000;color:#fff;font-family:Arial;padding-bottom:60px}
-.header{background:#ff6600;color:#000;text-align:center;padding:30px 10px;font-weight:bold}
-.header h1{margin:0;font-size:24px}
-.header p{margin:5px 0 0;font-size:12px}
+.header{background:#ff6600;color:#000;text-align:center;padding:25px 10px;font-weight:bold}
+.header h1{margin:0;font-size:22px}
+.header p{margin:3px 0 0;font-size:11px}
 .card{background:#111;border:1px solid #333;margin:10px;padding:10px;border-radius:8px}
 .card h3{color:#ff8800;margin:0 0 5px;font-size:15px}
-.card p{margin:5px 0;font-size:13px;color:#ccc}
-.btn{width:100%;background:#25D366;border:none;color:#fff;padding:8px;border-radius:5px;margin-top:5px}
+.card p{margin:3px 0;font-size:12px;color:#ccc}
+.card img{width:49%;border-radius:5px;margin-top:5px}
+.btn{width:100%;background:#25D366;border:none;color:#fff;padding:8px;border-radius:5px;margin-top:6px;font-size:13px}
 .page{display:none}
 .page.on{display:block}
 .menu{position:fixed;bottom:0;left:0;width:100%;background:#111;display:flex;border-top:2px solid #ff6600}
-.menu button{flex:1;padding:10px;border:none;background:0;color:#777;font-size:11px}
+.menu button{flex:1;padding:9px;border:none;background:0;color:#777;font-size:10px}
 .menu button.on{color:#ff8800;background:#222}
 .plus{position:fixed;right:15px;bottom:70px;width:50px;height:50px;border-radius:50%;background:#ff6600;border:none;color:#fff;font-size:24px}
-#form{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);align-items:center;justify-content:center}
+#form{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);align-items:center;justify-content:center;overflow-y:auto}
 #form.on{display:flex}
-#box{background:#111;border:2px solid #ff6600;padding:15px;border-radius:10px;width:85%}
-#box input,#box textarea{width:100%;margin:5px 0;padding:8px;background:#000;color:#fff;border:1px solid #333;border-radius:5px}
-#box button{width:49%;padding:8px;margin-top:5px;border:none;border-radius:5px}
+#box{background:#111;border:2px solid #ff6600;padding:15px;border-radius:10px;width:90%;max-width:340px;margin:20px 0}
+#box h3{color:#ff8800;text-align:center;margin:0 0 10px}
+#box input,#box textarea{width:100%;margin:5px 0;padding:8px;background:#000;color:#fff;border:1px solid #333;border-radius:5px;font-size:13px}
+#box label{font-size:12px;color:#aaa;margin-top:5px;display:block}
+#box button{width:49%;padding:8px;margin-top:8px;border:none;border-radius:5px;font-weight:bold}
+small{color:#888;font-size:10px}
 </style>
 </head>
 <body>
@@ -34,19 +38,20 @@ body{margin:0;background:#000;color:#fff;font-family:Arial;padding-bottom:60px}
 </div>
 
 <div id="home" class="page on">
-<div id="list">
-<div class="card">
-<h3>ML Mythic Glory</h3>
-<p>Skin 180+ | Rp 350000</p>
-<button class="btn" onclick="wa('628123456789')">Chat WA</button>
+<div class="card"><h3>Selamat Datang</h3><p>Pilih menu Beli buat liat akun, atau klik + buat jual akun lu</p></div>
 </div>
+
+<div id="cari" class="page"><div class="card"><h3>🔍 Cari</h3><p>Fitur search nyusul bro</p></div></div>
+
+<div id="beli" class="page">
+<div id="listBeli">
+<div class="card"><h3>Belum ada akun</h3><p>Klik tombol + buat jadi penjual pertama</p></div>
 </div>
 </div>
 
-<div id="cari" class="page"><div class="card"><h3>Cari</h3><p>Fitur search nyusul</p></div></div>
-<div id="beli" class="page"><div class="card"><h3>Cara Beli</h3><p>1.Pilih akun 2.Chat WA 3.VC 4.Rekber Admin</p></div></div>
-<div id="jual" class="page"><div class="card"><h3>Jual</h3><p>Klik tombol + buat jual akun</p></div></div>
-<div id="info" class="page"><div class="card"><h3>Info</h3><p>Admin: 0812-3456-7890</p></div></div>
+<div id="jual" class="page"><div class="card"><h3>🪝 Jual Akun</h3><p>Isi form lengkap lewat tombol + oranye. Foto 2 skin wajib biar laku</p></div></div>
+
+<div id="info" class="page"><div class="card"><h3>👤 Info</h3><p>Admin: 0812-3456-7890<br>Rekber: Dana/OVO/Gopay</p></div></div>
 
 <button class="plus" onclick="form()">+</button>
 
@@ -60,13 +65,20 @@ body{margin:0;background:#000;color:#fff;font-family:Arial;padding-bottom:60px}
 
 <div id="form">
 <div id="box">
-<h3 style="color:#ff8800;text-align:center">Jual Akun</h3>
-<input id="a" placeholder="Game + Rank">
-<textarea id="b" placeholder="Detail"></textarea>
-<input id="c" placeholder="Harga">
-<input id="d" placeholder="WA 6281xxxx">
+<h3>Form Jual Akun</h3>
+<input id="game" placeholder="Nama Game" required>
+<input id="rank" placeholder="Rank / Level">
+<input id="email" placeholder="Email akun game" type="email">
+<input id="wa" placeholder="No WA 6281xxxx" required>
+<textarea id="detail" placeholder="Detail: Skin, Bundle, dll" rows="2"></textarea>
+<input id="harga" placeholder="Harga Rp" required>
+<label>Foto Skin 1:</label>
+<input id="foto1" type="file" accept="image/*">
+<label>Foto Skin 2:</label>
+<input id="foto2" type="file" accept="image/*">
+<small>*Foto cuma preview, ilang kalo refresh</small>
 <button style="background:#444;color:#ccc" onclick="form()">Batal</button>
-<button style="background:#ff6600;color:#fff" onclick="kirim()">Kirim</button>
+<button style="background:#ff6600;color:#fff" onclick="kirim()">Kirim ke Beli</button>
 </div>
 </div>
 
@@ -78,17 +90,59 @@ for(var i=0;i<5;i++){pg[i].className='page';bt[i].className=''}
 pg[n-1].className='page on';
 bt[n-1].className='on';
 }
-function wa(no){window.open('https://wa.me/'+no)}
 function form(){document.getElementById('form').classList.toggle('on');p(4)}
+
 function kirim(){
-var a=document.getElementById('a').value;
-var b=document.getElementById('b').value;
-var c=document.getElementById('c').value;
-var d=document.getElementById('d').value;
-if(a==''||c==''||d==''){alert('Isi semua');return}
-document.getElementById('list').innerHTML='<div class="card"><h3>'+a+'</h3><p>'+b+'<br>Rp '+c+'</p><button class="btn" onclick="wa(\''+d+'\')">Chat WA</button></div>'+document.getElementById('list').innerHTML;
-form();alert('Tayang di Home');p(1);
-document.getElementById('a').value='';document.getElementById('b').value='';document.getElementById('c').value='';document.getElementById('d').value='';
+var game=document.getElementById('game').value;
+var rank=document.getElementById('rank').value;
+var email=document.getElementById('email').value;
+var wa=document.getElementById('wa').value;
+var detail=document.getElementById('detail').value;
+var harga=document.getElementById('harga').value;
+var f1=document.getElementById('foto1').files[0];
+var f2=document.getElementById('foto2').files[0];
+
+if(game==''||wa==''||harga==''){alert('Game, WA, Harga wajib isi bro!');return}
+
+var reader1, reader2, img1='', img2='';
+
+// baca foto 1
+if(f1){
+reader1 = new FileReader();
+reader1.onload = function(e){img1='<img src="'+e.target.result+'">';cekKirim()}
+reader1.readAsDataURL(f1);
+}else{img1='';cekKirim()}
+
+// baca foto 2
+if(f2){
+reader2 = new FileReader();
+reader2.onload = function(e){img2='<img src="'+e.target.result+'">';cekKirim()}
+reader2.readAsDataURL(f2);
+}else{img2='';cekKirim()}
+
+var sudah1=false, sudah2=false;
+function cekKirim(){
+if(f1) sudah1=true; else sudah1=true;
+if(f2) sudah2=true; else sudah2=true;
+if(sudah1 && sudah2) lanjut();
+}
+
+function lanjut(){
+var html='<div class="card"><h3>'+game+' - '+rank+'</h3><p>Email: '+email+'<br>WA: '+wa+'<br>'+detail+'<br>Harga: Rp '+harga+'</p>'+img1+img2+'<button class="btn" onclick="window.open(\'https://wa.me/'+wa+'\')">Chat WA Penjual</button></div>';
+document.getElementById('listBeli').innerHTML=html+document.getElementById('listBeli').innerHTML;
+
+form();alert('Akun lu udah tayang di menu Beli bro!');
+p(3);
+
+// reset form
+document.getElementById('game').value='';
+document.getElementById('rank').value='';
+document.getElementById('email').value='';
+document.getElementById('wa').value='';
+document.getElementById('detail').value='';
+document.getElementById('harga').value='';
+document.getElementById('foto1').value='';
+document.getElementById('foto2').value='';
 }
 </script>
 
