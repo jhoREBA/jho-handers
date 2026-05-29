@@ -1,58 +1,86 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JhoReba Franco Legend</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JhoReba</title>
 <style>
-body{margin:0;font-family:sans-serif;background:#0a0a0f;padding-bottom:70px;color:#eee}
-.header{position:relative;height:160px;overflow:hidden;padding:20px;color:white}
-.header-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#1a0033,#330066,#6600cc);animation:geser 8s infinite;background-size:300% 300%}
-@keyframes geser{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.header h1{position:relative;font-size:28px;margin:0;text-shadow:0 0 10px #a855f7}
-.header p{position:relative;font-size:12px;opacity:0.8}
-.content{padding:15px}
+body{margin:0;background:#0a0a0f;color:#fff;font-family:Arial,sans-serif;padding-bottom:65px}
+
+/* FOTO FRANCO JELAS PAKE IMG */
+.head{position:relative;height:220px;overflow:hidden;border-bottom:3px solid #7c3aed}
+.head img{width:100%;height:100%;object-fit:cover;filter:brightness(0.7)}
+.head.judul{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:rgba(0,0,0,0.4)}
+.head h1{margin:0;font-size:32px;text-shadow:0 3px 10px #000}
+.head p{margin:8px 0 0;font-size:14px;color:#d8b4fe;text-shadow:0 2px 5px #000}
+
+.box{padding:15px}
+.card{background:#1a1a2e;border:1px solid #2d2d44;border-radius:12px;padding:14px;margin-bottom:12px}
+.card h3{margin:0 0 6px;color:#a78bfa;font-size:16px}
+.card p{margin:6px 0;color:#cbd5e1;font-size:14px}
+.btn{background:#25D366;color:#fff;border:none;padding:10px;border-radius:8px;width:100%;margin-top:8px;font-weight:bold}
+
+.nav{position:fixed;bottom:0;left:0;width:100%;background:#0f0f1a;display:flex;border-top:2px solid #7c3aed;z-index:99}
+.nav button{flex:1;background:none;border:none;color:#71717a;padding:12px 5px;font-size:11px}
+.nav button.active{color:#a855f7;font-weight:bold;background:rgba(124,58,237,0.1)}
+.nav-icon{font-size:20px;display:block;margin-bottom:3px}
+
 .page{display:none}
-.page.active{display:block}
-.bottom-nav{position:fixed;bottom:0;left:0;width:100%;background:#111;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #222;z-index:20}
-.nav-btn{flex:1;text-align:center;border:none;background:none;color:#666;font-size:11px;padding:6px;cursor:pointer}
-.nav-btn.active{color:#a855f7;font-weight:bold}
-.nav-icon{font-size:22px;display:block}
-.grid{display:grid;gap:10px}
-.card{background:#1a1a2e;border-radius:12px;padding:12px;border:1px solid #222;position:relative}
-.card img{width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:8px;background:#000}
-.card.game{color:#a78bfa;font-size:12px;font-weight:bold;margin-bottom:4px}
-.card h3{margin:5px 0;font-size:15px}
-.card.desc{font-size:12px;color:#999;margin:5px 0}
-.card.harga{font-size:18px;font-weight:bold;color:#4ade80;margin:5px 0}
-.card button{width:48%;padding:8px;border:none;background:#25D366;color:white;border-radius:8px;margin-top:5px;cursor:pointer}
-.btn-hapus{background:#ef4444!important;margin-left:4%}
-#fab{position:fixed;bottom:80px;right:20px;width:50px;height:50px;border-radius:50%;background:#7c3aed;color:white;border:none;font-size:24px;z-index:15;cursor:pointer}
-#popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;z-index:30}
-#popup.show{display:flex}
-.form{background:#1a1a2e;width:90%;max-width:400px;padding:20px;border-radius:15px;border:1px solid #333;max-height:90vh;overflow-y:auto}
-.form h2{margin-top:0;color:#a78bfa}
-.form input,.form select,.form textarea{width:100%;padding:10px;margin-bottom:8px;background:#0a0a0f;border:1px solid #333;color:#eee;border-radius:8px;box-sizing:border-box}
-.form label{font-size:12px;color:#999;display:block;margin-bottom:4px}
-.form button{width:100%;padding:10px;margin-top:5px;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
-#kirimBtn{background:#7c3aed;color:white}
-#batalBtn{background:#333;color:#aaa}
-.empty{text-align:center;color:#555;padding:50px 20px;font-size:14px}
+.page.show{display:block}
+#plus{position:fixed;right:15px;bottom:80px;width:55px;height:55px;border-radius:50%;background:#7c3aed;color:#fff;border:none;font-size:28px;z-index:98}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-bg"></div>
-  <h1>JhoReba</h1>
-  <p>Franco Legend Marketplace</p>
+<div class="head">
+<img src="https://i.pinimg.com/736x/3a/2b/5c/3a2b5c8e9f1d2a3b4c5d6e7f8g9h0i1j.jpg" alt="Franco Legend">
+<div class="judul">
+<h1>JhoReba</h1>
+<p>Franco Legend Marketplace</p>
+</div>
 </div>
 
-<div class="content">
-  <div id="beranda" class="page active">
-    <div class="empty" id="kosong">⛓️<br>Belum ada akun dijual<br>Klik tombol + buat posting</div>
-    <div class="grid" id="listAkun"></div>
-  </div>
+<div class="box">
+<div id="p1" class="page show">
+<div class="card">
+<h3>⛓️ Akun ML Mythic Glory</h3>
+<p>Skin: 180+ | Rank: Mythic 600<br>Harga: Rp 350.000</p>
+<button class="btn" onclick="wa('628123456789')">Chat WA</button>
+</div>
+<div class="card">
+<h3>🪝 Akun FF Sultan</h3>
+<p>Bundle Langka | Level 75<br>Harga: Rp 250.000</p>
+<button class="btn" onclick="wa('628987654321')">Chat WA</button>
+</div>
+</div>
 
-  <div id="cari" class="page">
-    <input type="text" id="search" placeholder="Cari: ML, FF, Genshin..." style="width:100%;padding:10px;background:#1a1a2e;border:1px solid
+<div id="p2" class="page"><div class="card"><h3>🔍 Cari</h3><p>Menu cari aktif nanti bro</p></div></div>
+<div id="p3" class="page"><div class="card"><h3>🛒 Cara Beli</h3><p>1.Pilih 2.Chat WA 3.Rekber</p></div></div>
+<div id="p4" class="page"><div class="card"><h3>👤 Info</h3><p>Admin: 0812-3456-7890</p></div></div>
+</div>
+
+<button id="plus" onclick="alert('Posting coming soon')">+</button>
+
+<div class="nav">
+<button class="active" onclick="tab(1)"><span class="nav-icon">⛓️</span>Beranda</button>
+<button onclick="tab(2)"><span class="nav-icon">🔍</span>Cari</button>
+<button onclick="tab(3)"><span class="nav-icon">🪝</span>Beli</button>
+<button onclick="tab(4)"><span class="nav-icon">👤</span>Info</button>
+</div>
+
+<script>
+function tab(n){
+var p = document.getElementsByClassName('page');
+var b = document.querySelectorAll('.nav button');
+for(var i=0;i<4;i++){
+p[i].className = 'page';
+b[i].className = '';
+}
+p[n-1].className = 'page show';
+b[n-1].className = 'active';
+}
+function wa(no){window.open('https://wa.me/'+no)}
+</script>
+
+</body>
+</html>
