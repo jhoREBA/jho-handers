@@ -13,21 +13,18 @@ body{margin:0;background:#000;color:#fff;font-family:Arial;padding-bottom:60px}
 .card h3{color:#ff8800;margin:0 0 5px;font-size:15px}
 .card p{margin:3px 0;font-size:12px;color:#ccc}
 .card img{width:49%;border-radius:5px;margin-top:5px}
-.btn{width:100%;background:#25D366;border:none;color:#fff;padding:8px;border-radius:5px;margin-top:6px;font-size:13px}
+.btn{width:100%;background:#25D366;border:none;color:#fff;padding:8px;border-radius:5px;margin-top:6px}
 .page{display:none}
 .page.on{display:block}
 .menu{position:fixed;bottom:0;left:0;width:100%;background:#111;display:flex;border-top:2px solid #ff6600}
-.menu button{flex:1;padding:9px;border:none;background:0;color:#777;font-size:10px}
+.menu button{flex:1;padding:10px;border:none;background:#111;color:#777;font-size:11px;cursor:pointer}
 .menu button.on{color:#ff8800;background:#222}
-.plus{position:fixed;right:15px;bottom:70px;width:50px;height:50px;border-radius:50%;background:#ff6600;border:none;color:#fff;font-size:24px}
-#form{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);align-items:center;justify-content:center;overflow-y:auto}
+.plus{position:fixed;right:15px;bottom:70px;width:50px;height:50px;border-radius:50%;background:#ff6600;border:none;color:#fff;font-size:24px;cursor:pointer}
+#form{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);align-items:center;justify-content:center}
 #form.on{display:flex}
-#box{background:#111;border:2px solid #ff6600;padding:15px;border-radius:10px;width:90%;max-width:340px;margin:20px 0}
-#box h3{color:#ff8800;text-align:center;margin:0 0 10px}
-#box input,#box textarea{width:100%;margin:5px 0;padding:8px;background:#000;color:#fff;border:1px solid #333;border-radius:5px;font-size:13px}
-#box label{font-size:12px;color:#aaa;margin-top:5px;display:block}
-#box button{width:49%;padding:8px;margin-top:8px;border:none;border-radius:5px;font-weight:bold}
-small{color:#888;font-size:10px}
+#box{background:#111;border:2px solid #ff6600;padding:15px;border-radius:10px;width:90%}
+#box input,#box textarea{width:100%;margin:5px 0;padding:8px;background:#000;color:#fff;border:1px solid #333;border-radius:5px}
+#box button{width:49%;padding:8px;margin-top:5px;border:none;border-radius:5px}
 </style>
 </head>
 <body>
@@ -37,104 +34,92 @@ small{color:#888;font-size:10px}
 <p>JUAL BELI AKUN GAME</p>
 </div>
 
-<div id="home" class="page on">
-<div class="card"><h3>Selamat Datang</h3><p>Pilih menu Beli buat liat akun, atau klik + buat jual akun lu</p></div>
+<div id="p1" class="page on">
+<div class="card"><h3>Selamat Datang</h3><p>Pilih menu Beli buat liat akun, klik + buat jual</p></div>
 </div>
 
-<div id="cari" class="page"><div class="card"><h3>🔍 Cari</h3><p>Fitur search nyusul bro</p></div></div>
+<div id="p2" class="page"><div class="card"><h3>Cari</h3><p>Fitur search nyusul</p></div></div>
 
-<div id="beli" class="page">
+<div id="p3" class="page">
 <div id="listBeli">
-<div class="card"><h3>Belum ada akun</h3><p>Klik tombol + buat jadi penjual pertama</p></div>
+<div class="card"><h3>Belum ada akun</h3><p>Klik + jadi penjual pertama</p></div>
 </div>
 </div>
 
-<div id="jual" class="page"><div class="card"><h3>🪝 Jual Akun</h3><p>Isi form lengkap lewat tombol + oranye. Foto 2 skin wajib biar laku</p></div></div>
+<div id="p4" class="page"><div class="card"><h3>Jual</h3><p>Isi form lengkap lewat tombol +</p></div></div>
 
-<div id="info" class="page"><div class="card"><h3>👤 Info</h3><p>Admin: 0812-3456-7890<br>Rekber: Dana/OVO/Gopay</p></div></div>
+<div id="p5" class="page"><div class="card"><h3>Info</h3><p>Admin: 0812-3456-7890</p></div></div>
 
-<button class="plus" onclick="form()">+</button>
+<button class="plus" onclick="bukaForm()">+</button>
 
 <div class="menu">
-<button class="on" onclick="p(1)">Home</button>
-<button onclick="p(2)">Cari</button>
-<button onclick="p(3)">Beli</button>
-<button onclick="p(4)">Jual</button>
-<button onclick="p(5)">Info</button>
+<button id="b1" class="on" onclick="p(1)">Home</button>
+<button id="b2" onclick="p(2)">Cari</button>
+<button id="b3" onclick="p(3)">Beli</button>
+<button id="b4" onclick="p(4)">Jual</button>
+<button id="b5" onclick="p(5)">Info</button>
 </div>
 
 <div id="form">
 <div id="box">
-<h3>Form Jual Akun</h3>
-<input id="game" placeholder="Nama Game" required>
-<input id="rank" placeholder="Rank / Level">
-<input id="email" placeholder="Email akun game" type="email">
-<input id="wa" placeholder="No WA 6281xxxx" required>
-<textarea id="detail" placeholder="Detail: Skin, Bundle, dll" rows="2"></textarea>
-<input id="harga" placeholder="Harga Rp" required>
-<label>Foto Skin 1:</label>
+<h3 style="color:#ff8800;text-align:center">Jual Akun</h3>
+<input id="game" placeholder="Nama Game">
+<input id="rank" placeholder="Rank/Level">
+<input id="email" placeholder="Email akun">
+<input id="wa" placeholder="WA 6281xxxx">
+<textarea id="detail" placeholder="Detail skin"></textarea>
+<input id="harga" placeholder="Harga Rp">
+<label style="font-size:12px;color:#aaa">Foto Skin 1:</label>
 <input id="foto1" type="file" accept="image/*">
-<label>Foto Skin 2:</label>
+<label style="font-size:12px;color:#aaa">Foto Skin 2:</label>
 <input id="foto2" type="file" accept="image/*">
-<small>*Foto cuma preview, ilang kalo refresh</small>
-<button style="background:#444;color:#ccc" onclick="form()">Batal</button>
-<button style="background:#ff6600;color:#fff" onclick="kirim()">Kirim ke Beli</button>
+<button style="background:#444;color:#ccc" onclick="tutupForm()">Batal</button>
+<button style="background:#ff6600;color:#fff" onclick="kirim()">Kirim</button>
 </div>
 </div>
 
 <script>
 function p(n){
-var pg=document.querySelectorAll('.page');
-var bt=document.querySelectorAll('.menu button');
-for(var i=0;i<5;i++){pg[i].className='page';bt[i].className=''}
-pg[n-1].className='page on';
-bt[n-1].className='on';
+for(var i=1;i<=5;i++){
+document.getElementById('p'+i).className='page';
+document.getElementById('b'+i).className='';
 }
-function form(){document.getElementById('form').classList.toggle('on');p(4)}
+document.getElementById('p'+n).className='page on';
+document.getElementById('b'+n).className='on';
+}
+
+function bukaForm(){
+document.getElementById('form').className='on';
+p(4);
+}
+
+function tutupForm(){
+document.getElementById('form').className='';
+}
 
 function kirim(){
-var game=document.getElementById('game').value;
-var rank=document.getElementById('rank').value;
-var email=document.getElementById('email').value;
-var wa=document.getElementById('wa').value;
-var detail=document.getElementById('detail').value;
-var harga=document.getElementById('harga').value;
+var g=document.getElementById('game').value;
+var r=document.getElementById('rank').value;
+var e=document.getElementById('email').value;
+var w=document.getElementById('wa').value;
+var d=document.getElementById('detail').value;
+var h=document.getElementById('harga').value;
 var f1=document.getElementById('foto1').files[0];
 var f2=document.getElementById('foto2').files[0];
 
-if(game==''||wa==''||harga==''){alert('Game, WA, Harga wajib isi bro!');return}
+if(g==''||w==''||h==''){alert('Isi Game, WA, Harga!');return}
 
-var reader1, reader2, img1='', img2='';
-
-// baca foto 1
-if(f1){
-reader1 = new FileReader();
-reader1.onload = function(e){img1='<img src="'+e.target.result+'">';cekKirim()}
-reader1.readAsDataURL(f1);
-}else{img1='';cekKirim()}
-
-// baca foto 2
-if(f2){
-reader2 = new FileReader();
-reader2.onload = function(e){img2='<img src="'+e.target.result+'">';cekKirim()}
-reader2.readAsDataURL(f2);
-}else{img2='';cekKirim()}
-
-var sudah1=false, sudah2=false;
-function cekKirim(){
-if(f1) sudah1=true; else sudah1=true;
-if(f2) sudah2=true; else sudah2=true;
-if(sudah1 && sudah2) lanjut();
+var img1='', img2='', count=0;
+function cek(){
+count++;
+if(count==2) lanjut();
 }
 
 function lanjut(){
-var html='<div class="card"><h3>'+game+' - '+rank+'</h3><p>Email: '+email+'<br>WA: '+wa+'<br>'+detail+'<br>Harga: Rp '+harga+'</p>'+img1+img2+'<button class="btn" onclick="window.open(\'https://wa.me/'+wa+'\')">Chat WA Penjual</button></div>';
+var html='<div class="card"><h3>'+g+' - '+r+'</h3><p>Email:'+e+'<br>WA:'+w+'<br>'+d+'<br>Rp '+h+'</p>'+img1+img2+'<button class="btn" onclick="window.open(\'https://wa.me/'+w+'\')">Chat WA</button></div>';
 document.getElementById('listBeli').innerHTML=html+document.getElementById('listBeli').innerHTML;
+tutupForm();alert('Masuk ke menu Beli!');p(3);
 
-form();alert('Akun lu udah tayang di menu Beli bro!');
-p(3);
-
-// reset form
 document.getElementById('game').value='';
 document.getElementById('rank').value='';
 document.getElementById('email').value='';
@@ -143,6 +128,21 @@ document.getElementById('detail').value='';
 document.getElementById('harga').value='';
 document.getElementById('foto1').value='';
 document.getElementById('foto2').value='';
+}
+
+if(f1){
+var rd1=new FileReader();
+rd1.onload=function(ev){img1='<img src="'+ev.target.result+'">';cek()}
+rd1.readAsDataURL(f1);
+}else{count++}
+
+if(f2){
+var rd2=new FileReader();
+rd2.onload=function(ev){img2='<img src="'+ev.target.result+'">';cek()}
+rd2.readAsDataURL(f2);
+}else{count++}
+
+if(!f1 &&!f2) lanjut();
 }
 </script>
 
