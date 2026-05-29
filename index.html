@@ -2,59 +2,95 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Jho Passion Market</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jho Passion</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#0a0a0f;color:#fff;font-family:Arial,sans-serif;padding-bottom:75px;min-height:100vh}
-
-/* HEADER JHO PASSION */
-.head{
-height:180px;
-background:linear-gradient(135deg,#1a0a00 0%,#2d1a0a 50%,#ff6600 100%);
-border-bottom:3px solid #ff6600;
-display:flex;flex-direction:column;justify-content:center;align-items:center;
-text-align:center;position:relative;overflow:hidden
-}
-.head::before{
-content:"🎮";position:absolute;font-size:120px;opacity:0.08;top:-20px;left:20px;transform:rotate(-15deg)
-}
-.head h1{margin:0;font-size:32px;font-weight:900;z-index:2}
-.head h1 span{color:#ff6600}
-.head p{margin:6px 0 0;font-size:13px;color:#ffa500;font-weight:bold;letter-spacing:1px;z-index:2}
-
-.box{padding:15px 15px 80px 15px}
-.card{background:#1a1a2e;border:1px solid #2d2d44;border-radius:12px;padding:14px;margin-bottom:12px}
-.card h3{margin:0 0 6px;color:#ff8800;font-size:16px}
-.card p{margin:6px 0;color:#cbd5e1;font-size:14px}
-.btn{background:#25D366;color:#fff;border:none;padding:10px;border-radius:8px;width:100%;margin-top:8px;font-weight:bold;font-size:14px}
-
+body{margin:0;background:#000;color:#fff;font-family:Arial;padding-bottom:60px}
+.header{background:#ff6600;color:#000;text-align:center;padding:30px 10px;font-weight:bold}
+.header h1{margin:0;font-size:24px}
+.header p{margin:5px 0 0;font-size:12px}
+.card{background:#111;border:1px solid #333;margin:10px;padding:10px;border-radius:8px}
+.card h3{color:#ff8800;margin:0 0 5px;font-size:15px}
+.card p{margin:5px 0;font-size:13px;color:#ccc}
+.btn{width:100%;background:#25D366;border:none;color:#fff;padding:8px;border-radius:5px;margin-top:5px}
 .page{display:none}
-.page.show{display:block}
+.page.on{display:block}
+.menu{position:fixed;bottom:0;left:0;width:100%;background:#111;display:flex;border-top:2px solid #ff6600}
+.menu button{flex:1;padding:10px;border:none;background:0;color:#777;font-size:11px}
+.menu button.on{color:#ff8800;background:#222}
+.plus{position:fixed;right:15px;bottom:70px;width:50px;height:50px;border-radius:50%;background:#ff6600;border:none;color:#fff;font-size:24px}
+#form{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);align-items:center;justify-content:center}
+#form.on{display:flex}
+#box{background:#111;border:2px solid #ff6600;padding:15px;border-radius:10px;width:85%}
+#box input,#box textarea{width:100%;margin:5px 0;padding:8px;background:#000;color:#fff;border:1px solid #333;border-radius:5px}
+#box button{width:49%;padding:8px;margin-top:5px;border:none;border-radius:5px}
+</style>
+</head>
+<body>
 
-/* MENU BAWAH FIX - PASTI MUNCUL */
-.nav{
-position:fixed;bottom:0;left:0;width:100%;height:65px;
-background:#0f0f1a;display:flex;border-top:3px solid #ff6600;
-z-index:999;box-shadow:0 -4px 15px rgba(0,0,0,0.8)
-}
-.nav button{
-flex:1;background:none;border:none;color:#666;padding:8px 5px;
-font-size:11px;cursor:pointer;display:flex;flex-direction:column;
-align-items:center;justify-content:center;transition:0.2s
-}
-.nav button.active{color:#ff8800;font-weight:bold;background:rgba(255,136,0,0.12)}
-.nav-icon{font-size:22px;margin-bottom:3px;line-height:1}
+<div class="header">
+<h1>jhoPASSION</h1>
+<p>JUAL BELI AKUN GAME</p>
+</div>
 
-#jualBtn{
-position:fixed;right:15px;bottom:80px;width:55px;height:55px;
-border-radius:50%;background:#ff6600;color:#fff;border:none;
-font-size:28px;z-index:998;box-shadow:0 4px 15px rgba(255,102,0,0.5)
-}
+<div id="home" class="page on">
+<div id="list">
+<div class="card">
+<h3>ML Mythic Glory</h3>
+<p>Skin 180+ | Rp 350000</p>
+<button class="btn" onclick="wa('628123456789')">Chat WA</button>
+</div>
+</div>
+</div>
 
-/* POPUP JUAL */
-#popupJual{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center}
-#popupJual.show{display:flex}
-.popupBox{background:#1a1a2e;border:2px solid #ff6600;border-radius:15px;padding:20px;width:88%;max-width:340px}
-.popupBox h3{margin:0 0 15px;color:#ff8800;text-align:center;font-size:18px}
-.popupBox input,.popupBox textarea{width:100%;padding:10px;margin-bottom:10px;background:#0f0f
+<div id="cari" class="page"><div class="card"><h3>Cari</h3><p>Fitur search nyusul</p></div></div>
+<div id="beli" class="page"><div class="card"><h3>Cara Beli</h3><p>1.Pilih akun 2.Chat WA 3.VC 4.Rekber Admin</p></div></div>
+<div id="jual" class="page"><div class="card"><h3>Jual</h3><p>Klik tombol + buat jual akun</p></div></div>
+<div id="info" class="page"><div class="card"><h3>Info</h3><p>Admin: 0812-3456-7890</p></div></div>
+
+<button class="plus" onclick="form()">+</button>
+
+<div class="menu">
+<button class="on" onclick="p(1)">Home</button>
+<button onclick="p(2)">Cari</button>
+<button onclick="p(3)">Beli</button>
+<button onclick="p(4)">Jual</button>
+<button onclick="p(5)">Info</button>
+</div>
+
+<div id="form">
+<div id="box">
+<h3 style="color:#ff8800;text-align:center">Jual Akun</h3>
+<input id="a" placeholder="Game + Rank">
+<textarea id="b" placeholder="Detail"></textarea>
+<input id="c" placeholder="Harga">
+<input id="d" placeholder="WA 6281xxxx">
+<button style="background:#444;color:#ccc" onclick="form()">Batal</button>
+<button style="background:#ff6600;color:#fff" onclick="kirim()">Kirim</button>
+</div>
+</div>
+
+<script>
+function p(n){
+var pg=document.querySelectorAll('.page');
+var bt=document.querySelectorAll('.menu button');
+for(var i=0;i<5;i++){pg[i].className='page';bt[i].className=''}
+pg[n-1].className='page on';
+bt[n-1].className='on';
+}
+function wa(no){window.open('https://wa.me/'+no)}
+function form(){document.getElementById('form').classList.toggle('on');p(4)}
+function kirim(){
+var a=document.getElementById('a').value;
+var b=document.getElementById('b').value;
+var c=document.getElementById('c').value;
+var d=document.getElementById('d').value;
+if(a==''||c==''||d==''){alert('Isi semua');return}
+document.getElementById('list').innerHTML='<div class="card"><h3>'+a+'</h3><p>'+b+'<br>Rp '+c+'</p><button class="btn" onclick="wa(\''+d+'\')">Chat WA</button></div>'+document.getElementById('list').innerHTML;
+form();alert('Tayang di Home');p(1);
+document.getElementById('a').value='';document.getElementById('b').value='';document.getElementById('c').value='';document.getElementById('d').value='';
+}
+</script>
+
+</body>
+</html>
