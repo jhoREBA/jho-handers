@@ -5,27 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JhoReba</title>
 <style>
-body{margin:0;font-family:sans-serif;background:#f5f7fa}
-.header{background:linear-gradient(135deg,#3b82f6,#2563eb);padding:20px;color:white;text-align:center}
-.header h1{font-size:28px}
-.content{padding:30px;text-align:center;color:#64748b}
-.content div{font-size:70px;margin-bottom:20px}
-.content h2{margin-bottom:10px}
-.content button{background:#2563eb;color:white;border:none;padding:15px 40px;border-radius:12px;font-size:18px;margin-top:20px}
+body{margin:0;font-family:sans-serif;background:#f5f7fa;padding-bottom:80px}
+.header{background:linear-gradient(135deg,#3b82f6,#2563eb);padding:15px 20px;color:white}
+.header h1{font-size:24px;margin-bottom:10px}
+.tabs{display:flex;gap:10px}
+.tab{padding:8px 18px;border-radius:20px;border:none;background:rgba(255,255,255,0.2);color:white;font-size:15px}
+.tab.active{background:white;color:#2563eb}
+.content{padding:20px}
+#kosong{text-align:center;color:#94a3b8;padding:50px 20px}
+#kosong div{font-size:60px}
+#kosong button{background:#2563eb;color:white;border:none;padding:12px 30px;border-radius:12px;font-size:16px;margin-top:20px}
+#fab{position:fixed;bottom:25px;right:25px;width:60px;height:60px;border-radius:50%;background:#2563eb;color:white;border:none;font-size:28px}
+#popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);justify-content:center;align-items:center}
+#popup.show{display:flex}
+.form{background:white;width:90%;max-width:400px;border-radius:20px;padding:25px}
+.form input,.form textarea,.form select{width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:10px}
+.form button{width:100%;padding:12px;border:none;border-radius:10px;font-weight:bold;margin-top:5px}
+#kirimBtn{background:#2563eb;color:white}
+#batalBtn{background:#ddd}
+.grid{display:grid;gap:15px}
+.card{background:white;border-radius:15px;padding:15px;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+.card.game{color:#3b82f6;font-weight:bold;font-size:13px}
+.card h3{margin:5px 0}
+.card.harga{font-size:20px;font-weight:bold;color:green;margin:8px 0}
+.card button{width:100%;padding:10px;border:none;background:#2563eb;color:white;border-radius:10px}
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1>JhoReba</h1>
+  <div class="tabs">
+    <button class="tab active" onclick="alert('Beranda')">Beranda</button>
+    <button class="tab" onclick="alert('Jual Akun')">Jual Akun</button>
+    <button class="tab" onclick="alert('Info')">Info</button>
+  </div>
 </div>
 
 <div class="content">
-  <div>📦</div>
-  <h2>Berhasil! Web udah gak blank</h2>
-  <p>Tahap 1 beres bro. Tinggal tambah fitur pelan-pelan</p>
-  <button onclick="alert('Mantap udah muncul!')">Klik Gue</button>
+  <div id="kosong">
+    <div>📦</div>
+    <h2>Belum ada akun dijual</h2>
+    <button id="btnPost">+ Posting Akun Pertama</button>
+  </div>
+  <div class="grid" id="listAkun"></div>
 </div>
 
+<button id="fab">+</button>
+
+<div id="popup">
+  <div class="form">
+    <h2>Posting Akun</h2>
+    <select id="game"><option>Mobile Legends</option><option>Free Fire</option><option>Genshin</option></select>
+    <input type="text" id="judul" placeholder="Judul akun">
+    <input type="number" id="harga" placeholder="Harga">
+    <textarea id="desc" placeholder="Deskripsi" rows="3"></textarea>
+    <button id="kirimBtn">Kirim Akun</button>
+    <button id="batalBtn">Batal</button>
+  </div>
+</div>
+
+<script>
+function buka(){document.getElementById('popup').classList.add('show')}
+function tutup(){document.getElementById('popup').classList.remove('show')}
+
+document.getElementById('fab').onclick = buka;
+document.getElementById('btnPost').onclick = buka;
+document.getElementById('batalBtn').onclick = tutup;
+document.getElementById('popup').onclick = function(e){if(e.target.id=='popup')tutup()};
+
+document.getElementById('kirimBtn').onclick = function(){
+  let game = document.getElementById('game').value;
+  let judul = document.getElementById('judul').value;
+  let harga = document.getElementById('harga').value;
+  
+  if(!judul || !harga){alert('Isi Judul & Harga!');return}
+  
+  document.getElementById('kosong').style.display = 'none';
+  document.getElementById('listAkun').innerHTML = 
+    '<div class="card"><div class="game">'+game+'</div><h3>'+judul+'</h3><div class="harga">Rp '+harga+'</div><button onclick="alert(\'WA: 0812\')">Hubungi</button></div>';
+  
+  tutup();
+  document.getElementById('judul').value='';
+  document.getElementById('harga').value='';
+  document.getElementById('desc').value='';
+}
+</script>
 </body>
 </html>
