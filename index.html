@@ -2,12 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Jho Passion Market</title>
 <style>
-body{margin:0;background:#0a0a0f;color:#fff;font-family:Arial,sans-serif;padding-bottom:70px}
+*{box-sizing:border-box}
+body{margin:0;background:#0a0a0f;color:#fff;font-family:Arial,sans-serif;padding-bottom:75px;min-height:100vh}
 
-/* HEADER MIRIP BANNER LU */
+/* HEADER JHO PASSION */
 .head{
 height:180px;
 background:linear-gradient(135deg,#1a0a00 0%,#2d1a0a 50%,#ff6600 100%);
@@ -18,55 +19,42 @@ text-align:center;position:relative;overflow:hidden
 .head::before{
 content:"🎮";position:absolute;font-size:120px;opacity:0.08;top:-20px;left:20px;transform:rotate(-15deg)
 }
-.head h1{margin:0;font-size:32px;font-weight:900}
+.head h1{margin:0;font-size:32px;font-weight:900;z-index:2}
 .head h1 span{color:#ff6600}
-.head p{margin:6px 0 0;font-size:13px;color:#ffa500;font-weight:bold;letter-spacing:1px}
+.head p{margin:6px 0 0;font-size:13px;color:#ffa500;font-weight:bold;letter-spacing:1px;z-index:2}
 
-.box{padding:15px}
+.box{padding:15px 15px 80px 15px}
 .card{background:#1a1a2e;border:1px solid #2d2d44;border-radius:12px;padding:14px;margin-bottom:12px}
 .card h3{margin:0 0 6px;color:#ff8800;font-size:16px}
 .card p{margin:6px 0;color:#cbd5e1;font-size:14px}
-.btn{background:#25D366;color:#fff;border:none;padding:10px;border-radius:8px;width:100%;margin-top:8px;font-weight:bold}
-
-.nav{position:fixed;bottom:0;left:0;width:100%;background:#0f0f1a;display:flex;border-top:2px solid #ff6600;z-index:99}
-.nav button{flex:1;background:none;border:none;color:#666;padding:12px 5px;font-size:11px}
-.nav button.active{color:#ff8800;font-weight:bold;background:rgba(255,136,0,0.1)}
-.nav-icon{font-size:20px;display:block;margin-bottom:3px}
+.btn{background:#25D366;color:#fff;border:none;padding:10px;border-radius:8px;width:100%;margin-top:8px;font-weight:bold;font-size:14px}
 
 .page{display:none}
 .page.show{display:block}
 
-#jualBtn{position:fixed;right:15px;bottom:85px;width:55px;height:55px;border-radius:50%;background:#ff6600;color:#fff;border:none;font-size:28px;z-index:98;box-shadow:0 4px 15px rgba(255,102,0,0.5)}
+/* MENU BAWAH FIX - PASTI MUNCUL */
+.nav{
+position:fixed;bottom:0;left:0;width:100%;height:65px;
+background:#0f0f1a;display:flex;border-top:3px solid #ff6600;
+z-index:999;box-shadow:0 -4px 15px rgba(0,0,0,0.8)
+}
+.nav button{
+flex:1;background:none;border:none;color:#666;padding:8px 5px;
+font-size:11px;cursor:pointer;display:flex;flex-direction:column;
+align-items:center;justify-content:center;transition:0.2s
+}
+.nav button.active{color:#ff8800;font-weight:bold;background:rgba(255,136,0,0.12)}
+.nav-icon{font-size:22px;margin-bottom:3px;line-height:1}
+
+#jualBtn{
+position:fixed;right:15px;bottom:80px;width:55px;height:55px;
+border-radius:50%;background:#ff6600;color:#fff;border:none;
+font-size:28px;z-index:998;box-shadow:0 4px 15px rgba(255,102,0,0.5)
+}
 
 /* POPUP JUAL */
-#popupJual{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:999;justify-content:center;align-items:center}
+#popupJual{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center}
 #popupJual.show{display:flex}
-.popupBox{background:#1a1a2e;border:2px solid #ff6600;border-radius:15px;padding:20px;width:85%;max-width:340px}
-.popupBox h3{margin:0 0 15px;color:#ff8800;text-align:center}
-.popupBox input,.popupBox textarea{width:100%;padding:10px;margin-bottom:10px;background:#0f0f1a;border:1px solid #2d2d44;border-radius:8px;color:#fff;font-size:14px;box-sizing:border-box}
-.popupBox .row{display:flex;gap:10px}
-.popupBox .row button{flex:1;padding:10px;border:none;border-radius:8px;font-weight:bold}
-.btnBatal{background:#444;color:#ccc}
-.btnKirim{background:#ff6600;color:#fff}
-</style>
-</head>
-<body>
-
-<div class="head">
-<h1>jho<span>PASSION</span></h1>
-<p>JUAL DAN BELI AKUN GAME<br>TERPERCAYA DAN MURAH AMAN</p>
-</div>
-
-<div class="box">
-<div id="p1" class="page show">
-<div id="daftarAkun">
-<div class="card">
-<h3>⛓️ Akun ML Mythic Glory</h3>
-<p>Skin: 180+ | Rank: Mythic 600<br>Harga: Rp 350.000</p>
-<button class="btn" onclick="wa('628123456789','Akun ML Mythic Glory')">Chat WA</button>
-</div>
-</div>
-</div>
-
-<div id="p2" class="page"><div class="card"><h3>🔍 Cari Akun</h3><p>Ketik nama game buat cari. Fitur full nyusul bro</p></div></div>
-<div id="p3" class="page"><div class="card"><h3>🪝 Cara Beli Aman</h3><p>1.Pilih akun 2.Chat WA 3.VC dulu 4.Rekber Admin 0812-3456-7890</p></
+.popupBox{background:#1a1a2e;border:2px solid #ff6600;border-radius:15px;padding:20px;width:88%;max-width:340px}
+.popupBox h3{margin:0 0 15px;color:#ff8800;text-align:center;font-size:18px}
+.popupBox input,.popupBox textarea{width:100%;padding:10px;margin-bottom:10px;background:#0f0f
