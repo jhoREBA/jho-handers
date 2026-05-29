@@ -2,26 +2,30 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JhoReba</title>
 <style>
-* {margin:0; padding:0; box-sizing:border-box; font-family:-apple-system, BlinkMacSystemFont, sans-serif}
-body {background:#f5f7fa; padding-bottom:100px}
+body{margin:0;font-family:sans-serif;background:#f5f7fa}
+.header{background:linear-gradient(135deg,#3b82f6,#2563eb);padding:20px;color:white;text-align:center}
+.header h1{font-size:28px}
+.content{padding:30px;text-align:center;color:#64748b}
+.content div{font-size:70px;margin-bottom:20px}
+.content h2{margin-bottom:10px}
+.content button{background:#2563eb;color:white;border:none;padding:15px 40px;border-radius:12px;font-size:18px;margin-top:20px}
+</style>
+</head>
+<body>
 
-.header {
-  background:linear-gradient(135deg, #3b82f6, #2563eb);
-  padding:15px 20px 25px;
-  color:white;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  position:sticky; top:0; z-index:10;
-}
-.header h1 {font-size:24px; font-weight:700; margin-bottom:15px}
-.tabs {display:flex; gap:10px}
-.tab {
-  padding:8px 18px; border-radius:20px; border:none; font-size:15px; font-weight:500;
-  background:rgba(255,255,255,0.2); color:white; transition:all 0.2s;
-}
-.tab.active {background:white; color:#2563eb; box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+<div class="header">
+  <h1>JhoReba</h1>
+</div>
 
-.content {padding:20px}
-.empty {text-align:center; color:#94a3b8; padding:50px 20px
+<div class="content">
+  <div>📦</div>
+  <h2>Berhasil! Web udah gak blank</h2>
+  <p>Tahap 1 beres bro. Tinggal tambah fitur pelan-pelan</p>
+  <button onclick="alert('Mantap udah muncul!')">Klik Gue</button>
+</div>
+
+</body>
+</html>
