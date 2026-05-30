@@ -1,150 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Jho Passion</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jual Beli Akun Game</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <style>
-body{margin:0;background:#000;color:#fff;font-family:Arial;padding-bottom:60px}
-.header{background:#ff6600;color:#000;text-align:center;padding:25px 10px;font-weight:bold}
-.header h1{margin:0;font-size:22px}
-.header p{margin:3px 0 0;font-size:11px}
-.card{background:#111;border:1px solid #333;margin:10px;padding:10px;border-radius:8px}
-.card h3{color:#ff8800;margin:0 0 5px;font-size:15px}
-.card p{margin:3px 0;font-size:12px;color:#ccc}
-.card img{width:49%;border-radius:5px;margin-top:5px}
-.btn{width:100%;background:#25D366;border:none;color:#fff;padding:8px;border-radius:5px;margin-top:6px}
-.page{display:none}
-.page.on{display:block}
-.menu{position:fixed;bottom:0;left:0;width:100%;background:#111;display:flex;border-top:2px solid #ff6600}
-.menu button{flex:1;padding:10px;border:none;background:#111;color:#777;font-size:11px;cursor:pointer}
-.menu button.on{color:#ff8800;background:#222}
-.plus{position:fixed;right:15px;bottom:70px;width:50px;height:50px;border-radius:50%;background:#ff6600;border:none;color:#fff;font-size:24px;cursor:pointer}
-#form{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);align-items:center;justify-content:center}
-#form.on{display:flex}
-#box{background:#111;border:2px solid #ff6600;padding:15px;border-radius:10px;width:90%}
-#box input,#box textarea{width:100%;margin:5px 0;padding:8px;background:#000;color:#fff;border:1px solid #333;border-radius:5px}
-#box button{width:49%;padding:8px;margin-top:5px;border:none;border-radius:5px}
+body{font-family:sans-serif;padding:15px;background:#0f172a;color:white;margin:0}
+h2,h3{text-align:center;color:#22c55e}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;background:#1e293b;color:white;box-sizing:border-box;font-size:15px}
+button{width:100%;padding:14px;background:#22c55e;border:none;border-radius:8px;font-weight:bold;color:white;font-size:16px;margin-top:10px}
+button:active{background:#16a34a}
+button:disabled{opacity:0.5}
+.card{background:#1e293b;padding:15px;border-radius:12px;margin-top:12px;border-left:4px solid #22c55e}
+.card a{color:#22c55e;text-decoration:none;font-weight:bold}
+#loading{display:none;text-align:center;margin-top:10px;color:#22c55e}
+.container{max-width:500px;margin:auto}
 </style>
 </head>
 <body>
+<div class="container">
+<h2>🔥 Marketplace Akun</h2>
 
-<div class="header">
-<h1>jhoPASSION</h1>
-<p>JUAL BELI AKUN GAME</p>
-</div>
+<input id="game" placeholder="Nama Game - ML/FF/PUBG" required>
+<input id="rank" placeholder="Rank/Tier - Mythic/Legendary">
+<input id="harga" placeholder="Harga - 500000" type="number">
+<input id="wa" placeholder="No WA - 0812xxxx" required>
+<textarea id="desc" placeholder="Deskripsi: Skin, Level, Akun pribadi, dll" rows="3"></textarea>
+<button onclick="kirimJualan()">POST JUALAN</button>
+<div id="loading">⏳ Mengirim data...</div>
 
-<div id="p1" class="page on">
-<div class="card"><h3>Selamat Datang</h3><p>Pilih menu Beli buat liat akun, klik + buat jual</p></div>
-</div>
-
-<div id="p2" class="page"><div class="card"><h3>Cari</h3><p>Fitur search nyusul</p></div></div>
-
-<div id="p3" class="page">
-<div id="listBeli">
-<div class="card"><h3>Belum ada akun</h3><p>Klik + jadi penjual pertama</p></div>
-</div>
-</div>
-
-<div id="p4" class="page"><div class="card"><h3>Jual</h3><p>Isi form lengkap lewat tombol +</p></div></div>
-
-<div id="p5" class="page"><div class="card"><h3>Info</h3><p>Admin: 0812-3456-7890</p></div></div>
-
-<button class="plus" onclick="bukaForm()">+</button>
-
-<div class="menu">
-<button id="b1" class="on" onclick="p(1)">Home</button>
-<button id="b2" onclick="p(2)">Cari</button>
-<button id="b3" onclick="p(3)">Beli</button>
-<button id="b4" onclick="p(4)">Jual</button>
-<button id="b5" onclick="p(5)">Info</button>
-</div>
-
-<div id="form">
-<div id="box">
-<h3 style="color:#ff8800;text-align:center">Jual Akun</h3>
-<input id="game" placeholder="Nama Game">
-<input id="rank" placeholder="Rank/Level">
-<input id="email" placeholder="Email akun">
-<input id="wa" placeholder="WA 6281xxxx">
-<textarea id="detail" placeholder="Detail skin"></textarea>
-<input id="harga" placeholder="Harga Rp">
-<label style="font-size:12px;color:#aaa">Foto Skin 1:</label>
-<input id="foto1" type="file" accept="image/*">
-<label style="font-size:12px;color:#aaa">Foto Skin 2:</label>
-<input id="foto2" type="file" accept="image/*">
-<button style="background:#444;color:#ccc" onclick="tutupForm()">Batal</button>
-<button style="background:#ff6600;color:#fff" onclick="kirim()">Kirim</button>
-</div>
-</div>
-
-<script>
-function p(n){
-for(var i=1;i<=5;i++){
-document.getElementById('p'+i).className='page';
-document.getElementById('b'+i).className='';
-}
-document.getElementById('p'+n).className='page on';
-document.getElementById('b'+n).className='on';
-}
-
-function bukaForm(){
-document.getElementById('form').className='on';
-p(4);
-}
-
-function tutupForm(){
-document.getElementById('form').className='';
-}
-
-function kirim(){
-var g=document.getElementById('game').value;
-var r=document.getElementById('rank').value;
-var e=document.getElementById('email').value;
-var w=document.getElementById('wa').value;
-var d=document.getElementById('detail').value;
-var h=document.getElementById('harga').value;
-var f1=document.getElementById('foto1').files[0];
-var f2=document.getElementById('foto2').files[0];
-
-if(g==''||w==''||h==''){alert('Isi Game, WA, Harga!');return}
-
-var img1='', img2='', count=0;
-function cek(){
-count++;
-if(count==2) lanjut();
-}
-
-function lanjut(){
-var html='<div class="card"><h3>'+g+' - '+r+'</h3><p>Email:'+e+'<br>WA:'+w+'<br>'+d+'<br>Rp '+h+'</p>'+img1+img2+'<button class="btn" onclick="window.open(\'https://wa.me/'+w+'\')">Chat WA</button></div>';
-document.getElementById('listBeli').innerHTML=html+document.getElementById('listBeli').innerHTML;
-tutupForm();alert('Masuk ke menu Beli!');p(3);
-
-document.getElementById('game').value='';
-document.getElementById('rank').value='';
-document.getElementById('email').value='';
-document.getElementById('wa').value='';
-document.getElementById('detail').value='';
-document.getElementById('harga').value='';
-document.getElementById('foto1').value='';
-document.getElementById('foto2').value='';
-}
-
-if(f1){
-var rd1=new FileReader();
-rd1.onload=function(ev){img1='<img src="'+ev.target.result+'">';cek()}
-rd1.readAsDataURL(f1);
-}else{count++}
-
-if(f2){
-var rd2=new FileReader();
-rd2.onload=function(ev){img2='<img src="'+ev.target.result+'">';cek()}
-rd2.readAsDataURL(f2);
-}else{count++}
-
-if(!f1 &&!f2) lanjut();
-}
-</script>
-
-</body>
-</html>
+<div id="list"><h3>List Jualan Terbaru</
