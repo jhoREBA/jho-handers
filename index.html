@@ -1,99 +1,249 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GameAkun - Jual Beli Akun Game Murah</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0f172a;color:#e2e8f0}
-header{background:#1e293b;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
-header h1{color:#38bdf8}
-nav a{color:#e2e8f0;text-decoration:none;margin-left:20px}
-nav a:hover{color:#38bdf8}
-.hero{padding:60px 5%;text-align:center;background:linear-gradient(135deg,#1e293b,#0f172a)}
-.hero h2{font-size:32px;margin-bottom:10px}
-.search{margin-top:20px}
-.search input{padding:12px;width:60%;max-width:400px;border-radius:8px;border:none;outline:none}
-.search button{padding:12px 20px;border:none;border-radius:8px;background:#38bdf8;color:#0f172a;font-weight:bold;cursor:pointer}
-.container{padding:40px 5%}
-.filter{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.filter button{padding:8px 15px;border:none;border-radius:6px;background:#334155;color:#e2e8f0;cursor:pointer}
-.filter button.active{background:#38bdf8;color:#0f172a}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
-.card{background:#1e293b;border-radius:12px;overflow:hidden;transition:.2s}
-.card:hover{transform:translateY(-5px)}
-.card img{width:100%;height:160px;object-fit:cover}
-.card-body{padding:15px}
-.game{font-size:12px;color:#94a3b8}
-.title{font-weight:bold;margin:5px 0}
-.price{color:#4ade80;font-size:18px;font-weight:bold}
-.btn{margin-top:10px;width:100%;padding:10px;border:none;border-radius:8px;background:#38bdf8;color:#0f172a;font-weight:bold;cursor:pointer}
-footer{text-align:center;padding:20px;background:#1e293b;margin-top:40px;color:#94a3b8}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jhorebamarket - Jual Beli Akun Game Murah & Terpercaya</title>
+    <style>
+        /* --- Reset & Base Style --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Header / Navbar --- */
+        header {
+            background-color: #1e293b;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #3b82f6;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        header nav a {
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #3b82f6;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #3b82f6;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 18px;
+        }
+
+        /* --- Main Content / Grid Produk --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-left: 5px solid #3b82f6;
+            padding-left: 10px;
+        }
+
+        .grid-produk {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Card Produk --- */
+        .card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .badge-game {
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 15px 15px 0 15px;
+        }
+
+        /* Warna badge sesuai game */
+        .ff { background-color: #f97316; color: #fff; }
+        .ml { background-color: #a855f7; color: #fff; }
+        .pubg { background-color: #eab308; color: #000; }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #f1f5f9;
+        }
+
+        .card-detail {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            list-style: none;
+        }
+
+        .card-detail li {
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 15px;
+        }
+
+        .btn-beli {
+            display: block;
+            text-align: center;
+            background-color: #3b82f6;
+            color: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-beli:hover {
+            background-color: #2563eb;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #1e293b;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+            border-top: 1px solid #334155;
+            color: #64748b;
+        }
+    </style>
 </head>
 <body>
-<header>
-<h1>GameAkun</h1>
-<nav>
-<a href="#">Beranda</a>
-<a href="#">Market</a>
-<a href="#">Jual Akun</a>
-<a href="#">Top Up</a>
-<a href="#">Login</a>
-</nav>
-</header>
-<section class="hero">
-<h2>Jual Beli Akun Game Aman & Cepat</h2>
-<p>ML, Genshin, Valorant, PUBG, FF. Rekber aman 100%</p>
-<div class="search">
-<input type="text" placeholder="Cari akun ML Skin Collector...">
-<button>Cari</button>
-</div>
-</section>
-<div class="container">
-<div class="filter">
-<button class="active">Semua Game</button>
-<button>Mobile Legends</button>
-<button>Genshin Impact</button>
-<button>Valorant</button>
-<button>PUBG Mobile</button>
-<button>Free Fire</button>
-</div>
-<div class="grid">
-<div class="card">
-<img src="https://via.placeholder.com/300x160/1e293b/38bdf8?text=ML+Akun" alt="akun ml">
-<div class="card-body">
-<div class="game">Mobile Legends</div>
-<div class="title">Skin Collector + 8 Legend</div>
-<div class="price">Rp 1.250.000</div>
-<button class="btn">Beli Sekarang</button>
-</div>
-</div>
-<div class="card">
-<img src="https://via.placeholder.com/300x160/1e293b/38bdf8?text=Genshin+Akun" alt="akun genshin">
-<div class="card-body">
-<div class="game">Genshin Impact</div>
-<div class="title">AR 60 | 5 Char B5 Limited</div>
-<div class="price">Rp 850.000</div>
-<button class="btn">Beli Sekarang</button>
-</div>
-</div>
-<div class="card">
-<img src="https://via.placeholder.com/300x160/1e293b/38bdf8?text=Valo+Akun" alt="akun valo">
-<div class="card-body">
-<div class="game">Valorant</div>
-<div class="title">Rank Immortal | 20 Skin</div>
-<div class="price">Rp 600.000</div>
-<button class="btn">Beli Sekarang</button>
-</div>
-</div>
-</div>
-</div>
-<footer>
-© 2026 GameAkun. Rekber aman, transaksi cepat.
-</footer>
+
+    <header>
+        <div class="logo">jhorebamarket</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Testimoni</a>
+            <a href="#">Hubungi Kami</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Selamat Datang di <span>jhorebamarket</span></h1>
+        <p>Tempat Aman, Murah, dan Terpercaya untuk Jual Beli Akun Game Favoritmu!</p>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Akun Terbaru Tersedia</h2>
+        
+        <div class="grid-produk">
+            
+            <div class="card">
+                <div class="badge-game ff">FREE FIRE</div>
+                <div class="card-body">
+                    <h3 class="card-title">Akun FF Old Gg Banget</h3>
+                    <ul class="card-detail">
+                        <li>• Bundle: Sakura, Alok</li>
+                        <li>• Skin Senjata: Evo Gun Scar Max</li>
+                        <li>• Login: FB (Data Aman Lengkap)</li>
+                    </ul>
+                    <div class="price">Rp 350.000</div>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20jhorebamarket,%20saya%20tertarik%20beli%20Akun%20FF%20Old" target="_blank" class="btn-beli">Beli Sekarang</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge-game ml">MOBILE LEGENDS</div>
+                <div class="card-body">
+                    <h3 class="card-title">Akun ML Mythic Glory</h3>
+                    <ul class="card-detail">
+                        <li>• Skin: 150+ (Ada Lightborn & Epic)</li>
+                        <li>• Hero: All Unlocked</li>
+                        <li>• Winrate: 65% Keren</li>
+                    </ul>
+                    <div class="price">Rp 500.000</div>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20jhorebamarket,%20saya%20tertarik%20beli%20Akun%20ML%20Mythic" target="_blank" class="btn-beli">Beli Sekarang</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge-game pubg">PUBG MOBILE</div>
+                <div class="card-body">
+                    <h3 class="card-title">Akun PUBG Akm Glacier</h3>
+                    <ul class="card-detail">
+                        <li>• Skin Utama: AKM Glacier Level 4</li>
+                        <li>• Outfit: Set Mummy</li>
+                        <li>• Tier: Ace Master</li>
+                    </ul>
+                    <div class="price">Rp 750.000</div>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20jhorebamarket,%20saya%20tertarik%20beli%20Akun%20PUBG%20Glacier" target="_blank" class="btn-beli">Beli Sekarang</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 jhorebamarket. All rights reserved.
+    </footer>
+
 </body>
-</html>
-```
+                          </html>
