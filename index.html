@@ -1,96 +1,99 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jhoREBA MARKET</title>
+<title>GameAkun - Jual Beli Akun Game Murah</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0a;font-family:Arial;color:white}
-.header{background:#ff6600;color:white;text-align:center;padding:20px;font-size:24px;font-weight:800;position:sticky;top:0;z-index:10}
-.section{padding:20px 15px}
-.judul{font-size:20px;font-weight:800;color:#ff6600;margin-bottom:15px;border-left:4px solid #ff6600;padding-left:10px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:40px}
-.card{background:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid #333}
-.card img{width:100%;height:130px;object-fit:cover;background:#222}
-.info{padding:12px}
-.info h4{font-size:15px;margin-bottom:6px;color:#fff}
-.price{color:#ff6600;font-weight:800;font-size:16px;margin-bottom:8px}
-.wa{background:#25D366;color:white;width:100%;padding:9px;border-radius:8px;font-weight:700;text-decoration:none;display:block;text-align:center;font-size:13px}
-@media(max-width:400px){.grid{grid-template-columns:1fr}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0f172a;color:#e2e8f0}
+header{background:#1e293b;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+header h1{color:#38bdf8}
+nav a{color:#e2e8f0;text-decoration:none;margin-left:20px}
+nav a:hover{color:#38bdf8}
+.hero{padding:60px 5%;text-align:center;background:linear-gradient(135deg,#1e293b,#0f172a)}
+.hero h2{font-size:32px;margin-bottom:10px}
+.search{margin-top:20px}
+.search input{padding:12px;width:60%;max-width:400px;border-radius:8px;border:none;outline:none}
+.search button{padding:12px 20px;border:none;border-radius:8px;background:#38bdf8;color:#0f172a;font-weight:bold;cursor:pointer}
+.container{padding:40px 5%}
+.filter{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.filter button{padding:8px 15px;border:none;border-radius:6px;background:#334155;color:#e2e8f0;cursor:pointer}
+.filter button.active{background:#38bdf8;color:#0f172a}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{background:#1e293b;border-radius:12px;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-5px)}
+.card img{width:100%;height:160px;object-fit:cover}
+.card-body{padding:15px}
+.game{font-size:12px;color:#94a3b8}
+.title{font-weight:bold;margin:5px 0}
+.price{color:#4ade80;font-size:18px;font-weight:bold}
+.btn{margin-top:10px;width:100%;padding:10px;border:none;border-radius:8px;background:#38bdf8;color:#0f172a;font-weight:bold;cursor:pointer}
+footer{text-align:center;padding:20px;background:#1e293b;margin-top:40px;color:#94a3b8}
 </style>
 </head>
 <body>
-
-<div class="header">jhoREBA MARKET</div>
-
-<!-- SECTION ML -->
-<div class="section">
-  <div class="judul">MOBILE LEGENDS</div>
-  <div class="grid">
-    <div class="card">
-      <img src="https://i.imgur.com/8Km9tLL.jpg">
-      <div class="info">
-        <h4>Akun ML Epic 3 200+ Skin</h4>
-        <div class="price">Rp 95.000</div>
-        <a class="wa" href="https://wa.me/6281234567890?text=Halo%20min%20mau%20beli%20ML%20Epic%203%20Rp%2095rb">Beli via WA</a>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://i.imgur.com/8Km9tLL.jpg">
-      <div class="info">
-        <h4>Akun ML Legend 300+ Skin</h4>
-        <div class="price">Rp 175.000</div>
-        <a class="wa" href="https://wa.me/6281234567890?text=Halo%20min%20mau%20beli%20ML%20Legend%20Rp%20175rb">Beli via WA</a>
-      </div>
-    </div>
-  </div>
+<header>
+<h1>GameAkun</h1>
+<nav>
+<a href="#">Beranda</a>
+<a href="#">Market</a>
+<a href="#">Jual Akun</a>
+<a href="#">Top Up</a>
+<a href="#">Login</a>
+</nav>
+</header>
+<section class="hero">
+<h2>Jual Beli Akun Game Aman & Cepat</h2>
+<p>ML, Genshin, Valorant, PUBG, FF. Rekber aman 100%</p>
+<div class="search">
+<input type="text" placeholder="Cari akun ML Skin Collector...">
+<button>Cari</button>
 </div>
-
-<!-- SECTION PUBG -->
-<div class="section">
-  <div class="judul">PUBG MOBILE</div>
-  <div class="grid">
-    <div class="card">
-      <img src="https://i.imgur.com/8Km9tLL.jpg">
-      <div class="info">
-        <h4>Akun PUBG Glacier Lvl 3</h4>
-        <div class="price">Rp 280.000</div>
-        <a class="wa" href="https://wa.me/6281234567890?text=Halo%20min%20mau%20beli%20PUBG%20Glacier%20Rp%20280rb">Beli via WA</a>
-      </div>
-    </div>
-  </div>
+</section>
+<div class="container">
+<div class="filter">
+<button class="active">Semua Game</button>
+<button>Mobile Legends</button>
+<button>Genshin Impact</button>
+<button>Valorant</button>
+<button>PUBG Mobile</button>
+<button>Free Fire</button>
 </div>
-
-<!-- SECTION FF -->
-<div class="section">
-  <div class="judul">FREE FIRE</div>
-  <div class="grid">
-    <div class="card">
-      <img src="https://i.imgur.com/8Km9tLL.jpg">
-      <div class="info">
-        <h4>Akun FF Sultan Bundle</h4>
-        <div class="price">Rp 150.000</div>
-        <a class="wa" href="https://wa.me/6281234567890?text=Halo%20min%20mau%20beli%20FF%20Sultan%20Rp%20150rb">Beli via WA</a>
-      </div>
-    </div>
-  </div>
+<div class="grid">
+<div class="card">
+<img src="https://via.placeholder.com/300x160/1e293b/38bdf8?text=ML+Akun" alt="akun ml">
+<div class="card-body">
+<div class="game">Mobile Legends</div>
+<div class="title">Skin Collector + 8 Legend</div>
+<div class="price">Rp 1.250.000</div>
+<button class="btn">Beli Sekarang</button>
 </div>
-
-<!-- SECTION GENSHIN -->
-<div class="section">
-  <div class="judul">GENSHIN IMPACT</div>
-  <div class="grid">
-    <div class="card">
-      <img src="https://i.imgur.com/8Km9tLL.jpg">
-      <div class="info">
-        <h4>Akun Genshin AR 58</h4>
-        <div class="price">Rp 500.000</div>
-        <a class="wa" href="https://wa.me/6281234567890?text=Halo%20min%20mau%20beli%20Genshin%20AR58%20Rp%20500rb">Beli via WA</a>
-      </div>
-    </div>
-  </div>
 </div>
-
+<div class="card">
+<img src="https://via.placeholder.com/300x160/1e293b/38bdf8?text=Genshin+Akun" alt="akun genshin">
+<div class="card-body">
+<div class="game">Genshin Impact</div>
+<div class="title">AR 60 | 5 Char B5 Limited</div>
+<div class="price">Rp 850.000</div>
+<button class="btn">Beli Sekarang</button>
+</div>
+</div>
+<div class="card">
+<img src="https://via.placeholder.com/300x160/1e293b/38bdf8?text=Valo+Akun" alt="akun valo">
+<div class="card-body">
+<div class="game">Valorant</div>
+<div class="title">Rank Immortal | 20 Skin</div>
+<div class="price">Rp 600.000</div>
+<button class="btn">Beli Sekarang</button>
+</div>
+</div>
+</div>
+</div>
+<footer>
+© 2026 GameAkun. Rekber aman, transaksi cepat.
+</footer>
 </body>
 </html>
+```
