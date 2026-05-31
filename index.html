@@ -3,37 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LapakSkin</title>
+<title>jhoREBA MARKET</title>
 <style>
-body{background:#0f172a;color:#e2e8f0;font-family:sans-serif;margin:0}
-nav{background:#1e293b;padding:15px;text-align:center;border-bottom:2px solid #334155}
-nav h1{color:#38bdf8;margin-bottom:10px}
-nav button{background:#334155;color:#e2e8f0;border:none;padding:10px 18px;margin:0 3px;border-radius:8px;font-weight:bold;cursor:pointer}
-nav button.active{background:#38bdf8;color:#0f172a}
-.container{max-width:800px;margin:20px auto;padding:20px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0a0a0a;color:#fff}
+.header{background:#ff5a00;padding:15px;text-align:center;font-weight:bold;font-size:20px}
+.header input{width:90%;max-width:400px;margin-top:8px;padding:8px;border:none;border-radius:20px;text-align:center}
+.tabs{background:#1a1a1a;display:flex;justify-content:space-around;padding:10px;border-bottom:2px solid #ff5a00}
+.tabs button{background:none;border:none;color:#aaa;padding:8px 12px;font-weight:bold;cursor:pointer}
+.tabs button.active{color:#ff5a00;border-bottom:2px solid #ff5a00}
+.container{padding:15px;max-width:1200px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.card{background:#1a1a1a;border-radius:10px;overflow:hidden;border:1px solid #2a2a2a}
+.card img{width:100%;height:140px;object-fit:cover}
+.card-body{padding:10px;font-size:13px}
+.card-body h3{font-size:14px;margin-bottom:4px;color:#fff}
+.card-body p{color:#aaa;font-size:12px;margin-bottom:4px}
+.price{color:#ff5a00;font-weight:bold;font-size:16px;margin:6px 0}
+.wa{background:#25D366;color:white;border:none;width:100%;padding:8px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:12px}
 .section{display:none}
 .section.active{display:block}
-h2{color:#f1f5f9;margin-bottom:15px}
-.box{background:#1e293b;padding:20px;border-radius:12px;border:1px solid #334155;margin-bottom:20px}
-form{background:#1e293b;padding:25px;border-radius:12px;border:1px solid #334155}
-label{display:block;margin-top:15px;margin-bottom:5px;color:#38bdf8;font-weight:bold}
-input,textarea{width:100%;padding:12px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#e2e8f0;font-size:15px}
-textarea{min-height:100px}
-button{background:#25D366;color:white;border:none;padding:14px;width:100%;border-radius:8px;font-weight:bold;font-size:16px;margin-top:20px;cursor:pointer}
-.card{background:#1e293b;border-radius:12px;overflow:hidden;border:1px solid #334155;margin-bottom:15px}
-.card img{width:100%;height:180px;object-fit:cover}
-.card-body{padding:15px}
-h3{color:#38bdf8}
-.price{color:#4ade80;font-weight:bold;font-size:22px;margin:10px 0}
-.wa{background:#25D366;text-align:center;padding:12px;border-radius:8px;color:white;text-decoration:none;display:block;font-weight:bold;margin-top:10px}
-small{color:#94a3b8;font-size:12px}
+small{color:#666;font-size:11px}
 </style>
 </head>
 <body>
 
-<nav>
-  <h1>LapakSkin ML</h1>
-  <button onclick="document.getElementById('home').style.display='block';document.getElementById('jual').style.display='none';document.getElementById('katalog').style.display='none';document.getElementById('beli').style.display='none';this.className='active'" class="active">Home</button>
-  <button onclick="document.getElementById('home').style.display='none';document.getElementById('jual').style.display='block';document.getElementById('katalog').style.display='none';document.getElementById('beli').style.display='none'">Jual</button>
-  <button onclick="document.getElementById('home').style.display='none';document.getElementById('jual').style.display='none';document.getElementById('katalog').style.display='block';document.getElementById('beli').style.display='none'">Katalog</button>
-  <button onclick="document.getElementById('home').style.display
+<div class="header">
+  jhoREBA MARKET
+  <input placeholder="Cari akun game...">
+</div>
+
+<div class="tabs">
+  <button onclick="show('ml')" class="active" id="btn-ml">ML</button>
+  <button onclick="show('pubg')" id="btn-pubg">PUBG</button>
+  <button onclick="show('ff')" id="btn-ff">FF</button>
+  <button onclick="show('genshin')" id="btn-genshin">Genshin</button>
+</div>
+
+<div class="container">
+  <!-- TAB ML -->
+  <div id
