@@ -1,81 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jual Beli Akun</title>
-<style>
-body{font-family:sans-serif;background:#0f172a;color:#e2e8f0;padding:20px;max-width:500px;margin:auto}
-input,textarea,button{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:16px}
-button{background:#3b82f6;border:none;font-weight:bold;cursor:pointer}
-button:active{transform:scale(0.98)}
-.item{background:#1e293b;padding:15px;border-radius:10px;margin:12px 0;border-left:4px solid #3b82f6}
-.item b{font-size:18px}
-small{color:#94a3b8}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lapak Akun ML Pro</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; max-width: 700px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; min-height: 100vh; }
+   .container { background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border: 1px solid #334155; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    h2 { color: #3ECF8E; text-align: center; margin-bottom: 25px; font-size: 28px; }
+    h3 { color: #94a3b8; margin-top: 40px; margin-bottom: 15px; border-bottom: 2px solid #3ECF8E; padding-bottom: 8px; }
+    label { display: block; margin-top: 15px; margin-bottom: 5px; font-weight: 600; color: #cbd5e1; }
+    input, textarea, button { width: 100%; padding: 14px; margin: 8px 0; font-size: 16px; border-radius: 10px; border: 1px solid #475569; background: #0f172a; color: #e2e8f0; transition: all 0.3s; }
+    input:focus, textarea:focus { outline: none; border-color: #3ECF8E; box-shadow: 0 0 0 3px rgba(62, 207, 142, 0.1); }
+    button { background: linear-gradient(90deg, #3ECF8E 0%, #22c55e 100%); color: #0f172a; border: none; font-weight: bold; cursor: pointer; font-size: 17px; margin-top: 20px; }
+    button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(62, 207, 142, 0.4); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    #result { margin-top: 25px; padding: 18px; border-radius: 10px; background: #0f172a; border: 1px solid #334155; word-break: break-all; min-height: 50px; }
+    img { max-width: 100%; border-radius: 10px; margin-top: 12px; border: 2px solid #334155; }
+   .card { background: #0f172a; padding: 18px; margin: 15px 0; border-radius: 12px; border-left: 4px solid #3ECF8E; transition: transform 0.2s; }
+   .card:hover { transform: translateX(5px); }
+   .price { color: #fbbf24; font-weight: bold; font-size: 22px; margin: 8px 0; }
+   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
+   .loading { text-align: center; padding: 20px; color: #94a3b8; }
+   .success { border-left: 4px solid #22c55e; background: rgba(34, 197, 94, 0.1); }
+   .error { border-left: 4px solid #ef4444; background: rgba(239, 68, 44, 0.1); }
+  </style>
 </head>
 <body>
-<h2>📱 Jual Beli Akun Game</h2>
+  <div class="container">
+    <h2>🔥 Lapak Akun ML Pro</h2>
 
-<input id="game" placeholder="Nama Game - ML, FF, PUBG">
-<input id="harga" placeholder="Harga - contoh: 150rb">
-<textarea id="kontak" placeholder="Kontak WA: 08xxxx"></textarea>
-<button id="btnKirim">POST JUALAN</button>
+    <label>Nama Akun</label>
+    <input type="text" id="nama" placeholder="Contoh: Epic 50 Skin | Mythic Glory">
 
-<h3>📋 Daftar Jualan</h3>
-<div id="list">Loading...</div>
+    <label>Harga Rp</label>
+    <input type="number" id="harga" placeholder="Contoh: 150000">
 
-<!-- KODE FIREBASE VERSI LAMA - PASTI JALAN -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script>
-// INI KUNCI FIREBASE LU - UDAH GUE PASTEIN
-const firebaseConfig = {
-  apiKey: "AIzaSyBEryRDPA0ePlc9XWPDDSFUDBJD1HFyEaU",
-  authDomain: "jhorebamarket.firebaseapp.com",
-  databaseURL: "https://jhorebamarket-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "jhorebamarket",
-  storageBucket: "jhorebamarket.firebasestorage.app",
-  messagingSenderId: "835799277509",
-  appId: "1:835799277509:web:ae0d45242aa34c8cec75ac"
-};
+    <label>Deskripsi Lengkap</label>
+    <textarea id="deskripsi" rows="4" placeholder="Skin apa aja, rank, login FB/Moonton, dll..."></textarea>
 
-// INISIALISASI FIREBASE
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+    <label>Foto Bukti Akun</label>
+    <input type="file" id="upload" accept="image/*">
 
-// FUNGSI KIRIM DATA
-document.getElementById('btnKirim').onclick = function(){
-  const game = document.getElementById('game').value;
-  const harga = document.getElementById('harga').value;
-  const kontak = document.getElementById('kontak').value;
-  
-  if(game == '' || harga == '' || kontak == ''){
-    alert('Isi semua bro!');
-    return;
-  }
-  
-  db.ref('items').push({
-    game: game,
-    harga: harga,
-    kontak: kontak,
-    waktu: new Date().toLocaleString('id-ID')
-  });
-  
-  alert('Berhasil dikirim!');
-  document.getElementById('game').value = '';
-  document.getElementById('harga').value = '';
-  document.getElementById('kontak').value = '';
-}
+    <button id="btnUpload" onclick="uploadAkun()">🚀 Upload + Simpan ke Database</button>
 
-// TAMPILIN DATA OTOMATIS
-db.ref('items').on('value', snap => {
-  let html = '';
-  snap.forEach(child => {
-    const d = child.val();
-    html += `<div class="item"><b>${d.game}</b><br>Rp ${d.harga}<br>Kontak: ${d.kontak}<br><small>${d.waktu}</small></div>`;
-  });
-  document.getElementById('list').innerHTML = html || 'Belum ada jualan';
-});
-</script>
+    <div id="result"></div>
+
+    <h3>📋 Daftar Akun Yang Udah Diupload:</h3>
+    <div id="daftarAkun" class="grid">
+      <div class="loading">Loading data...</div>
+    </div>
+  </div>
+
+  <script>
+    // KONFIG SUPABASE LU - UDAH GUE ISI
+    const SUPABASE_URL = 'https://ovxcwxbvcawyknybuvgh.supabase.co'
+    const SUPABASE_KEY = 'sb_publishable_hHZTfmjReAH0wuTMWOlvEQ_cjbASbME'
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+
+    // Auto load pas buka web
+    loadAkun()
+
+    async function uploadAkun() {
+      const nama = document.getElementById('nama').value.trim()
+      const harga = document.getElementById('harga').value
+      const deskripsi = document.getElementById('deskripsi').value.trim()
+      const file = document.getElementById('upload').files[0]
+      const btn = document.getElementById('btnUpload')
+      const result = document.getElementById('result')
+
+      if (!nama ||!harga ||!file) {
+        result.className = 'error'
+        result.innerHTML = '⚠️ Nama, Harga, sama Foto wajib diisi semua bro!'
+        return
+      }
+
+      btn.disabled = true
+      result.className = ''
+      result.innerHTML = '⏳ Uploading foto ke Supabase Storage...'
+
+      try {
+        // 1. Upload foto ke Storage bucket 'skin-fotos'
+        const fileExt = file.name.split('.').pop()
+        const fileName = Date.now() + '-' + Math.random().toString(36).substring(7) + '.' + fileExt
+
+        const { error: uploadError } = await supabase.storage
+         .from('skin-fotos')
+         .upload(fileName, file, {
+            cacheControl: '3600',
+            upsert: false
+          })
+
+        if (uploadError) throw uploadError
+
+        result.innerHTML = '✅ Foto ke-upload! Simpan data ke database...'
+
+        // 2. Ambil link public foto
+        const { data: urlData } = supabase.storage
+         .from('skin-fotos')
+         .getPublicUrl(fileName)
+
+        // 3. Simpan ke tabel 'lapak_skin'
+        const { error: dbError } = await supabase
+         .from('lapak_skin')
+         .insert([{
+            nama_akun: nama,
+            harga: parseInt(harga),
+            deskripsi: deskripsi,
+            foto_url: urlData.publicUrl
+          }])
+
+        if (dbError) throw dbError
+
+        result.className = 'success'
+        result.innerHTML = `
+          <b>🎉 SUKSES BRO!</b><br>
+          Akun "${nama}" udah masuk database + foto aman di cloud<br>
+          <img src="${urlData.publicUrl}" alt="${nama}">
+          <br><small>Link: ${urlData.publicUrl}</small>
+        `
+
+        // Reset form
+        document.getElementById('nama').value = ''
+        document.getElementById('harga').value = ''
+        document.getElementById('deskripsi').value = ''
+        document.getElementById('upload').value = ''
+
+        loadAkun() // refresh daftar bawah
+
+      } catch (error) {
+        result.className = 'error'
+        result.innerHTML = '❌ Gagal: ' + error.message + '<br><small>Cek bucket "skin-fotos" udah Public belum bro</small>'
+        console.error(error)
+      }
+
+      btn.disabled = false
+    }
+
+    async function loadAkun() {
+      const { data, error } = await supabase
+       .from('lapak_skin')
+       .select('*')
+       .order('created_at', { ascending: false })
+
+      const container = document.getElementById('daftarAkun')
+
+      if (error) {
+        container.innerHTML = '<div class="error">Gagal load data: ' + error.message + '</div>'
+        return
+      }
+
+      if (!data || data.length === 0) {
+        container.innerHTML = '<div class="loading">Belum ada akun yang diupload. Upload pertama bro! 👆</div>'
+        return
+      }
+
+      container.innerHTML = data.map(akun => `
+        <div class="card">
+          <img src="${akun.foto_url}" alt="${akun.nama_akun}">
+          <h4>${akun.nama_akun}</h4>
+          <div class="price">Rp ${akun.harga.toLocaleString('id-ID')}</div>
+          <p style="color:#94a3b8; margin-top:8px;">${akun.deskripsi || 'Tanpa deskripsi'}</p>
+          <small style="color:#64748b;">${new Date(akun.created_at).toLocaleDateString('id-ID')}</small>
+        </div>
+      `).join('')
+    }
+  </script>
 </body>
 </html>
