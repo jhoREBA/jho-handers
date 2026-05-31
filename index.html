@@ -1,59 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>jhoREBA MARKET</title>
 <style>
-body{margin:0;font-family:Arial;background:#0a0a0a;color:white}
-.header{background:#ff6600;padding:15px;text-align:center;font-size:20px;font-weight:bold}
-.search{padding:10px;background:#ff6600}
-.search input{width:100%;padding:12px;border-radius:25px;border:none;font-size:14px}
-.tabs{display:flex;background:#1a1a1a;border-bottom:2px solid #ff6600}
-.tab{flex:1;padding:15px;text-align:center;cursor:pointer;font-weight:bold;color:#888}
-.tab.active{color:#ff6600;border-bottom:3px solid #ff6600}
-.content{padding:15px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.card{background:#1e1e1e;border-radius:12px;padding:10px;cursor:pointer}
-.card img{width:100%;height:100px;object-fit:cover;border-radius:8px;background:#333}
-.card h3{font-size:14px;margin:8px 0 4px}
-.card p{color:#ff6600;font-weight:bold;margin:0;font-size:13px}
-.wa-btn{background:#25D366;color:white;border:none;padding:6px 10px;border-radius:6px;margin-top:6px;width:100%;font-size:12px;cursor:pointer}
+* {margin:0; padding:0; box-sizing:border-box}
+body {background:#0a0a0a; font-family:system-ui,Arial; color:white}
+.header {background:#ff6600; color:white; text-align:center; padding:20px; font-size:24px; font-weight:800}
+.search {background:#ff6600; padding:12px 15px}
+.search input {width:100%; padding:14px 20px; border-radius:30px; border:none; font-size:16px; outline:none}
+.tabs {display:flex; background:#151515; border-bottom:3px solid #ff6600}
+.tab {flex:1; text-align:center; padding:16px 0; color:#999; font-weight:700; cursor:pointer; font-size:16px; transition:0.2s}
+.tab.active {color:#ff6600; border-bottom:3px solid #ff6600; background:#1f1f1f}
+.content {padding:15px; min-height:60vh}
+.grid {display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+.card {background:#1a1a1a; border-radius:14px; overflow:hidden; border:1px solid #2a2a2a}
+.card img {width:100%; height:130px; object-fit:cover; background:#222}
+.info {padding:12px}
+.info h4 {font-size:15px; margin-bottom:6px; color:#fff}
+.price {color:#ff6600; font-weight:800; font-size:16px; margin-bottom:8px}
+.wa {background:#25D366; color:white; border:none; width:100%; padding:9px; border-radius:8px; font-weight:700; cursor:pointer; font-size:13px}
+.wa:active {background:#1ebe5b}
+.empty {text-align:center; color:#555; padding:100px 20px; font-size:15px}
+@media(max-width:400px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="header">jhoREBA MARKET</div>
-<div class="search"><input type="text" placeholder="Cari akun game..." id="search"></div>
 
-<div class="tabs">
-  <div class="tab active" onclick="showTab('ML')">ML</div>
-  <div class="tab" onclick="showTab('PUBG')">PUBG</div>
-  <div class="tab" onclick="showTab('FF')">FF</div>
-  <div class="tab" onclick="showTab('Genshin')">Genshin</div>
+<div class="header">jhoREBA MARKET</div>
+
+<div class="search">
+  <input type="text" id="search" placeholder="Cari akun game...">
 </div>
 
-<div class="content" id="content"></div>
+<div class="tabs">
+  <div class="tab active" data-cat="ML">ML</div>
+  <div class="tab" data-cat="PUBG">PUBG</div>
+  <div class="tab" data-cat="FF">FF</div>
+  <div class="tab" data-cat="Genshin">Genshin</div>
+</div>
+
+<div class="content">
+  <div class="grid" id="grid"></div>
+</div>
 
 <script>
-const data = {
+// GANTI DATA DI SINI AJA BRO
+const dataProduk = {
   ML: [
-    {img:"https://via.placeholder.com/150", title:"Akun ML Epic", price:"Rp 80.000", wa:"628xxxxxx"},
-    {img:"https://via.placeholder.com/150", title:"Akun ML Legend", price:"Rp 150.000", wa:"628xxxxxx"}
+    {img:"https://i.imgur.com/8Km9tLL.jpg", nama:"Akun ML Epic 3 200+ Skin", harga:"Rp 95.000", wa:"6281234567890"},
+    {img:"https://i.imgur.com/8Km9tLL.jpg", nama:"Akun ML Legend 300+ Skin", harga:"Rp 175.000", wa:"6281234567890"},
+    {img:"https://i.imgur.com/8Km9tLL.jpg", nama:"Akun ML Mythic Glory", harga:"Rp 350.000", wa:"6281234567890"}
   ],
   PUBG: [
-    {img:"https://via.placeholder.com/150", title:"Akun PUBG Mummy", price:"Rp 200.000", wa:"628xxxxxx"}
+    {img:"https://i.imgur.com/8Km9tLL.jpg", nama:"Akun PUBG Glacier Lvl 3", harga:"Rp 280.000", wa:"6281234567890"},
+    {img:"https://i.imgur.com/8Km9tLL.jpg", nama:"Akun PUBG Mummy Set", harga:"Rp 420.000", wa:"6281234567890"}
   ],
   FF: [
-    {img:"https://via.placeholder.com/150", title:"Akun FF Sultan", price:"Rp 120.000", wa:"628xxxxxx"}
+    {img:"https://i.imgur.com/8Km9tLL.jpg", nama:"Akun FF Sultan Bundle", harga:"Rp 150.000", wa:"6281234567890"},
+    {img:"https://i.imgur.com/8Km9tLL.jpg", nama:"Akun FF CS Rank Heroic", harga:"Rp 90.000", wa:"6281234567890"}
   ],
   Genshin: [
-    {img:"https://via.placeholder.com/150", title:"Akun Genshin AR55", price:"Rp 300.000", wa:"628xxxxxx"}
+    {img:"https://i.imgur.com/8Km9tLL.jpg", nama:"Akun Genshin AR 58", harga:"Rp 500.000", wa:"6281234567890"}
   ]
 };
 
-function showTab(cat){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  event.target.classList.add('active');
+let kategoriAktif = 'ML';
 
-  let html = '';
-  data[cat].forEach(item=>{
-    html += `
-    <div class="card">
-      <img src="${
+function tampilkan(kategori, keyword='') {
+  kategoriAktif = kategori;
+
+  // update tab aktif
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.cat === kategori);
+  });
+
+  // filter produk
+  let list = dataProduk[kategori].filter(p =>
+    p.nama.toLowerCase().includes(keyword.toLowerCase())
+  );
+
+  let grid = document.getElementById('grid');
+
+  if(list.length === 0) {
+    grid.innerHTML = `<div class="empty">Belum ada stok ${kategori} bro<br>Tambah di bagian script 👆</div>`;
+    return;
+  }
