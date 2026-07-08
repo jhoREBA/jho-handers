@@ -13,9 +13,9 @@
     font-size:16px;
   }
   #terminal{max-width:900px;margin:0 auto;}
-  .output{white-space:pre-wrap;margin-bottom:10px;line-height:1.6;}
-  .input-line{display:flex;}
-  .prompt{color:#00ff88;margin-right:8px;}
+.output{white-space:pre-wrap;margin-bottom:10px;line-height:1.6;}
+.input-line{display:flex;}
+.prompt{color:#00ff88;margin-right:8px;}
   #cmd{
     background:transparent;
     border:none;
@@ -25,16 +25,15 @@
     outline:none;
     width:100%;
   }
-  a{color:#4ade80;text-decoration:underline;}
-  .green{color:#22c55e} .yellow{color:#facc15} .red{color:#f87171}
+.green{color:#22c55e}.yellow{color:#facc15}.red{color:#f87171}
 </style>
 </head>
 <body>
 <div id="terminal">
   <div class="output">
-<span class="green">Selamat datang di Investasi Santai Terminal v2.0</span>
+<span class="green">Selamat datang di Investasi Santai Terminal v2.1</span>
 Ketik <span class="yellow">help</span> untuk lihat daftar menu
-
+========================================
 </div>
   <div id="output"></div>
   <div class="input-line">
@@ -49,8 +48,82 @@ const cmd = document.getElementById('cmd');
 
 const menus = {
   help: `DAFTAR PERINTAH:
-  <span class="yellow">menu</span>   - Lihat semua topik
-  <span class="yellow">saham</span>  - Belajar Saham dari 0
-  <span class="yellow">emas</span>   - Belajar Emas dari 0  
+  <span class="yellow">menu</span> - Lihat semua topik
+  <span class="yellow">saham</span> - Belajar Saham dari 0
+  <span class="yellow">emas</span> - Belajar Emas dari 0
   <span class="yellow">crypto</span>- Belajar Crypto dari 0
-  <span class="yellow">pemula</span>-
+  <span class="yellow">pemula</span>- Panduan untuk pemula banget
+  <span class="yellow">clear</span> - Bersihkan layar`,
+
+  menu: `=== PILIH TOPIK INVESTASI ===
+  <span class="yellow">saham</span> = Beli perusahaan. Jangka panjang 5-10 tahun
+  <span class="yellow">emas</span> = Aman, anti inflasi, buat dana darurat
+  <span class="yellow">crypto</span> = Resiko tinggi, cuan tinggi
+
+  Bingung mulai dari mana? Ketik <span class="yellow">pemula</span>`,
+
+  pemula: `=== MULAI DARI MANA BRO? ===
+  Aturan 3 Keranjang:
+  50% <span class="yellow">saham</span> = Buat pensiun
+ 30% <span class="yellow">emas</span> = Buat jaga2
+ 20% <span class="yellow">crypto</span> = Buat spekulasi
+
+  Modal 100rb juga bisa mulai. Yang penting mulai.`,
+
+  saham: `=== SAHAM UNTUK PEMULA ===
+  Apa itu saham? = Kamu beli 1 perusahaan. Contoh: Beli saham BBCA = kamu punya secuil BCA
+
+ 3 Langkah Mulai:
+    1. Buka rekening di Ajaib/Bibit/Stockbit. Gratis.
+    2. Beli saham "bluechip": BBCA, BBRI, TLKM. Aman buat belajar.
+    3. Pegang 5 tahun. Jangan trading tiap hari.
+
+  <span class="red">Resiko:</span> Harga bisa turun. Tapi perusahaan bagus pasti balik lagi.`,
+
+  emas: `=== EMAS UNTUK PEMULA ===
+  Kenapa emas? = 20 tahun lalu 1 gram 300rb. Sekarang 1.5jt. Ngalahin inflasi.
+
+ 3 Cara Beli Emas:
+  1. Emas Fisik: Antam di Pegadaian/Tokopedia. 
+    2. Emas Digital: Tokopedia Emas, Pluang. Mulai 10rb
+  3. Tabungan Emas Pegadaian
+
+  <span class="green">Tips:</span> Beli rutin tiap bulan. Namanya DCA.`,
+
+  crypto: `=== CRYPTO UNTUK PEMULA ===
+  Apa itu crypto? = Uang digital. Rajanya: Bitcoin & Ethereum
+
+ 3 Aturan Main Crypto:
+  1. Pakai "uang dingin". Hilang 100% juga gak nangis
+  2. Beli di exchange legal: Indodax, Pintu, Tokocrypto
+  3. 80% di BTC & ETH. 20% buat coba2 koin lain
+
+  <span class="red">Peringatan:</span> Bisa +50% sehari, bisa -50% juga.`,
+
+  clear: ""
+};
+
+function print(text){
+  output.innerHTML += `<div class="output">${text}</div>`;
+  window.scrollTo(0,document.body.scrollHeight);
+}
+
+cmd.addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){
+    let val = cmd.value.toLowerCase().trim();
+    print(`<span class="prompt">investor@bro:~$</span> ${val}`);
+
+    if(val === 'clear'){
+      output.innerHTML = '';
+    } else if(menus[val]){
+      print(menus[val]);
+    } else if(val!== ''){
+      print(`Perintah tidak ditemukan. Ketik <span class="yellow">help</span>`);
+    }
+    cmd.value = '';
+  }
+});
+cmd.focus();
+</script>
+</body>
+  </html>
