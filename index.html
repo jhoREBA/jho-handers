@@ -3,103 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Block Puzzle Santai</title>
+<title>Investasi + Block Puzzle</title>
 <style>
   body{
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    margin:0;
-    font-family:'Arial', sans-serif;
-    color:white;
-    user-select:none;
+    background: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070') no-repeat center fixed;
+    background-size: cover;
+    color:#00ff88;
+    font-family:'Courier New', monospace;
+    margin:0;padding:20px;
+    transition: background 0.8s;
   }
-  #game{
-    text-align:center;
-  }
-  #board{
-    display:grid;
-    grid-template-columns: repeat(8, 40px);
-    grid-template-rows: repeat(8, 40px);
-    gap:2px;
-    background:#111;
-    padding:10px;
-    border-radius:10px;
-    box-shadow:0 0 20px rgba(0,0,0,0.5);
-  }
- .cell{
-    width:40px;
-    height:40px;
-    background:#333;
-    border-radius:4px;
-  }
- .filled{background:#00ff88; box-shadow:0 0 8px #00ff88;}
- .block{
-    display:inline-block;
-    margin:10px;
-    cursor:grab;
-  }
- .block-piece{
-    width:20px; height:20px; background:#ffaa00;
-    display:inline-block; margin:1px; border-radius:3px;
-  }
-  #score{
-    font-size:24px; margin-bottom:10px;
-  }
-  #blocks{
-    margin-top:15px;
-  }
-</style>
-</head>
-<body>
-<div id="game">
-  <div id="score">Score: 0</div>
-  <div id="board"></div>
-  <div id="blocks"></div>
-  <button onclick="restart()" style="margin-top:15px;padding:10px 20px;background:#00ff88;border:none;border-radius:5px;color:#000;font-weight:bold;">Restart</button>
-</div>
-
-<script>
-let board = [];
-let score = 0;
-const boardEl = document.getElementById('board');
-const blocksEl = document.getElementById('blocks');
-const scoreEl = document.getElementById('score');
-
-// 8x8 board
-function initBoard(){
-  board = Array(8).fill().map(()=>Array(8).fill(0));
-  boardEl.innerHTML = '';
-  for(let i=0;i<8;i++){
-    for(let j=0;j<8;j++){
-      let cell = document.createElement('div');
-      cell.className = 'cell';
-      cell.id = `cell-${i}-${j}`;
-      boardEl.appendChild(cell);
-    }
-  }
-}
-
-// Bentuk block
-const shapes = [
-  [[1]], // 1x1
-  [[1,1],[1,1]], // 2x2
-  [[1,1,1]], // 1x3
-  [[1],[1],[1]], // 3x1
-  [[1,1],[1,0]], // L
-  [[1,0],[1,1]] // L kebalik
-];
-
-function randomBlocks(){
-  blocksEl.innerHTML = '';
-  for(let i=0;i<3;i++){
-    let shape = shapes[Math.floor(Math.random()*shapes.length)];
-    let blockDiv = document.createElement('div');
-    blockDiv.className = 'block';
-    blockDiv.draggable = true;
-    blockDiv.dataset.shape = JSON.stringify(shape);
-
-    shape.forEach(row=>{
-      row.forEach(cell=>{
+  body::before{content:'';position:fixed;top:0;left:0;width:100
